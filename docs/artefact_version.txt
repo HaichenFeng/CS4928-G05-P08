@@ -1,0 +1,9 @@
+MM-Assist replication package — artefact version record
+Accessed: 2026-10-05 (UTC)
+Landing page: https://cuboulder-se-research.github.io/move-method-assist/
+Repository:   https://github.com/cuboulder-se-research/move-method-assist (branch main)
+HEAD commit:  8b0898fbcaf05b6b4596c2c54b3b156d412c77bb Fri Jan 30 19:36:34 2026 -0700
+Dataset file: replication-package/artifacts/datasets.zip
+  last changed in commit: 131502c6eab21b5ce99c585fa64b1c2a05989d15 Wed Jul 30 23:23:14 2025 -0600
+  sha256: 8b2808944db28ba6620f07a71fce38224f32cc100a444bb89573f662e268c3eb
+Real-world instance-method corpus used: data/refminer_data/instance-methods/mm-assist-emm/*_res.json (inside datasets.zip)
