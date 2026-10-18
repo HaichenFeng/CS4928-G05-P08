@@ -1,13 +1,13 @@
-# Static coupling ranking — coding rule
+# Static coupling ranking - coding rule
 
 Frozen with tag `M1_PLAN`.
 
-- **Basis:** the candidate set follows paper Def. III.3 and §III-C-1a (field types of the host class + parameter types of the method).
+- **Basis:** the candidate set follows paper Def. III.3 and Sec. III-C-1a (field types of the host class + parameter types of the method).
 - **Input:** the host file at `newCommitHash` (`data/sample_ids.csv`) and the method m (signature in the csv).
 
 ## Rules
 
-1. **Candidates.** C = declared types of all fields of H ∪ declared types of all parameters of m.
+1. **Candidates.** C = declared types of all fields of H union declared types of all parameters of m.
    - Generic container (`List<Foo>`, `Map<K,Foo>`, `Optional<Foo>`, `Foo[]`): use the element type(s) `Foo`.
    - Exclude primitives, `java.*` / `javax.*` types, and H itself.
    - Resolve simple names to FQNs via H's imports or the same package.

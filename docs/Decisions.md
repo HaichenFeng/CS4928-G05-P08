@@ -32,10 +32,10 @@ Sort by ref_id ascending and select the first 12 eligible cases. Record exclusio
 
 ### LLM configuration, prompt and hallucination coding
 
-Supersedes the 2026-10-17 draft of D-04 (see git history). Frozen on: 2026-10-18 (tag M1_PLAN, commit 39b6642).
+Supersedes the 2026-10-17 draft of D-04 (see git history). Frozen on: 2026-10-__ (fill in when tagged).
 
 - Model: gpt-4o-2024-05-13, temperature 0. If unavailable: record the replacement, the reason and the data-contamination risk here BEFORE any run, and confirm the change with the coordinator.
-- Prompt source: the paper prints only a paraphrase (§II, §IV-B: host class source given, LLM asked which methods to move and where). The full vanilla prompt is taken from the replication package, `MoveMethodRefactoringPrompt.kt` `getPrompt()` @ 8b0898f (§VIII states the prompts are released there).
+- Prompt source: the paper prints only a paraphrase (Sec. II, Sec. IV-B: host class source given, LLM asked which methods to move and where). The full vanilla prompt is taken from the replication package, `MoveMethodRefactoringPrompt.kt` `getPrompt()` @ 8b0898f (Sec. VIII states the prompts are released there).
   - Original: `docs/prompt_original.txt`
   - Adapted: `docs/prompt_adapted.txt`
 - Top-1 = the first object's `target_class` in the JSON response. The raw request and response are saved per case.
@@ -45,6 +45,6 @@ Deviations from the paper:
 
 1. **Target-only prompt.** The method m is given to the LLM and only the target class is asked (the vanilla prompt asks for method + target). Consequence: H3 cannot occur; LLM-only Recall@1 may exceed the paper's RecallC, which is conditional on the LLM first finding m.
 2. **H2 operationalisation.** H2 = the class exists but is not a field type of H or a parameter type of m. IDE precondition checks (Def. III.3: movability, reference access) are not run, so H2 may be undercounted.
-3. **RQ1 comparison figure.** RQ1 is compared against H1+H2 = (431+275)/1293 ≈ 55% (Table I), not ~80% (which includes H3). Amendment 2026-10-18, made before any execution. AI-assisted: suggested by an AI assistant and checked by the group against Table I.
+3. **RQ1 comparison figure.** RQ1 is compared against H1+H2 = (431+275)/1293 ~ 55% (Table I), not ~80% (which includes H3). Amendment 2026-10-18, made before any execution. AI-assisted: suggested by an AI assistant and checked by the group against Table I.
 
 No LLM calls were executed before this entry was frozen.
