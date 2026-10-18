@@ -20,17 +20,31 @@ Eligibility:
 
 Sort by ref_id ascending and select the first 12 eligible cases. Record exclusions and reasons. Do not select cases based on recommendation quality.
 
+#### Addendum (2026-10-18)
+
+- If fewer than 12 cases are eligible, use all and record this.
+- Checkout point: `extraction_results.newCommitHash` (the authors' reconstructed pre-move state), not `sha1` (the developer's post-refactoring commit).
+- Screening run 2026-10-18 with `scripts/select_sample.py --check-source`: 12/12 passed rule 3, 0 skipped (`data/screening_log.csv`, `outputs/screening_run.log`).
+- Sample: ref_id 1, 2, 3, 5, 7, 8, 14, 15, 16, 17, 19, 21 (`data/sample_ids.csv`).
+- Project mix: 11 ruoyi-vue-pro, 1 flink. This is a direct consequence of ref_id ordering; the sample was not altered. Recorded as an external-validity threat.
+
 ## D-04
 
-### LLM configuration and prompt adaptation
+### LLM configuration, prompt and hallucination coding
 
-Planned model: gpt-4o-2024-05-13.
-Temperature: 0.
+Supersedes the 2026-10-17 draft of D-04 (see git history). Frozen on: 2026-10-__ (fill in when tagged).
 
-As stated in M1, adapt the paper's vanilla prompt to request only the target class. This narrows the task to target-class recommendation and may limit comparison with the paper's original hallucination categories.
+- Model: gpt-4o-2024-05-13, temperature 0. If unavailable: record the replacement, the reason and the data-contamination risk here BEFORE any run, and confirm the change with the coordinator.
+- Prompt source: the paper prints only a paraphrase (§II, §IV-B: host class source given, LLM asked which methods to move and where). The full vanilla prompt is taken from the replication package, `MoveMethodRefactoringPrompt.kt` `getPrompt()` @ 8b0898f (§VIII states the prompts are released there).
+  - Original: `docs/prompt_original.txt`
+  - Adapted: `docs/prompt_adapted.txt`
+- Top-1 = the first object's `target_class` in the JSON response. The raw request and response are saved per case.
+- The prompt never includes the gold target or the authors' existing recommendations.
 
-The exact prompt has not yet been finalised. Save and freeze its full text before LLM execution, without including the gold answer or authors' existing recommendations.
+Deviations from the paper:
 
-No substitute model has been selected. If the planned model is unavailable, record the replacement, reason and likely impact before running, and confirm the change with the coordinator.
+1. **Target-only prompt.** The method m is given to the LLM and only the target class is asked (the vanilla prompt asks for method + target). Consequence: H3 cannot occur; LLM-only Recall@1 may exceed the paper's RecallC, which is conditional on the LLM first finding m.
+2. **H2 operationalisation.** H2 = the class exists but is not a field type of H or a parameter type of m. IDE precondition checks (Def. III.3: movability, reference access) are not run, so H2 may be undercounted.
+3. **RQ1 comparison figure.** RQ1 is compared against H1+H2 = (431+275)/1293 ≈ 55% (Table I), not ~80% (which includes H3). Amendment 2026-10-18, made before any execution. AI-assisted: suggested by an AI assistant and checked by the group against Table I.
 
-No LLM calls have been executed for this reproduction.
+No LLM calls were executed before this entry was frozen.

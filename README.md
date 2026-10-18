@@ -1,21 +1,84 @@
 # CS4928-G05-P08
 
+Group G05 · Project P08: Move Method Refactoring with LLM + Static Evidence. The study is Bellur et al., ICSME 2025 (MM-Assist).
+
+The RQ, method and expected-result sections below are the same as the shared workbook (Student Tracker, G05 row). Amendments are appended with their dates; the original text is kept.
+
 ## RQ1
 
-Reproduce vanilla LLM MoveMethod hallucination rates (H1/H2/H3) on a small sample from the paper's released corpus, comparing against the ~80% reported
+Reproduce vanilla LLM MoveMethod hallucination rates (H1/H2/H3) on a small sample from the paper's released corpus, comparing against the ~80% reported.
+
+> **[Amendment 2026-10-18, before any execution]** Under our target-only prompt H3 cannot occur (m is given to the LLM, D-04), so RQ1 is measured on H1+H2. The comparable paper figure is (431+275)/1293 ≈ 55% (Table I). The ~80% includes H3 and is not directly comparable. AI-assisted: suggested by an AI assistant, checked by the group against paper Table I and D-04.
 
 ## RQ2
 
 Can a simple hybrid rule reduce hallucinated recommendations without lowering Recall@1, and is a common ranking interface justified over keeping the logic inline?
 
+> **[Amendment 2026-10-18, before any execution]** The design part (common ranking interface vs inline logic) is answered in M4. Its alternatives and decision criteria will be frozen at PRE_EVENT_B.
+
 ## Bounded sample / case IDs
 
-12 instance-method Move Method cases from the MM-Assist real-world corpus. Source: datasets.zip (repo cuboulder-se-research/move-method-assist @ 8b0898f, sha256 8b2808…c3eb), instance-methods/mm-assist-emm/*_res.json (117 entries). Eligibility (D-03): isStatic = false; authors' reconstruction succeeded; newCommitHash fetchable from GitHub and host file present at that commit. Order: ref_id ascending; first 12 eligible.
+- **Unit:** 12 instance-method Move Method cases from the MM-Assist real-world corpus.
+- **Source:** datasets.zip (repo cuboulder-se-research/move-method-assist @ 8b0898f, sha256 8b2808…c3eb), `instance-methods/mm-assist-emm/*_res.json` (117 entries).
+- **Eligibility (D-03):**
+  - isStatic = false;
+  - the authors' reconstruction succeeded;
+  - newCommitHash is fetchable from GitHub and the host file is present at that commit.
+- **Order:** ref_id ascending; the first 12 eligible are taken. Failures are skipped and logged.
+- **ref_ids:** 1, 2, 3, 5, 7, 8, 14, 15, 16, 17, 19, 21
+- **Skipped during screening:** 0 (all 12 passed rule 3; screening run 2026-10-18).
+- **Project mix:** 11 ruoyi-vue-pro, 1 flink. This is a direct consequence of ref_id ordering; the sample was not altered (external-validity threat).
+- **Evidence:** `data/sample_ids.csv`, `data/screening_log.csv`, `outputs/screening_run.log`, `docs/Decisions.md` (D-03).
 
 ## Method / metric or decision rule
 
-Unit of analysis: one (host class H, method m) case; n = 12. Each case gets three top-1 target-class recommendations: (1) LLM-only: GPT-4o (gpt-4o-2024-05-13, or substitute recorded in D-04), temperature 0, paper's vanilla prompt adapted to ask for the target class only (deviation D-04). (2) Static coupling ranking: candidates = field types of H + parameter types of m (excluding JDK/primitive types and H); score = references in m's body to members of the candidate; ties broken alphabetically; no candidates = "NONE"
+**Unit of analysis:** one (host class H, method m) case; n = 12. Each case gets three top-1 target-class recommendations:
+
+1. **LLM-only:** GPT-4o (gpt-4o-2024-05-13, or a substitute recorded in D-04), temperature 0. The paper's vanilla prompt is adapted to ask for the target class only (deviation D-04; `docs/prompt_original.txt`, `docs/prompt_adapted.txt`).
+2. **Static coupling ranking:** candidates are the field types of H plus the parameter types of m, excluding JDK/primitive types and H. Score = references in m's body to members of the candidate. Ties are broken alphabetically. No candidates = "NONE". See `docs/coding_manual.md`.
+3. **Hybrid:** use the LLM answer if it is in the static candidate set; otherwise use the static top-1.
+
+**Metrics:**
+
+- Recall@1 per method (exact FQN match with the gold target).
+- LLM–static top-1 agreement (x/12).
+- Hallucinations: H1 = the class does not exist at the commit; H2 = the class exists but is not in the static candidate set.
+
+**Decision rule:** directional comparison with the paper (see Expected result).
+
+> **[Amendment 2026-10-18, before any execution]** RQ1 measure: hallucination rate = (number of cases where the LLM-only answer is H1 or H2) / 12. H3 is not applicable because m is given to the LLM (D-04).
 
 ## Expected result before execution
 
-Reference: paper Table III (Vanilla-LLM RecallC@1 = 67% small / 44% large classes, real-world instance methods) and Table I (vanilla LLM: H1 ≈ 33%, H2 ≈ 21%). E1: LLM-only Recall@1 ≈ 5–8/12, with at least 1 H1 or H2 recommendation. E2: Hybrid has 0 H1/H2 by construction; the test is whether Hybrid Recall@1 ≥ LLM-only. E3: LLM and static top-1 agree on fewer than 6/12 cases. Reproduced: LLM-only Recall@1 ≤ 8/12 AND ≥ 1 hallucination (LLM alone unreliable). Non-reproduction: LLM-only Recall@1 > 8/12 AND 0 hallucinations. Otherwise: partial reproduction, reported as observed.
+**Reference:** paper Table III (Vanilla-LLM RecallC@1 = 67% for small classes, 44% for large classes; real-world instance methods) and Table I (vanilla LLM: H1 ≈ 33%, H2 ≈ 21%).
+
+- **E1:** LLM-only Recall@1 ≈ 5–8/12, with at least 1 H1 or H2 recommendation.
+- **E2:** Hybrid has 0 H1/H2 by construction; the test is whether Hybrid Recall@1 ≥ LLM-only.
+- **E3:** LLM and static top-1 agree on fewer than 6/12 cases.
+
+**Reproduced:** LLM-only Recall@1 ≤ 8/12 AND ≥ 1 hallucination.
+**Non-reproduction:** LLM-only Recall@1 > 8/12 AND 0 hallucinations.
+**Otherwise:** partial reproduction, reported as observed.
+
+**Known deviation:** the LLM is given m, so LLM-only may score higher than the paper.
+
+> **[Amendment 2026-10-18, before any execution: no LLM calls, no sampling run yet]**
+>
+> - Added **E0 (RQ1):** LLM-only H1+H2 in ≈ 5–8 of 12 cases.
+> - The following replaces the earlier Reproduced / Non-reproduction rule:
+>   - **RQ1 reproduced:** H1+H2 ≥ 4/12.
+>   - **RQ1 non-reproduction:** H1+H2 ≤ 3/12 (≈4% probability if the true rate were 55%).
+>   - **RQ2 supported:** Hybrid Recall@1 ≥ LLM-only Recall@1; not supported otherwise.
+> - E1 (without its hallucination clause), E2 and E3 are unchanged.
+> - **Reason:** the original rule judged RQ1 by Recall@1, which did not match RQ1's hallucination-rate question.
+
+## Repository layout
+
+| Path | Contents |
+|---|---|
+| `docs/` | decision log (D-03, D-04), artefact version, dataset format, prompts, static coding manual |
+| `data/` | frozen sample and screening log |
+| `scripts/` | sample selection script |
+| `outputs/` | raw run logs and outputs |
+
+**Reproduce sample selection:** `python scripts/select_sample.py --data <unzipped datasets.zip>/data --check-source`
