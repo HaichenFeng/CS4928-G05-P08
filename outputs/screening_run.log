@@ -1,0 +1,17 @@
+# run 2026-10-18T17:22:17Z python 3.13.16 git 2.43.0
+# cmd: python scripts/select_sample.py --data <datasets.zip>/data --check-source
+loaded=117
+rule1 eligible=114  (dropped: static=0, extraction failed/no telemetry=3)
+1 ruoyi-vue-pro True ok
+2 ruoyi-vue-pro True ok
+3 ruoyi-vue-pro True ok
+5 ruoyi-vue-pro True ok
+7 ruoyi-vue-pro True ok
+8 ruoyi-vue-pro True ok
+14 ruoyi-vue-pro True ok
+15 ruoyi-vue-pro True ok
+16 ruoyi-vue-pro True ok
+17 ruoyi-vue-pro True ok
+19 ruoyi-vue-pro True ok
+21 flink True ok
+eligible=114, screened=12, sampled=12, skipped(rule2)=0
