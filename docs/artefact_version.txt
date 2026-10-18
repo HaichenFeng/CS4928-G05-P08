@@ -1,4 +1,4 @@
-MM-Assist replication package — artefact version record
+MM-Assist replication package - artefact version record
 Accessed: 2026-10-05 (UTC)
 Landing page: https://cuboulder-se-research.github.io/move-method-assist/
 Repository:   https://github.com/cuboulder-se-research/move-method-assist (branch main)

@@ -1,4 +1,4 @@
-"""P08 Step 2 — select the 12-case sample (run ONLY after D-03 is committed).
+"""P08 Step 2 - select the 12-case sample (run ONLY after D-03 is committed).
 
 Input : MM-Assist datasets.zip -> data/refminer_data/instance-methods/mm-assist-emm/*_res.json
 Output: data/sample_ids.csv, data/screening_log.csv
@@ -99,4 +99,4 @@ with open("data/screening_log.csv", "w", newline="") as f:
 skipped = [l for l in log if not l["included"]]
 print(f"eligible={len(eligible)}, screened={len(log)}, sampled={len(sample)}, skipped(rule2)={len(skipped)}")
 if len(sample) < args.n:
-    print("WARNING: fewer than", args.n, "cases — record in D-03")
+    print("WARNING: fewer than", args.n, "cases - record in D-03")
