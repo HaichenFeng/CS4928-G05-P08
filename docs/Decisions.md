@@ -32,7 +32,7 @@ Sort by ref_id ascending and select the first 12 eligible cases. Record exclusio
 
 ### LLM configuration, prompt and hallucination coding
 
-Supersedes the 2026-10-17 draft of D-04 (see git history). Frozen on: 2026-10-__ (fill in when tagged).
+Supersedes the 2026-10-17 draft of D-04 (see git history). Frozen on: 2026-10-18 (tag M1_PLAN, commit 39b6642).
 
 - Model: gpt-4o-2024-05-13, temperature 0. If unavailable: record the replacement, the reason and the data-contamination risk here BEFORE any run, and confirm the change with the coordinator.
 - Prompt source: the paper prints only a paraphrase (§II, §IV-B: host class source given, LLM asked which methods to move and where). The full vanilla prompt is taken from the replication package, `MoveMethodRefactoringPrompt.kt` `getPrompt()` @ 8b0898f (§VIII states the prompts are released there).
