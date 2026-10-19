@@ -1,14 +1,22 @@
-# Adapted from docs/prompt_original.txt (D-04). Changes ONLY:
-#  (a) the method to move is given ({METHOD_SIGNATURE}); the LLM is asked for the target class only;
-#  (b) output fields method_name/method_signature removed; target_class must be fully qualified.
-# Everything else (system message, few-shot example, rationale field, temperature 0) kept as in the original.
+# Adapted from docs/prompt_original.txt. Changes ONLY:
+#  (a) the method to move is given; the LLM is asked for the target class only. The instruction is generic
+#      ("You are told which method ..."); the actual method is named once, after the class code
+#      ("The method to move is `{METHOD_SIGNATURE}`."), in the same position as in the few-shot example.
+#      The few-shot example states its method with the original's own signature string
+#      `public calculateDiscount(double amount): double` (copied verbatim, including its mismatch with the code).
+#  (b) output fields method_name/method_signature removed; target_class must be fully qualified
+#      (few-shot answer "Customer" -> "com.example.Customer" to match this instruction).
+# Everything else is kept as in the original, including the trailing comma in the few-shot JSON,
+# the system message, the rationale field and temperature 0. Kotlin wrappers are rendered as plain text.
+# Revised 2026-10-19 before any LLM call: two undocumented edits in the 2026-10-18 version were reverted, and the
+# method is no longer named in the first user message (it appeared before the few-shot class).
 
 [SYSTEM]
 You are an expert programmer performing refactoring operations.
 
 [USER]
 Please provide suggestions to improve the following Java method/class.
-The method `{METHOD_SIGNATURE}` does not belong to this class. Your task is to suggest an appropriate class to move it to.
+You are told which method does not belong to the class. Your task is to suggest an appropriate class to move it to.
 Only provide suggestions that are: Move Method.
 
 Ensure that your recommendations are specific to this method/class and are actionable immediately.
@@ -30,13 +38,13 @@ class Order {
         }
     }
 }
-The method to move is `public calculateDiscount(): double`.
+The method to move is `public calculateDiscount(double amount): double`.
 
 [ASSISTANT]
 [
     {
         "target_class": "com.example.Customer",
-        "rationale": "calculateDiscount() relies heavily on the Customer class, so it might be more appropriate to move this method to the Customer class."
+        "rationale": "calculateDiscount() relies heavily on the Customer class, so it might be more appropriate to move this method to the Customer class.",
     }
 ]
 
