@@ -1,0 +1,34 @@
+31. @Tag(name = "管理后台 - 商品浏览记录")
+32. @RestController
+33. @RequestMapping("/product/browse-history")
+34. @Validated
+35. public class ProductBrowseHistoryController {
+36. 
+37.     @Resource
+38.     private ProductBrowseHistoryService browseHistoryService;
+39.     @Resource
+40.     private ProductSpuService productSpuService;
+41. 
+42.     @GetMapping("/page")
+43.     @Operation(summary = "获得商品浏览记录分页")
+44.     @PreAuthorize("@ss.hasPermission('product:browse-history:query')")
+45.     public CommonResult<PageResult<ProductBrowseHistoryRespVO>> getBrowseHistoryPage(@Valid ProductBrowseHistoryPageReqVO pageReqVO) {
+46.         PageResult<ProductBrowseHistoryDO> pageResult = browseHistoryService.getBrowseHistoryPage(pageReqVO);
+47.         if (CollUtil.isEmpty(pageResult.getList())) {
+48.             return success(PageResult.empty());
+49.         }
+50. 
+51.         // 得到商品 spu 信息
+52.         Set<Long> spuIds = convertSet(pageResult.getList(), ProductBrowseHistoryDO::getSpuId);
+53.         Map<Long, ProductSpuDO> spuMap = getSpuMap(spuIds);
+54.         return success(BeanUtils.toBean(pageResult, ProductBrowseHistoryRespVO.class,
+55.                 vo -> Optional.ofNullable(spuMap.get(vo.getSpuId()))
+56.                         .ifPresent(spu -> vo.setSpuName(spu.getName()).setPicUrl(spu.getPicUrl()).setPrice(spu.getPrice()))));
+57.     }
+58. 
+59.     private Map<Long, ProductSpuDO> getSpuMap(Set<Long> spuIds) {
+60.         Map<Long, ProductSpuDO> spuMap = convertMap(productSpuService.getSpuList(spuIds), ProductSpuDO::getId);
+61.         return spuMap;
+62.     }
+63. 
+64. }

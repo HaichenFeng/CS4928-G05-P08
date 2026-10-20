@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EbB1OQJE8SFhoBoGRBDxkxeJDTWFm",
+  "object": "chat.completion",
+  "created": 1792529210,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```json\n[\n    {\n        \"method_name\": \"getBusinessMap\",\n        \"method_signature\": \"private Map<Long, CrmBusinessDO> getBusinessMap(Collection<Long> ids)\",\n        \"target_class\": \"CrmBusinessService\",\n        \"rationale\": \"The getBusinessMap method is closely related to the businessService and its functionality. Moving it to CrmBusinessService would encapsulate business-related logic within the appropriate service class.\"\n    }\n]\n```",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1218,
+    "completion_tokens": 95,
+    "total_tokens": 1313,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_ebd1d2f512"
+}

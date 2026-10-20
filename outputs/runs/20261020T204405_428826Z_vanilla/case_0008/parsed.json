@@ -1,0 +1,31 @@
+{
+  "parse_status": "json",
+  "recommendations": [
+    {
+      "rank": 1,
+      "method_name": "getBusinessMap",
+      "method_signature": "private Map<Long, CrmBusinessDO> getBusinessMap(Collection<Long> ids)",
+      "target_class": "CrmBusinessService",
+      "rationale": "The getBusinessMap method is closely related to the businessService and its functionality. Moving it to CrmBusinessService would encapsulate business-related logic within the appropriate service class.",
+      "well_formed": true
+    }
+  ],
+  "finish_reason": "stop",
+  "returned_model": "gpt-4o-2024-05-13",
+  "usage": {
+    "prompt_tokens": 1218,
+    "completion_tokens": 95,
+    "total_tokens": 1313,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_ebd1d2f512"
+}

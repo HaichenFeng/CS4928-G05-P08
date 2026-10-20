@@ -1,0 +1,21 @@
+{
+  "prepared_at_utc": "2026-10-20T20:42:45.131989+00:00",
+  "case_id": 17,
+  "decision": "D-08",
+  "commit": "99ad74c9d145a9d7884c7a110c6541e19ae0c140",
+  "host_class": "cn.iocoder.yudao.module.promotion.service.kefu.KeFuConversationServiceImpl",
+  "host_file": "yudao-module-mall/yudao-module-promotion-biz/src/main/java/cn/iocoder/yudao/module/promotion/service/kefu/KeFuConversationServiceImpl.java",
+  "host_source": "outputs/requests/case_0017/host.java",
+  "host_sha256": "4c0445a0c6e2ffbbcac9f2e65ac03cbb3b971650af692ebb0ae8e5fa35343099",
+  "line_start": 21,
+  "line_end": 118,
+  "class_text_sha256": "a91df62ab08ab15c4489ffa865fbba35e2a1fcb5813a3583c32238dad73f6557",
+  "class_text_equals_telemetry_sourceCode": true,
+  "template_path": "docs/prompt_vanilla.txt",
+  "template_sha256_lf": "285e18bb72aa8accfd98981fe5607c504e7f562f3e2f28b1687282e2b8863bbb",
+  "datasets_zip_sha256": "8b2808944db28ba6620f07a71fce38224f32cc100a444bb89573f662e268c3eb",
+  "request_sha256": "b08a49e6b1052f3411694d64ba0f3233468cc1a5a3c1d8e92b3b0c7db4ae4c2b",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold method and gold target are not used to build the request."
+}

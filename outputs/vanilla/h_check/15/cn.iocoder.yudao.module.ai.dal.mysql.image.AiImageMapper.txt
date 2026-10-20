@@ -1,0 +1,6 @@
+Frozen commit: 9bd531bedf21668537a95d15c4ab5d519a42f18e
+FQN: cn.iocoder.yudao.module.ai.dal.mysql.image.AiImageMapper
+Tree path: yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/dal/mysql/image/AiImageMapper.java
+URL: https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/9bd531bedf21668537a95d15c4ab5d519a42f18e/yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/dal/mysql/image/AiImageMapper.java
+Source SHA256: 9e89d140ac677e160fa34758c77c3a62e4121d7f25c0afdb98ead377ab09ce01
+Fetched UTC: 2026-10-20T20:47:35.055881+00:00

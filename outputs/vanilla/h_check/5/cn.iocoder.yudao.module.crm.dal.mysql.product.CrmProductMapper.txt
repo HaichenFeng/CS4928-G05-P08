@@ -1,0 +1,6 @@
+Frozen commit: ad5c0ea90744cad50e17d5e820080e432f0368cf
+FQN: cn.iocoder.yudao.module.crm.dal.mysql.product.CrmProductMapper
+Tree path: yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/product/CrmProductMapper.java
+URL: https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/ad5c0ea90744cad50e17d5e820080e432f0368cf/yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/product/CrmProductMapper.java
+Source SHA256: 800533795b2275c5d5988541b60f23c8dc7ab3c659a442b9e08519aa53d25a93
+Fetched UTC: 2026-10-20T20:47:32.432281+00:00

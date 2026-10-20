@@ -1,0 +1,21 @@
+{
+  "prepared_at_utc": "2026-10-20T20:42:45.132295+00:00",
+  "case_id": 19,
+  "decision": "D-08",
+  "commit": "2df8667d786d5879d9a7d8dfbddb804b5808d3a9",
+  "host_class": "cn.iocoder.yudao.module.product.controller.admin.history.ProductBrowseHistoryController",
+  "host_file": "yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/controller/admin/history/ProductBrowseHistoryController.java",
+  "host_source": "outputs/requests/case_0019/host.java",
+  "host_sha256": "c0044db0cbdfd08ea76c3b5457a926580c361d08e0ea0668c2b69e46933f8971",
+  "line_start": 31,
+  "line_end": 64,
+  "class_text_sha256": "7713bbdffd0a44427b0d09af284f511b52adfa9f13a4d0b99b590e0bf659aac5",
+  "class_text_equals_telemetry_sourceCode": true,
+  "template_path": "docs/prompt_vanilla.txt",
+  "template_sha256_lf": "285e18bb72aa8accfd98981fe5607c504e7f562f3e2f28b1687282e2b8863bbb",
+  "datasets_zip_sha256": "8b2808944db28ba6620f07a71fce38224f32cc100a444bb89573f662e268c3eb",
+  "request_sha256": "25bdc7f98414ec84dffcce14d65ab656880332cbe68b56ddc5890a09e0cd0934",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold method and gold target are not used to build the request."
+}

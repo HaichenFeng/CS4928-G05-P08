@@ -1,0 +1,6 @@
+Frozen commit: 99ad74c9d145a9d7884c7a110c6541e19ae0c140
+FQN: cn.iocoder.yudao.module.promotion.dal.mysql.kefu.KeFuConversationMapper
+Tree path: yudao-module-mall/yudao-module-promotion-biz/src/main/java/cn/iocoder/yudao/module/promotion/dal/mysql/kefu/KeFuConversationMapper.java
+URL: https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/99ad74c9d145a9d7884c7a110c6541e19ae0c140/yudao-module-mall/yudao-module-promotion-biz/src/main/java/cn/iocoder/yudao/module/promotion/dal/mysql/kefu/KeFuConversationMapper.java
+Source SHA256: d499969f1b5d23105ea91afb7f4e187d973b0e19515c7ac6a732524916c26872
+Fetched UTC: 2026-10-20T20:47:35.413780+00:00

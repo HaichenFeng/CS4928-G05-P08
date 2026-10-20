@@ -1,0 +1,6 @@
+Frozen commit: 03f78f37afdc0f87b207087e52557c7d1809339c
+FQN: cn.iocoder.yudao.module.ai.service.AiChatModalService
+Tree path: yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/AiChatModalService.java
+URL: https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/03f78f37afdc0f87b207087e52557c7d1809339c/yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/AiChatModalService.java
+Source SHA256: 98143a5c97d08960969c1ce0221df35482ad864b7a6b6ee1ef7c9928890a65ab
+Fetched UTC: 2026-10-20T20:47:33.944723+00:00

@@ -1,0 +1,47 @@
+{
+  "parse_status": "json",
+  "recommendations": [
+    {
+      "rank": 1,
+      "method_name": "validateAvailable",
+      "method_signature": "private void validateAvailable(AiChatModalRes chatModal)",
+      "target_class": "AiChatModalService",
+      "rationale": "The validateAvailable method is specifically validating the availability of a chat modal, which is more relevant to the AiChatModalService class.",
+      "well_formed": true
+    },
+    {
+      "rank": 2,
+      "method_name": "saveConversation",
+      "method_signature": "private @NotNull AiChatConversationDO saveConversation(String title, Long userId, Long roleId, Long modalId, String model)",
+      "target_class": "AiChatConversationMapper",
+      "rationale": "The saveConversation method is responsible for creating and saving a new conversation, which is more relevant to the data access layer represented by AiChatConversationMapper.",
+      "well_formed": true
+    },
+    {
+      "rank": 3,
+      "method_name": "validateExists",
+      "method_signature": "private @NotNull AiChatConversationDO validateExists(Long id)",
+      "target_class": "AiChatConversationMapper",
+      "rationale": "The validateExists method is responsible for checking the existence of a conversation in the database, which is more relevant to the data access layer represented by AiChatConversationMapper.",
+      "well_formed": true
+    }
+  ],
+  "finish_reason": "stop",
+  "returned_model": "gpt-4o-2024-05-13",
+  "usage": {
+    "prompt_tokens": 1466,
+    "completion_tokens": 256,
+    "total_tokens": 1722,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_ebd1d2f512"
+}

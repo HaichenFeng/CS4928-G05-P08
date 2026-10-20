@@ -1,0 +1,21 @@
+{
+  "prepared_at_utc": "2026-10-20T20:42:45.131020+00:00",
+  "case_id": 14,
+  "decision": "D-08",
+  "commit": "03f78f37afdc0f87b207087e52557c7d1809339c",
+  "host_class": "cn.iocoder.yudao.module.ai.service.impl.AiChatConversationServiceImpl",
+  "host_file": "yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/impl/AiChatConversationServiceImpl.java",
+  "host_source": "outputs/requests/case_0014/host.java",
+  "host_sha256": "ad83a07997e501814bd0eb7bd2795c64db542102763eba3cd073f47db4d16858",
+  "line_start": 29,
+  "line_end": 135,
+  "class_text_sha256": "4558ab67ab875d22d54fe4850b40b5c1cb7c7c837375673ebcf4676c31a96e8e",
+  "class_text_equals_telemetry_sourceCode": true,
+  "template_path": "docs/prompt_vanilla.txt",
+  "template_sha256_lf": "285e18bb72aa8accfd98981fe5607c504e7f562f3e2f28b1687282e2b8863bbb",
+  "datasets_zip_sha256": "8b2808944db28ba6620f07a71fce38224f32cc100a444bb89573f662e268c3eb",
+  "request_sha256": "d3a66b980431f3c9a741f740d2971a8b81ad6739df6faaba74aa35a76d38c234",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold method and gold target are not used to build the request."
+}

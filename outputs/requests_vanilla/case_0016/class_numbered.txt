@@ -1,0 +1,112 @@
+28. /**
+29.  * 客服消息 Service 实现类
+30.  *
+31.  * @author HUIHUI
+32.  */
+33. @Service
+34. @Validated
+35. public class KeFuMessageServiceImpl implements KeFuMessageService {
+36. 
+37.     // TODO @puhui999：@芋艿：捉摸要不要拿到一个地方枚举；
+38.     private static final String KEFU_MESSAGE_TYPE = "kefu_message_type"; // 客服消息类型
+39. 
+40.     // TODO @puhui999：kefuMessageMapper；因为 messageMapper 可能会重叠
+41.     @Resource
+42.     private KeFuMessageMapper messageMapper;
+43. 
+44.     @Resource
+45.     private KeFuConversationService conversationService;
+46. 
+47.     @Resource
+48.     private AdminUserApi adminUserApi;
+49.     @Resource
+50.     private MemberUserApi memberUserApi;
+51.     @Resource
+52.     private WebSocketSenderApi webSocketSenderApi;
+53. 
+54.     @Override
+55.     @Transactional(rollbackFor = Exception.class)
+56.     public Long sendKefuMessage(KeFuMessageSendReqVO sendReqVO) {
+57.         // 1.1 校验会话是否存在
+58.         KeFuConversationDO conversation = conversationService.validateKefuConversationExists(sendReqVO.getConversationId());
+59.         // 1.2 校验接收人是否存在
+60.         validateReceiverExist(sendReqVO.getReceiverId(), sendReqVO.getReceiverType());
+61. 
+62.         // 2.1 保存消息
+63.         KeFuMessageDO kefuMessage = BeanUtils.toBean(sendReqVO, KeFuMessageDO.class);
+64.         messageMapper.insert(kefuMessage);
+65.         // TODO @puhui999：是不是 updateConversationMessage，里面统一处理未读、恢复；直接设置 KeFuMessageDO 作为参数好了。。。
+66.         // 2.2 更新会话消息冗余
+67.         conversationService.updateConversationMessage(kefuMessage.getConversationId(), LocalDateTime.now(),
+68.                 kefuMessage.getContent(), kefuMessage.getContentType());
+69.         // 2.3 更新管理员未读消息数
+70.         if (UserTypeEnum.ADMIN.getValue().equals(kefuMessage.getReceiverType())) {
+71.             conversationService.updateAdminUnreadMessageCountByConversationId(kefuMessage.getConversationId(), 1);
+72.         }
+73.         // 2.4 会员用户发送消息时，如果管理员删除过会话则进行恢复
+74.         // TODO @puhui999：建议 && 换一行
+75.         updateConversationLastMessage(conversation, kefuMessage);
+76. 
+77.         // 3. 发送消息
+78.         getSelf().sendAsyncMessage(sendReqVO.getReceiverType(), sendReqVO.getReceiverId(), kefuMessage);
+79.         return kefuMessage.getId();
+80.     }
+81. 
+82.     private void updateConversationLastMessage(KeFuConversationDO conversation, KeFuMessageDO kefuMessage) {
+83.         if (UserTypeEnum.MEMBER.getValue().equals(kefuMessage.getSenderType()) && Boolean.TRUE.equals(conversation.getAdminDeleted())) {
+84.             conversationService.updateConversationAdminDeleted(kefuMessage.getConversationId(), Boolean.FALSE);
+85.         }
+86.     }
+87. 
+88.     @Override
+89.     @Transactional(rollbackFor = Exception.class)
+90.     public void updateKefuMessageReadStatus(Long conversationId, Long receiverId) {
+91.         // 1.1 校验会话是否存在
+92.         conversationService.validateKefuConversationExists(conversationId);
+93.         // 1.2 查询接收人所有的未读消息
+94.         // TODO @puhui999：应该不能 receiverId 过滤哈。因为多个客服，一个人点了，就都点了。
+95.         List<KeFuMessageDO> messageList = messageMapper.selectListByConversationIdAndReceiverIdAndReadStatus(
+96.                 conversationId, receiverId, Boolean.FALSE);
+97.         // 1.3 情况一：没有未读消息
+98.         if (CollUtil.isEmpty(messageList)) {
+99.             return;
+100.         }
+101. 
+102.         // 2.1 情况二：更新未读消息状态为已读
+103.         messageMapper.updateReadStstusBatchByIds(convertSet(messageList, KeFuMessageDO::getId), Boolean.TRUE);
+104.         // 2.2 更新管理员未读消息数
+105.         KeFuMessageDO message = getFirst(messageList);
+106.         assert message != null;
+107.         if (UserTypeEnum.ADMIN.getValue().equals(message.getReceiverType())) {
+108.             conversationService.updateAdminUnreadMessageCountByConversationId(conversationId, 0);
+109.         }
+110. 
+111.         // 2.3 发送消息通知发送者，接收者已读 -> 发送者更新发送的消息状态
+112.         // TODO @puhui999：待定~
+113.         getSelf().sendAsyncMessage(message.getSenderType(), message.getSenderId(), "keFuMessageReadStatusChange");
+114.     }
+115. 
+116.     private void validateReceiverExist(Long receiverId, Integer receiverType) {
+117.         if (UserTypeEnum.ADMIN.getValue().equals(receiverType)) {
+118.             adminUserApi.validateUser(receiverId);
+119.         }
+120.         if (UserTypeEnum.MEMBER.getValue().equals(receiverType)) {
+121.             memberUserApi.validateUser(receiverId);
+122.         }
+123.     }
+124. 
+125.     @Async
+126.     public void sendAsyncMessage(Integer userType, Long userId, Object content) {
+127.         webSocketSenderApi.sendObject(userType, userId, KEFU_MESSAGE_TYPE, content);
+128.     }
+129. 
+130.     @Override
+131.     public PageResult<KeFuMessageDO> getKefuMessagePage(KeFuMessagePageReqVO pageReqVO) {
+132.         return messageMapper.selectPage(pageReqVO);
+133.     }
+134. 
+135.     private KeFuMessageServiceImpl getSelf() {
+136.         return SpringUtil.getBean(getClass());
+137.     }
+138. 
+139. }

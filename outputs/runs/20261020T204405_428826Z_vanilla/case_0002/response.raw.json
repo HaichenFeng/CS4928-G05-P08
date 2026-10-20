@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EbB1BiKfX3wuBFxBRBC7RsaLd0Ysb",
+  "object": "chat.completion",
+  "created": 1792529197,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```json\n[\n    {\n        \"method_name\": \"selectByUserIdAndSpuId\",\n        \"method_signature\": \"private ProductBrowseHistoryDO selectByUserIdAndSpuId(Long userId, Long spuId)\",\n        \"target_class\": \"ProductBrowseHistoryMapper\",\n        \"rationale\": \"The method selectByUserIdAndSpuId is primarily concerned with database operations and should be moved to the ProductBrowseHistoryMapper class to keep the service class focused on business logic.\"\n    }\n]\n```",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 986,
+    "completion_tokens": 106,
+    "total_tokens": 1092,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_ebd1d2f512"
+}

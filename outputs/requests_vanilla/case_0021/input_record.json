@@ -1,0 +1,21 @@
+{
+  "prepared_at_utc": "2026-10-20T20:42:45.132972+00:00",
+  "case_id": 21,
+  "decision": "D-08",
+  "commit": "eeaa68241593014a50ebbbf8bed822562d96ea3b",
+  "host_class": "org.apache.flink.cep.nfa.compiler.NFACompiler.NFAFactoryCompiler",
+  "host_file": "flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/nfa/compiler/NFACompiler.java",
+  "host_source": "outputs/requests/case_0021/host.java",
+  "host_sha256": "b8a8efab9433554a3118f73236ae8520a6262c98543b4f8e24482bef8f9ec66c",
+  "line_start": 136,
+  "line_end": 1040,
+  "class_text_sha256": "0fd6e918df1e06d50e92127c32738a3dc918626fe0a0df264fcd7afb14c50dad",
+  "class_text_equals_telemetry_sourceCode": true,
+  "template_path": "docs/prompt_vanilla.txt",
+  "template_sha256_lf": "285e18bb72aa8accfd98981fe5607c504e7f562f3e2f28b1687282e2b8863bbb",
+  "datasets_zip_sha256": "8b2808944db28ba6620f07a71fce38224f32cc100a444bb89573f662e268c3eb",
+  "request_sha256": "edba0661c6e0c8c6a50fc2ea94fb0e79dae40deeb14f7fe1b0b1b50b8ed8448b",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold method and gold target are not used to build the request."
+}

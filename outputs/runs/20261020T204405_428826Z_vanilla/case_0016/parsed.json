@@ -1,0 +1,39 @@
+{
+  "parse_status": "json",
+  "recommendations": [
+    {
+      "rank": 1,
+      "method_name": "validateReceiverExist",
+      "method_signature": "private void validateReceiverExist(Long receiverId, Integer receiverType)",
+      "target_class": "UserValidationService",
+      "rationale": "The validateReceiverExist method is responsible for validating users based on their type. This functionality is more aligned with a user validation service rather than the KeFuMessageServiceImpl class.",
+      "well_formed": true
+    },
+    {
+      "rank": 2,
+      "method_name": "sendAsyncMessage",
+      "method_signature": "public void sendAsyncMessage(Integer userType, Long userId, Object content)",
+      "target_class": "WebSocketSenderService",
+      "rationale": "The sendAsyncMessage method is responsible for sending messages asynchronously via WebSocket. This functionality is more appropriate for a dedicated WebSocket sender service.",
+      "well_formed": true
+    }
+  ],
+  "finish_reason": "stop",
+  "returned_model": "gpt-4o-2024-05-13",
+  "usage": {
+    "prompt_tokens": 1730,
+    "completion_tokens": 171,
+    "total_tokens": 1901,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_ebd1d2f512"
+}

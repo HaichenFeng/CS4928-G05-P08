@@ -1,0 +1,55 @@
+{
+  "parse_status": "json",
+  "recommendations": [
+    {
+      "rank": 1,
+      "method_name": "validateProductCategoryExists",
+      "method_signature": "private void validateProductCategoryExists(Long categoryId)",
+      "target_class": "CrmProductCategoryService",
+      "rationale": "The method validateProductCategoryExists() is responsible for validating the existence of a product category, which is more relevant to the CrmProductCategoryService class.",
+      "well_formed": true
+    },
+    {
+      "rank": 2,
+      "method_name": "validateProductNoDuplicate",
+      "method_signature": "private void validateProductNoDuplicate(Long id, String no)",
+      "target_class": "CrmProductMapper",
+      "rationale": "The method validateProductNoDuplicate() checks for duplicate product numbers, which is a database operation and should be handled by the CrmProductMapper class.",
+      "well_formed": true
+    },
+    {
+      "rank": 3,
+      "method_name": "validateProductExists",
+      "method_signature": "private CrmProductDO validateProductExists(Long id)",
+      "target_class": "CrmProductMapper",
+      "rationale": "The method validateProductExists() checks for the existence of a product in the database, which is a responsibility of the CrmProductMapper class.",
+      "well_formed": true
+    },
+    {
+      "rank": 4,
+      "method_name": "selectCountByCategoryId",
+      "method_signature": "private CrmProductDO selectCountByCategoryId(Long categoryId)",
+      "target_class": "CrmProductMapper",
+      "rationale": "The method selectCountByCategoryId() retrieves products by category ID, which is a database operation and should be handled by the CrmProductMapper class.",
+      "well_formed": true
+    }
+  ],
+  "finish_reason": "stop",
+  "returned_model": "gpt-4o-2024-05-13",
+  "usage": {
+    "prompt_tokens": 1793,
+    "completion_tokens": 327,
+    "total_tokens": 2120,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_ebd1d2f512"
+}

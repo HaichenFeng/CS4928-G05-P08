@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EbB1K7AWqlZNldTejgaZc9nSPp1v3",
+  "object": "chat.completion",
+  "created": 1792529206,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```json\n[\n    {\n        \"method_name\": \"buildContractDetail\",\n        \"method_signature\": \"private CrmContractRespVO buildContractDetail(CrmContractDO contract)\",\n        \"target_class\": \"CrmContractService\",\n        \"rationale\": \"The buildContractDetail method is responsible for constructing detailed contract information, which is more related to the service layer's responsibility. Moving it to CrmContractService will keep the controller focused on handling HTTP requests and responses.\"\n    },\n    {\n        \"method_name\": \"buildContractDetailList\",\n        \"method_signature\": \"private List<CrmContractRespVO> buildContractDetailList(List<CrmContractDO> contractList)\",\n        \"target_class\": \"CrmContractService\",\n        \"rationale\": \"Similar to buildContractDetail, the buildContractDetailList method is responsible for constructing detailed contract information for a list of contracts. This logic is better suited for the service layer, specifically CrmContractService.\"\n    },\n    {\n        \"method_name\": \"getBusinessMap\",\n        \"method_signature\": \"private Map<Long, CrmBusinessDO> getBusinessMap(Collection<Long> ids)\",\n        \"target_class\": \"CrmBusinessService\",\n        \"rationale\": \"The getBusinessMap method retrieves business information based on a collection of IDs. This functionality is more aligned with the responsibilities of CrmBusinessService, which handles business-related operations.\"\n    }\n]\n```",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2612,
+    "completion_tokens": 292,
+    "total_tokens": 2904,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_ebd1d2f512"
+}

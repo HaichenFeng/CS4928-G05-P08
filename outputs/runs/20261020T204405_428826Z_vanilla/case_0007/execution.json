@@ -1,0 +1,12 @@
+{
+  "case_id": 7,
+  "started_utc": "2026-10-20T20:46:46.050579+00:00",
+  "request_sha256": "bc5d485c8763b09d480f4dd5eaaf74df632f271c78d0c408b2b1562e09ac4cbe",
+  "transport_attempts": 1,
+  "http_status": 200,
+  "request_id": "req_9c3b59cc1f354e669b60b6c93ba74059",
+  "status": "VALID_RESPONSE",
+  "recommendation_count": 3,
+  "finished_utc": "2026-10-20T20:46:48.706814+00:00",
+  "elapsed_seconds": 2.653
+}

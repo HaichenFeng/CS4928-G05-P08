@@ -1,0 +1,6 @@
+Frozen commit: a5b60c39ce0400a92b80070de8558daabc581acf
+FQN: cn.iocoder.yudao.module.crm.dal.mysql.customer.CrmCustomerPoolConfigMapper
+Tree path: yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/customer/CrmCustomerPoolConfigMapper.java
+URL: https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/a5b60c39ce0400a92b80070de8558daabc581acf/yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/customer/CrmCustomerPoolConfigMapper.java
+Source SHA256: eb5ee8cc6d1383366aa1f657c261db7522462319bf96d5ca0f62021a5c5f0437
+Fetched UTC: 2026-10-20T20:47:31.288087+00:00

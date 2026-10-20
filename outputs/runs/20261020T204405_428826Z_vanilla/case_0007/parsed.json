@@ -1,0 +1,47 @@
+{
+  "parse_status": "json",
+  "recommendations": [
+    {
+      "rank": 1,
+      "method_name": "buildContractDetail",
+      "method_signature": "private CrmContractRespVO buildContractDetail(CrmContractDO contract)",
+      "target_class": "CrmContractService",
+      "rationale": "The buildContractDetail method is responsible for constructing detailed contract information, which is more related to the service layer's responsibility. Moving it to CrmContractService will keep the controller focused on handling HTTP requests and responses.",
+      "well_formed": true
+    },
+    {
+      "rank": 2,
+      "method_name": "buildContractDetailList",
+      "method_signature": "private List<CrmContractRespVO> buildContractDetailList(List<CrmContractDO> contractList)",
+      "target_class": "CrmContractService",
+      "rationale": "Similar to buildContractDetail, the buildContractDetailList method is responsible for constructing detailed contract information for a list of contracts. This logic is better suited for the service layer, specifically CrmContractService.",
+      "well_formed": true
+    },
+    {
+      "rank": 3,
+      "method_name": "getBusinessMap",
+      "method_signature": "private Map<Long, CrmBusinessDO> getBusinessMap(Collection<Long> ids)",
+      "target_class": "CrmBusinessService",
+      "rationale": "The getBusinessMap method retrieves business information based on a collection of IDs. This functionality is more aligned with the responsibilities of CrmBusinessService, which handles business-related operations.",
+      "well_formed": true
+    }
+  ],
+  "finish_reason": "stop",
+  "returned_model": "gpt-4o-2024-05-13",
+  "usage": {
+    "prompt_tokens": 2612,
+    "completion_tokens": 292,
+    "total_tokens": 2904,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_ebd1d2f512"
+}

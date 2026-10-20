@@ -1,0 +1,135 @@
+36. /**
+37.  * CRM 产品 Service 实现类
+38.  *
+39.  * @author ZanGe丶
+40.  */
+41. @Service
+42. @Validated
+43. public class CrmProductServiceImpl implements CrmProductService {
+44. 
+45.     @Resource(name = "crmProductMapper")
+46.     private CrmProductMapper productMapper;
+47. 
+48.     @Resource
+49.     private CrmProductCategoryService productCategoryService;
+50.     @Resource
+51.     private CrmPermissionService permissionService;
+52. 
+53.     @Resource
+54.     private AdminUserApi adminUserApi;
+55. 
+56.     @Override
+57.     @Transactional(rollbackFor = Exception.class)
+58.     @LogRecord(type = CRM_PRODUCT_TYPE, subType = CRM_PRODUCT_CREATE_SUB_TYPE, bizNo = "{{#productId}}",
+59.             success = CRM_PRODUCT_CREATE_SUCCESS)
+60.     public Long createProduct(CrmProductSaveReqVO createReqVO) {
+61.         // 1. 校验产品
+62.         adminUserApi.validateUserList(Collections.singleton(createReqVO.getOwnerUserId()));
+63.         validateProductNoDuplicate(null, createReqVO.getNo());
+64.         validateProductCategoryExists(createReqVO.getCategoryId());
+65. 
+66.         // 2. 插入产品
+67.         CrmProductDO product = BeanUtils.toBean(createReqVO, CrmProductDO.class);
+68.         productMapper.insert(product);
+69. 
+70.         // 3. 插入数据权限
+71.         permissionService.createPermission(new CrmPermissionCreateReqBO().setUserId(product.getOwnerUserId())
+72.                 .setBizType(CrmBizTypeEnum.CRM_PRODUCT.getType()).setBizId(product.getId())
+73.                 .setLevel(CrmPermissionLevelEnum.OWNER.getLevel()));
+74. 
+75.         // 4. 记录操作日志上下文
+76.         LogRecordContext.putVariable("productId", product.getId());
+77.         return product.getId();
+78.     }
+79. 
+80.     @Override
+81.     @LogRecord(type = CRM_PRODUCT_TYPE, subType = CRM_PRODUCT_UPDATE_SUB_TYPE, bizNo = "{{#updateReqVO.id}}",
+82.             success = CRM_PRODUCT_UPDATE_SUCCESS)
+83.     @CrmPermission(bizType = CrmBizTypeEnum.CRM_PRODUCT, bizId = "#updateReqVO.id", level = CrmPermissionLevelEnum.WRITE)
+84.     public void updateProduct(CrmProductSaveReqVO updateReqVO) {
+85.         // 1. 校验产品
+86.         updateReqVO.setOwnerUserId(null); // 不修改负责人
+87.         CrmProductDO crmProductDO = validateProductExists(updateReqVO.getId());
+88.         validateProductNoDuplicate(updateReqVO.getId(), updateReqVO.getNo());
+89.         validateProductCategoryExists(updateReqVO.getCategoryId());
+90. 
+91.         // 2. 更新产品
+92.         CrmProductDO updateObj = BeanUtils.toBean(updateReqVO, CrmProductDO.class);
+93.         productMapper.updateById(updateObj);
+94. 
+95.         // 3. 记录操作日志上下文
+96.         LogRecordContext.putVariable(DiffParseFunction.OLD_OBJECT, BeanUtils.toBean(crmProductDO, CrmProductSaveReqVO.class));
+97.     }
+98. 
+99.     private CrmProductDO validateProductExists(Long id) {
+100.         CrmProductDO product = productMapper.selectById(id);
+101.         if (product == null) {
+102.             throw exception(PRODUCT_NOT_EXISTS);
+103.         }
+104.         return product;
+105.     }
+106. 
+107.     private void validateProductNoDuplicate(Long id, String no) {
+108.         CrmProductDO product = productMapper.selectByNo(no);
+109.         if (product == null
+110.                 || product.getId().equals(id)) {
+111.             return;
+112.         }
+113.         throw exception(PRODUCT_NO_EXISTS);
+114.     }
+115. 
+116.     private void validateProductCategoryExists(Long categoryId) {
+117.         CrmProductCategoryDO category = productCategoryService.getProductCategory(categoryId);
+118.         if (category == null) {
+119.             throw exception(PRODUCT_CATEGORY_NOT_EXISTS);
+120.         }
+121.     }
+122. 
+123.     @Override
+124.     @LogRecord(type = CRM_PRODUCT_TYPE, subType = CRM_PRODUCT_DELETE_SUB_TYPE, bizNo = "{{#id}}",
+125.             success = CRM_PRODUCT_DELETE_SUCCESS)
+126.     @CrmPermission(bizType = CrmBizTypeEnum.CRM_PRODUCT, bizId = "#id", level = CrmPermissionLevelEnum.OWNER)
+127.     public void deleteProduct(Long id) {
+128.         // 校验存在
+129.         validateProductExists(id);
+130.         // 删除
+131.         productMapper.deleteById(id);
+132.     }
+133. 
+134.     @Override
+135.     @CrmPermission(bizType = CrmBizTypeEnum.CRM_PRODUCT, bizId = "#id", level = CrmPermissionLevelEnum.READ)
+136.     public CrmProductDO getProduct(Long id) {
+137.         return productMapper.selectById(id);
+138.     }
+139. 
+140.     @Override
+141.     public List<CrmProductDO> getProductList(Collection<Long> ids) {
+142.         if (CollUtil.isEmpty(ids)) {
+143.             return ListUtil.empty();
+144.         }
+145.         return productMapper.selectBatchIds(ids);
+146.     }
+147. 
+148.     @Override
+149.     public PageResult<CrmProductDO> getProductPage(CrmProductPageReqVO pageReqVO, Long userId) {
+150.         return productMapper.selectPage(pageReqVO, userId);
+151.     }
+152. 
+153.     @Override
+154.     public CrmProductDO getProductByCategoryId(Long categoryId) {
+155.         return selectCountByCategoryId(categoryId);
+156.     }
+157. 
+158.     private CrmProductDO selectCountByCategoryId(Long categoryId) {
+159.         return productMapper.selectOne(new LambdaQueryWrapper<CrmProductDO>().eq(CrmProductDO::getCategoryId, categoryId));
+160.     }
+161. 
+162.     @Override
+163.     public List<CrmProductDO> getProductListByIds(Collection<Long> ids) {
+164.         if (CollUtil.isEmpty(ids)) {
+165.             return Collections.emptyList();
+166.         }
+167.         return productMapper.selectBatchIds(ids);
+168.     }
+169. 
+170. }

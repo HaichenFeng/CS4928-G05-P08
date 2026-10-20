@@ -1,0 +1,107 @@
+29. /**
+30.  * chat 对话
+31.  *
+32.  * @fansili
+33.  * @since v1.0
+34.  */
+35. @Service
+36. @Slf4j
+37. @AllArgsConstructor
+38. public class AiChatConversationServiceImpl implements AiChatConversationService {
+39. 
+40.     private final AiChatModalMapper aiChatModalMapper;
+41.     private final AiChatModalService aiChatModalService;
+42.     private final AiChatRoleService aiChatRoleService;
+43.     private final AiChatConversationMapper aiChatConversationMapper;
+44. 
+45.     @Override
+46.     public Long createConversation(AiChatConversationCreateReqVO req) {
+47.         // 获取用户id
+48.         Long loginUserId = SecurityFrameworkUtils.getLoginUserId();
+49.         // 默认使用 sort 排序第一个模型
+50.         AiChatModalDO aiChatModalDO = aiChatModalMapper.selectFirstModal();
+51.         // 查询角色
+52.         AiChatRoleRes chatRoleRes = null;
+53.         if (req.getRoleId() != null) {
+54.             chatRoleRes = aiChatRoleService.getChatRole(req.getRoleId());
+55.         }
+56.         Long chatRoleId = chatRoleRes != null ? chatRoleRes.getId() : null;
+57.         // 创建新的 Conversation
+58.         AiChatConversationDO insertConversation = saveConversation(AiCommonConstants.CONVERSATION_DEFAULT_TITLE,
+59.                 loginUserId, chatRoleId, aiChatModalDO.getId(), aiChatModalDO.getModel()
+60.         );
+61.         // 返回对话id
+62.         return insertConversation.getId();
+63.     }
+64. 
+65.     private @NotNull AiChatConversationDO saveConversation(String title,
+66.                                                            Long userId,
+67.                                                            Long roleId,
+68.                                                            Long modalId,
+69.                                                            String model) {
+70.         AiChatConversationDO insertConversation = new AiChatConversationDO();
+71.         insertConversation.setId(null);
+72.         insertConversation.setUserId(userId);
+73.         insertConversation.setTitle(title);
+74.         insertConversation.setPinned(false);
+75. 
+76.         insertConversation.setRoleId(roleId);
+77.         insertConversation.setModelId(modalId);
+78.         insertConversation.setModel(model);
+79. 
+80.         insertConversation.setTemperature(null);
+81.         insertConversation.setMaxTokens(null);
+82.         insertConversation.setMaxContexts(null);
+83.         aiChatConversationMapper.insert(insertConversation);
+84.         return insertConversation;
+85.     }
+86. 
+87.     @Override
+88.     public Boolean updateConversation(AiChatConversationUpdateReqVO updateReqVO) {
+89.         // 校验对话是否存在
+90.         validateExists(updateReqVO.getId());
+91.         // 获取模型信息并验证
+92.         AiChatModalRes chatModal = aiChatModalService.getChatModalOfValidate(updateReqVO.getModelId());
+93.         // 校验modal是否可用
+94.         validateAvailable(chatModal);
+95.         // 更新对话信息
+96.         AiChatConversationDO updateAiChatConversationDO
+97.                 = AiChatConversationConvert.INSTANCE.convertAiChatConversationDO(updateReqVO);
+98.         return aiChatConversationMapper.updateById(updateAiChatConversationDO) > 0;
+99.     }
+100. 
+101.     private void validateAvailable(AiChatModalRes chatModal) {
+102.         if (AiChatModalDisableEnum.YES.getValue().equals(chatModal.getDisable())) {
+103.             throw ServiceExceptionUtil.exception(ErrorCodeConstants.AI_MODAL_DISABLE_NOT_USED);
+104.         }
+105.     }
+106. 
+107.     @Override
+108.     public List<AiChatConversationRespVO> listConversation(AiChatConversationListReqVO listReqVO) {
+109.         // 获取用户id
+110.         Long loginUserId = SecurityFrameworkUtils.getLoginUserId();
+111.         // 查询前100对话
+112.         List<AiChatConversationDO> top100Conversation
+113.                 = aiChatConversationMapper.selectTop100Conversation(loginUserId, listReqVO.getTitle());
+114.         return AiChatConversationConvert.INSTANCE.covnertChatConversationResList(top100Conversation);
+115.     }
+116. 
+117.     @Override
+118.     public AiChatConversationRespVO getConversationOfValidate(Long id) {
+119.         AiChatConversationDO aiChatConversationDO = validateExists(id);
+120.         return AiChatConversationConvert.INSTANCE.covnertChatConversationRes(aiChatConversationDO);
+121.     }
+122. 
+123.     @Override
+124.     public Boolean deleteConversation(Long id) {
+125.         return aiChatConversationMapper.deleteById(id) > 0;
+126.     }
+127. 
+128.     private @NotNull AiChatConversationDO validateExists(Long id) {
+129.         AiChatConversationDO aiChatConversationDO = aiChatConversationMapper.selectById(id);
+130.         if (aiChatConversationDO == null) {
+131.             throw ServiceExceptionUtil.exception(ErrorCodeConstants.AI_CONVERSATION_NOT_EXISTS);
+132.         }
+133.         return aiChatConversationDO;
+134.     }
+135. }

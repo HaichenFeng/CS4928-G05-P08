@@ -1,0 +1,6 @@
+Frozen commit: 9bd531bedf21668537a95d15c4ab5d519a42f18e
+FQN: cn.iocoder.yudao.module.ai.service.image.AiImageService
+Tree path: yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/image/AiImageService.java
+URL: https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/9bd531bedf21668537a95d15c4ab5d519a42f18e/yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/image/AiImageService.java
+Source SHA256: 5eb9b1096d7661a1ce190d3932e2992890747f9d021a9ab58d5e25e5621f39b6
+Fetched UTC: 2026-10-20T20:47:34.693633+00:00

@@ -1,0 +1,22 @@
+{
+  "model": "gpt-4o-2024-05-13",
+  "temperature": 0,
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an expert programmer performing refactoring operations."
+    },
+    {
+      "role": "user",
+      "content": "Please provide suggestions to improve the following Java method/class. \nYour task is to identify methods that do not belong to the class and suggest an appropriate class to move them.\nOnly provide suggestions that are: Move Method.\n    \n    \nEnsure that your recommendations are specific to this method/class and are actionable immediately. \nYour response should be formatted as a JSON list of objects. Each object should comprise of the following fields. \nThe first field, named \"method_name\", should be the name of the method that needs to move.\nThe second field, names \"method_signature\", should be the signature of the method that needs to move.\nThe third field, \"target_class\" is the class it should move to.\nThe fourth field \"rationale\", is the reason why it should be moved.\n    \nclass Order {\n    private Customer customer;\n    private double amount;\n\n    public double calculateDiscount() {\n        if (customer.getLoyaltyPoints() > 1000) {\n            return amount * 0.1;\n        } else if (customer.getMembershipLevel().equals(\"Gold\")) {\n            return amount * 0.05;\n        } else {\n            return 0;\n        }\n    }\n}"
+    },
+    {
+      "role": "assistant",
+      "content": "[\n    {\n        \"method_name\":\"calculateDiscount\",\n        \"method_signature\": \"public calculateDiscount(double amount): double\",\n        \"target_class\": \"Customer\",\n        \"rationale\": \"calculateDiscount() relies heavily on the Customer class, so it might be more appropriate to move this method to the Customer class.\",\n    }\n]"
+    },
+    {
+      "role": "user",
+      "content": "15. /**\n16.  * 商品浏览记录 Service 实现类\n17.  *\n18.  * @author owen\n19.  */\n20. @Service\n21. @Validated\n22. public class ProductBrowseHistoryServiceImpl implements ProductBrowseHistoryService {\n23.     private static final int USER_STORE_MAXIMUM = 100;\n24. \n25.     @Resource\n26.     private ProductBrowseHistoryMapper browseHistoryMapper;\n27. \n28.     @Override\n29.     public void createBrowseHistory(Long userId, Long spuId) {\n30.         // 用户未登录时不记录\n31.         if (userId == null) {\n32.             return;\n33.         }\n34. \n35.         // 情况一：同一个商品，只保留最新的一条记录\n36.         ProductBrowseHistoryDO historyDO = selectByUserIdAndSpuId(userId, spuId);\n37.         if (historyDO != null) {\n38.             browseHistoryMapper.deleteById(historyDO);\n39.         } else {\n40.             // 情况二：限制每个用户的浏览记录的条数（只查一条最早地记录、记录总数）\n41.             Page<ProductBrowseHistoryDO> pageResult = browseHistoryMapper.selectPageByUserIdOrderByCreateTimeAsc(userId, 1, 1);\n42.             if (pageResult.getTotal() >= USER_STORE_MAXIMUM) {\n43.                 // 删除最早的一条\n44.                 browseHistoryMapper.deleteById(CollUtil.getFirst(pageResult.getRecords()));\n45.             }\n46.         }\n47. \n48.         // 插入\n49.         ProductBrowseHistoryDO browseHistory = new ProductBrowseHistoryDO()\n50.                 .setUserId(userId)\n51.                 .setSpuId(spuId);\n52.         browseHistoryMapper.insert(browseHistory);\n53.     }\n54. \n55.     private ProductBrowseHistoryDO selectByUserIdAndSpuId(Long userId, Long spuId) {\n56.         ProductBrowseHistoryDO historyDO = browseHistoryMapper.selectOne(ProductBrowseHistoryDO::getUserId, userId, ProductBrowseHistoryDO::getSpuId, spuId);\n57.         return historyDO;\n58.     }\n59. \n60.     @Override\n61.     public void hideUserBrowseHistory(Long userId, Collection<Long> spuIds) {\n62.         browseHistoryMapper.updateUserDeletedByUserId(userId, spuIds, true);\n63.     }\n64. \n65.     @Override\n66.     public Long getBrowseHistoryCount(Long userId, Boolean userDeleted) {\n67.         return browseHistoryMapper.selectCountByUserIdAndUserDeleted(userId, userDeleted);\n68.     }\n69. \n70.     @Override\n71.     public PageResult<ProductBrowseHistoryDO> getBrowseHistoryPage(ProductBrowseHistoryPageReqVO pageReqVO) {\n72.         return browseHistoryMapper.selectPage(pageReqVO);\n73.     }\n74. \n75. }"
+    }
+  ]
+}

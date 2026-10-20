@@ -1,0 +1,6 @@
+Frozen commit: 1bebd852ca5fde578332ee3106987ed1db303e5a
+FQN: cn.iocoder.yudao.module.product.dal.mysql.history.ProductBrowseHistoryMapper
+Tree path: yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/dal/mysql/history/ProductBrowseHistoryMapper.java
+URL: https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/1bebd852ca5fde578332ee3106987ed1db303e5a/yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/dal/mysql/history/ProductBrowseHistoryMapper.java
+Source SHA256: 75df36068053d67ed497015365d6cafb4cb4d09c00c131123cac635aec2ec448
+Fetched UTC: 2026-10-20T20:47:31.714474+00:00

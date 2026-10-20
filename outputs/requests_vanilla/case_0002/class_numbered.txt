@@ -1,0 +1,61 @@
+15. /**
+16.  * 商品浏览记录 Service 实现类
+17.  *
+18.  * @author owen
+19.  */
+20. @Service
+21. @Validated
+22. public class ProductBrowseHistoryServiceImpl implements ProductBrowseHistoryService {
+23.     private static final int USER_STORE_MAXIMUM = 100;
+24. 
+25.     @Resource
+26.     private ProductBrowseHistoryMapper browseHistoryMapper;
+27. 
+28.     @Override
+29.     public void createBrowseHistory(Long userId, Long spuId) {
+30.         // 用户未登录时不记录
+31.         if (userId == null) {
+32.             return;
+33.         }
+34. 
+35.         // 情况一：同一个商品，只保留最新的一条记录
+36.         ProductBrowseHistoryDO historyDO = selectByUserIdAndSpuId(userId, spuId);
+37.         if (historyDO != null) {
+38.             browseHistoryMapper.deleteById(historyDO);
+39.         } else {
+40.             // 情况二：限制每个用户的浏览记录的条数（只查一条最早地记录、记录总数）
+41.             Page<ProductBrowseHistoryDO> pageResult = browseHistoryMapper.selectPageByUserIdOrderByCreateTimeAsc(userId, 1, 1);
+42.             if (pageResult.getTotal() >= USER_STORE_MAXIMUM) {
+43.                 // 删除最早的一条
+44.                 browseHistoryMapper.deleteById(CollUtil.getFirst(pageResult.getRecords()));
+45.             }
+46.         }
+47. 
+48.         // 插入
+49.         ProductBrowseHistoryDO browseHistory = new ProductBrowseHistoryDO()
+50.                 .setUserId(userId)
+51.                 .setSpuId(spuId);
+52.         browseHistoryMapper.insert(browseHistory);
+53.     }
+54. 
+55.     private ProductBrowseHistoryDO selectByUserIdAndSpuId(Long userId, Long spuId) {
+56.         ProductBrowseHistoryDO historyDO = browseHistoryMapper.selectOne(ProductBrowseHistoryDO::getUserId, userId, ProductBrowseHistoryDO::getSpuId, spuId);
+57.         return historyDO;
+58.     }
+59. 
+60.     @Override
+61.     public void hideUserBrowseHistory(Long userId, Collection<Long> spuIds) {
+62.         browseHistoryMapper.updateUserDeletedByUserId(userId, spuIds, true);
+63.     }
+64. 
+65.     @Override
+66.     public Long getBrowseHistoryCount(Long userId, Boolean userDeleted) {
+67.         return browseHistoryMapper.selectCountByUserIdAndUserDeleted(userId, userDeleted);
+68.     }
+69. 
+70.     @Override
+71.     public PageResult<ProductBrowseHistoryDO> getBrowseHistoryPage(ProductBrowseHistoryPageReqVO pageReqVO) {
+72.         return browseHistoryMapper.selectPage(pageReqVO);
+73.     }
+74. 
+75. }

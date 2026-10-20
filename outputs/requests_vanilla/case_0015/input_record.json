@@ -1,0 +1,21 @@
+{
+  "prepared_at_utc": "2026-10-20T20:42:45.131328+00:00",
+  "case_id": 15,
+  "decision": "D-08",
+  "commit": "9bd531bedf21668537a95d15c4ab5d519a42f18e",
+  "host_class": "cn.iocoder.yudao.module.ai.job.MidjourneyJob",
+  "host_file": "yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/job/MidjourneyJob.java",
+  "host_source": "outputs/requests/case_0015/host.java",
+  "host_sha256": "59d2fff46239edd19fbfc2680c70ebde888433a2b7e69a2ae9f247aa036c4393",
+  "line_start": 22,
+  "line_end": 89,
+  "class_text_sha256": "8e9636f8da7fd0570f3c338a2fa9b622d639716b1329035e3f3379cdac1ee24c",
+  "class_text_equals_telemetry_sourceCode": true,
+  "template_path": "docs/prompt_vanilla.txt",
+  "template_sha256_lf": "285e18bb72aa8accfd98981fe5607c504e7f562f3e2f28b1687282e2b8863bbb",
+  "datasets_zip_sha256": "8b2808944db28ba6620f07a71fce38224f32cc100a444bb89573f662e268c3eb",
+  "request_sha256": "fb05169929be210ffe1487b0b0c6d973916a713356e0c67f56a22be796fe0040",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold method and gold target are not used to build the request."
+}

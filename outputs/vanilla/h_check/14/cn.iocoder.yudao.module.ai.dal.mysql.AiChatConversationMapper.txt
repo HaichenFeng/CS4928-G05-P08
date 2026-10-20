@@ -1,0 +1,6 @@
+Frozen commit: 03f78f37afdc0f87b207087e52557c7d1809339c
+FQN: cn.iocoder.yudao.module.ai.dal.mysql.AiChatConversationMapper
+Tree path: yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/dal/mysql/AiChatConversationMapper.java
+URL: https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/03f78f37afdc0f87b207087e52557c7d1809339c/yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/dal/mysql/AiChatConversationMapper.java
+Source SHA256: 1e449d15827f2a94471b0f7c7e1eee1499259859b6724ee3c99a2a0399061116
+Fetched UTC: 2026-10-20T20:47:34.305802+00:00

@@ -1,0 +1,68 @@
+22. /**
+23.  * midjourney job 定时拉去 midjourney 绘制状态
+24.  *
+25.  * @author fansili
+26.  * @time 2024/6/5 14:55
+27.  * @since 1.0
+28.  */
+29. @Component
+30. @Slf4j
+31. public class MidjourneyJob implements JobHandler {
+32. 
+33.     // TODO @fan：@Resource
+34.     @Autowired
+35.     private MidjourneyApi midjourneyApi;
+36.     @Autowired
+37.     private AiImageMapper imageMapper;
+38.     @Autowired
+39.     private AiImageService imageService;
+40. 
+41.     // TODO @fan：这个方法，建议实现到 AiImageService，例如说 midjourneySync，返回 int 同步数量。
+42.     @Override
+43.     public String execute(String param) throws Exception {
+44.         // 1、获取 midjourney 平台，状态在 “进行中” 的 image
+45.         // TODO @fan：43 和 51 其实有点重叠，日志，建议只打 51
+46.         log.info("Midjourney 同步 - 开始...");
+47.         // TODO @fan：Job、Service 等业务层，不要直接使用 LambdaUpdateWrapper，这样会导致 mapper 穿透到逻辑层。要收敛到 mapper 里。
+48.         List<AiImageDO> imageList = selectByStatusAndPlatform();
+49.         log.info("Midjourney 同步 - 任务数量 {}!", imageList.size());
+50.         if (CollUtil.isEmpty(imageList)) {
+51.             // TODO @fan：51 和 54，其实有点重叠。建议 51 挪到 55 之后打。
+52.             return "Midjourney 同步 - 数量为空!";
+53.         }
+54.         // 2、批量拉去 task 信息
+55.         // TODO @fan：imageList.stream().map(AiImageDO::getTaskId).collect(Collectors.toSet()))，可以使用 CollectionUtils.convertSet 简化
+56.         List<MidjourneyApi.NotifyRequest> taskList = midjourneyApi
+57.                 .listByCondition(imageList.stream().map(AiImageDO::getTaskId).collect(Collectors.toSet()));
+58.         // TODO @fan：taskList.stream().collect(Collectors.toMap(MidjourneyNotifyReqVO::getId, o -> o))，也可以使用 CollectionUtils.convertMap；本质上，重用 set、map 转换，要 convert 简化
+59.         Map<String, MidjourneyApi.NotifyRequest> taskIdMap = taskList.stream().collect(Collectors.toMap(MidjourneyApi.NotifyRequest::id, o -> o));
+60.         // 3、更新 image 状态
+61.         List<AiImageDO> updateImageList = new ArrayList<>();
+62.         for (AiImageDO aiImageDO : imageList) {
+63.             // 3.1 排除掉空的情况
+64.             if (!taskIdMap.containsKey(aiImageDO.getTaskId())) {
+65.                 log.warn("Midjourney 同步 - {} 任务为空!", aiImageDO.getTaskId());
+66.                 continue;
+67.             }
+68.             // TODO @ 3.1 和 3.2 是不是融合下；get，然后判空，continue；
+69.             // 3.2 获取通知对象
+70. //            MidjourneyNotifyReqVO notifyReqVO = taskIdMap.get(aiImageDO.getTaskId());
+71.             // 3.2 构建更新对象
+72.             // TODO @fan：建议 List<MidjourneyNotifyReqVO> 作为 imageService 去更新；
+73. //            updateImageList.add(imageService.buildUpdateImage(aiImageDO.getId(), notifyReqVO));
+74.         }
+75.         // 4、批了更新 updateImageList
+76.         imageMapper.updateBatch(updateImageList);
+77.         return "Midjourney 同步 - ".concat(String.valueOf(updateImageList.size())).concat(" 任务!");
+78.     }
+79. 
+80.     private List<AiImageDO> selectByStatusAndPlatform() {
+81.         List<AiImageDO> imageList = imageMapper.selectList(
+82.                 new LambdaUpdateWrapper<AiImageDO>()
+83.                         .eq(AiImageDO::getStatus, AiImageStatusEnum.IN_PROGRESS.getStatus())
+84.                         .eq(AiImageDO::getPlatform, AiPlatformEnum.MIDJOURNEY.getPlatform())
+85.         );
+86.         return imageList;
+87.     }
+88. 
+89. }

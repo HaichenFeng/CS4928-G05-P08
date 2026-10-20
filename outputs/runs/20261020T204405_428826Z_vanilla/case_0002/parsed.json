@@ -1,0 +1,31 @@
+{
+  "parse_status": "json",
+  "recommendations": [
+    {
+      "rank": 1,
+      "method_name": "selectByUserIdAndSpuId",
+      "method_signature": "private ProductBrowseHistoryDO selectByUserIdAndSpuId(Long userId, Long spuId)",
+      "target_class": "ProductBrowseHistoryMapper",
+      "rationale": "The method selectByUserIdAndSpuId is primarily concerned with database operations and should be moved to the ProductBrowseHistoryMapper class to keep the service class focused on business logic.",
+      "well_formed": true
+    }
+  ],
+  "finish_reason": "stop",
+  "returned_model": "gpt-4o-2024-05-13",
+  "usage": {
+    "prompt_tokens": 986,
+    "completion_tokens": 106,
+    "total_tokens": 1092,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_ebd1d2f512"
+}

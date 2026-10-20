@@ -1,0 +1,63 @@
+36. @Tag(name = "管理后台 - 跟进记录")
+37. @RestController
+38. @RequestMapping("/crm/follow-up-record")
+39. @Validated
+40. public class CrmFollowUpRecordController {
+41. 
+42.     @Resource
+43.     private CrmFollowUpRecordService followUpRecordService;
+44.     @Resource
+45.     private CrmContactService contactService;
+46.     @Resource
+47.     private CrmBusinessService businessService;
+48. 
+49.     @PostMapping("/create")
+50.     @Operation(summary = "创建跟进记录")
+51.     @PreAuthorize("@ss.hasPermission('crm:follow-up-record:create')")
+52.     public CommonResult<Long> createFollowUpRecord(@Valid @RequestBody CrmFollowUpRecordSaveReqVO createReqVO) {
+53.         return success(followUpRecordService.createFollowUpRecord(createReqVO));
+54.     }
+55. 
+56.     @DeleteMapping("/delete")
+57.     @Operation(summary = "删除跟进记录")
+58.     @Parameter(name = "id", description = "编号", required = true)
+59.     @PreAuthorize("@ss.hasPermission('crm:follow-up-record:delete')")
+60.     public CommonResult<Boolean> deleteFollowUpRecord(@RequestParam("id") Long id) {
+61.         followUpRecordService.deleteFollowUpRecord(id, getLoginUserId());
+62.         return success(true);
+63.     }
+64. 
+65.     @GetMapping("/get")
+66.     @Operation(summary = "获得跟进记录")
+67.     @Parameter(name = "id", description = "编号", required = true, example = "1024")
+68.     @PreAuthorize("@ss.hasPermission('crm:follow-up-record:query')")
+69.     public CommonResult<CrmFollowUpRecordRespVO> getFollowUpRecord(@RequestParam("id") Long id) {
+70.         CrmFollowUpRecordDO followUpRecord = followUpRecordService.getFollowUpRecord(id);
+71.         return success(BeanUtils.toBean(followUpRecord, CrmFollowUpRecordRespVO.class));
+72.     }
+73. 
+74.     @GetMapping("/page")
+75.     @Operation(summary = "获得跟进记录分页")
+76.     @PreAuthorize("@ss.hasPermission('crm:follow-up-record:query')")
+77.     public CommonResult<PageResult<CrmFollowUpRecordRespVO>> getFollowUpRecordPage(@Valid CrmFollowUpRecordPageReqVO pageReqVO) {
+78.         PageResult<CrmFollowUpRecordDO> pageResult = followUpRecordService.getFollowUpRecordPage(pageReqVO);
+79.         /// 拼接数据
+80.         Map<Long, CrmContactDO> contactMap = convertMap(contactService.getContactList(
+81.                 convertSetByFlatMap(pageResult.getList(), item -> item.getContactIds().stream())), CrmContactDO::getId);
+82.         Map<Long, CrmBusinessDO> businessMap = getBusinessMap(convertSetByFlatMap(pageResult.getList(), item -> item.getBusinessIds().stream()));
+83.         PageResult<CrmFollowUpRecordRespVO> voPageResult = BeanUtils.toBean(pageResult, CrmFollowUpRecordRespVO.class, record -> {
+84.             record.setContactNames(new ArrayList<>()).setBusinessNames(new ArrayList<>());
+85.             record.getContactIds().forEach(id -> MapUtils.findAndThen(contactMap, id,
+86.                     contact -> record.getContactNames().add(contact.getName())));
+87.             record.getContactIds().forEach(id -> MapUtils.findAndThen(businessMap, id,
+88.                     business -> record.getBusinessNames().add(business.getName())));
+89.         });
+90.         return success(voPageResult);
+91.     }
+92. 
+93.     private Map<Long, CrmBusinessDO> getBusinessMap(Collection<Long> ids) {
+94.         return convertMap(businessService.getBusinessList(
+95.                 ids), CrmBusinessDO::getId);
+96.     }
+97. 
+98. }

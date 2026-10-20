@@ -1,0 +1,6 @@
+Frozen commit: c23e6e9b1d38db1fe7080082c573e1dfcc9c77b7
+FQN: cn.iocoder.yudao.module.crm.service.contract.CrmContractService
+Tree path: yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/contract/CrmContractService.java
+URL: https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/c23e6e9b1d38db1fe7080082c573e1dfcc9c77b7/yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/contract/CrmContractService.java
+Source SHA256: b828bd31eb20834b54430cacde5ad2501f8e2c6c2d5c73333da5906d8e83619e
+Fetched UTC: 2026-10-20T20:47:32.773938+00:00

@@ -1,0 +1,63 @@
+{
+  "evaluated_utc": "2026-10-20T20:47:36.291195+00:00",
+  "decision_record": "D-08",
+  "run": "outputs/runs/20261020T204405_428826Z_vanilla",
+  "model": "gpt-4o-2024-05-13",
+  "temperature": 0,
+  "n_cases": 12,
+  "usage": {
+    "prompt_tokens": 25689,
+    "completion_tokens": 2961,
+    "total_tokens": 28650
+  },
+  "R": 34,
+  "H1": 5,
+  "H2": 0,
+  "H3": 3,
+  "Valid": 26,
+  "rates": {
+    "H1": 0.14705882352941177,
+    "H2": 0.0,
+    "H3": 0.08823529411764706,
+    "Valid": 0.7647058823529411
+  },
+  "hallucination_rate_H1_H2_H3": 0.23529411764705882,
+  "R_is_zero": false,
+  "paper_table1_realworld": {
+    "R": 1293,
+    "H1": 431,
+    "H2": 275,
+    "H3": 320,
+    "rate": 0.7935034802784223
+  },
+  "top1_H1_H2_cases": 2,
+  "M2_top1_H1_H2_cases": 0,
+  "recallM": {
+    "@1": 5,
+    "@3": 9
+  },
+  "recallMC": {
+    "@1": 4,
+    "@3": 7
+  },
+  "recallC": {
+    "@1": 0.8,
+    "@3": 0.7777777777777778
+  },
+  "threat1_decision": "PARTIAL",
+  "rule": "SUPPORTED if rate>=0.5 or top1 H1+H2>=4/12; NOT SUPPORTED if rate<=0.2 and top1 H1+H2<=1/12; else PARTIAL",
+  "parse_status": {
+    "1": "json",
+    "2": "json",
+    "3": "json",
+    "5": "json",
+    "7": "json",
+    "8": "json",
+    "14": "json",
+    "15": "json",
+    "16": "json",
+    "17": "json",
+    "19": "json",
+    "21": "json"
+  }
+}

@@ -1,0 +1,6 @@
+Frozen commit: ad5c0ea90744cad50e17d5e820080e432f0368cf
+FQN: cn.iocoder.yudao.module.crm.service.product.CrmProductCategoryService
+Tree path: yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/product/CrmProductCategoryService.java
+URL: https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/ad5c0ea90744cad50e17d5e820080e432f0368cf/yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/product/CrmProductCategoryService.java
+Source SHA256: e60d5d0c61a3d6c67ebf9aa40afd4730c0a4dc804fde756c3205f295ccd70fc0
+Fetched UTC: 2026-10-20T20:47:32.109642+00:00

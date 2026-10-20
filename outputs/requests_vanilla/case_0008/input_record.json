@@ -1,0 +1,21 @@
+{
+  "prepared_at_utc": "2026-10-20T20:42:45.130685+00:00",
+  "case_id": 8,
+  "decision": "D-08",
+  "commit": "4a6198bad61c180bdf1bf80cb552151c3202fac7",
+  "host_class": "cn.iocoder.yudao.module.crm.controller.admin.followup.CrmFollowUpRecordController",
+  "host_file": "yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/controller/admin/followup/CrmFollowUpRecordController.java",
+  "host_source": "outputs/requests/case_0008/host.java",
+  "host_sha256": "bfb9b3f0d35ed4f6d3a969b96a9d7fcad5af301e109bb44630bff0a22eabab72",
+  "line_start": 36,
+  "line_end": 98,
+  "class_text_sha256": "5bb650a8fd3432dca840747b74b13b5a49adf69f3160ce4ca64234efe632a724",
+  "class_text_equals_telemetry_sourceCode": true,
+  "template_path": "docs/prompt_vanilla.txt",
+  "template_sha256_lf": "285e18bb72aa8accfd98981fe5607c504e7f562f3e2f28b1687282e2b8863bbb",
+  "datasets_zip_sha256": "8b2808944db28ba6620f07a71fce38224f32cc100a444bb89573f662e268c3eb",
+  "request_sha256": "645b40945bcf569eee8cb4092475a03d409eb2ad14b20e8b82a1c7ed85d7428b",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold method and gold target are not used to build the request."
+}

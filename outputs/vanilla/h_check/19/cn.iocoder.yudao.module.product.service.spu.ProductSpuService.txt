@@ -1,0 +1,6 @@
+Frozen commit: 2df8667d786d5879d9a7d8dfbddb804b5808d3a9
+FQN: cn.iocoder.yudao.module.product.service.spu.ProductSpuService
+Tree path: yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/service/spu/ProductSpuService.java
+URL: https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/2df8667d786d5879d9a7d8dfbddb804b5808d3a9/yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/service/spu/ProductSpuService.java
+Source SHA256: b57e1bc5830e356803cd5e398814bd99dc2535e3c7607ac78901b7e49115404e
+Fetched UTC: 2026-10-20T20:47:35.829319+00:00

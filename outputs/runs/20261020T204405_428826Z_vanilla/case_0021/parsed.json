@@ -1,0 +1,103 @@
+{
+  "parse_status": "json",
+  "recommendations": [
+    {
+      "rank": 1,
+      "method_name": "checkPatternNameUniqueness",
+      "method_signature": "private void checkPatternNameUniqueness()",
+      "target_class": "Pattern",
+      "rationale": "The method `checkPatternNameUniqueness` is primarily concerned with ensuring the uniqueness of pattern names, which is more closely related to the `Pattern` class.",
+      "well_formed": true
+    },
+    {
+      "rank": 2,
+      "method_name": "checkPatternSkipStrategy",
+      "method_signature": "private void checkPatternSkipStrategy()",
+      "target_class": "Pattern",
+      "rationale": "The method `checkPatternSkipStrategy` deals with the skip strategy of patterns, which is a responsibility that fits better within the `Pattern` class.",
+      "well_formed": true
+    },
+    {
+      "rank": 3,
+      "method_name": "checkPatternWindowTimes",
+      "method_signature": "private void checkPatternWindowTimes()",
+      "target_class": "Pattern",
+      "rationale": "The method `checkPatternWindowTimes` is focused on validating window times between events in a pattern, which is more relevant to the `Pattern` class.",
+      "well_formed": true
+    },
+    {
+      "rank": 4,
+      "method_name": "getCurrentNotCondition",
+      "method_signature": "private List<Tuple2<IterativeCondition<T>, String>> getCurrentNotCondition()",
+      "target_class": "Pattern",
+      "rationale": "The method `getCurrentNotCondition` is concerned with retrieving conditions related to the pattern, making it more appropriate for the `Pattern` class.",
+      "well_formed": true
+    },
+    {
+      "rank": 5,
+      "method_name": "getWindowSize",
+      "method_signature": "private void getWindowSize()",
+      "target_class": "Pattern",
+      "rationale": "The method `getWindowSize` retrieves the window size from the current pattern, which is a responsibility that fits better within the `Pattern` class.",
+      "well_formed": true
+    },
+    {
+      "rank": 6,
+      "method_name": "getTakeCondition",
+      "method_signature": "private IterativeCondition<T> getTakeCondition(Pattern<T, ?> pattern)",
+      "target_class": "Pattern",
+      "rationale": "The method `getTakeCondition` retrieves the take condition for a pattern, which is more relevant to the `Pattern` class.",
+      "well_formed": true
+    },
+    {
+      "rank": 7,
+      "method_name": "getIgnoreCondition",
+      "method_signature": "private IterativeCondition<T> getIgnoreCondition(Pattern<T, ?> pattern)",
+      "target_class": "Pattern",
+      "rationale": "The method `getIgnoreCondition` retrieves the ignore condition for a pattern, making it more appropriate for the `Pattern` class.",
+      "well_formed": true
+    },
+    {
+      "rank": 8,
+      "method_name": "getInnerIgnoreCondition",
+      "method_signature": "private IterativeCondition<T> getInnerIgnoreCondition(Pattern<T, ?> pattern)",
+      "target_class": "Pattern",
+      "rationale": "The method `getInnerIgnoreCondition` deals with the inner ignore condition of a pattern, which is a responsibility that fits better within the `Pattern` class.",
+      "well_formed": true
+    },
+    {
+      "rank": 9,
+      "method_name": "extendWithUntilCondition",
+      "method_signature": "private IterativeCondition<T> extendWithUntilCondition(IterativeCondition<T> condition, IterativeCondition<T> untilCondition, boolean isTakeCondition)",
+      "target_class": "Pattern",
+      "rationale": "The method `extendWithUntilCondition` extends a condition with an until condition, which is more relevant to the `Pattern` class.",
+      "well_formed": true
+    },
+    {
+      "rank": 10,
+      "method_name": "getTrueFunction",
+      "method_signature": "private IterativeCondition<T> getTrueFunction()",
+      "target_class": "Pattern",
+      "rationale": "The method `getTrueFunction` returns a true function extended with an until condition if necessary, making it more appropriate for the `Pattern` class.",
+      "well_formed": true
+    }
+  ],
+  "finish_reason": "stop",
+  "returned_model": "gpt-4o-2024-05-13",
+  "usage": {
+    "prompt_tokens": 9964,
+    "completion_tokens": 790,
+    "total_tokens": 10754,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_ebd1d2f512"
+}

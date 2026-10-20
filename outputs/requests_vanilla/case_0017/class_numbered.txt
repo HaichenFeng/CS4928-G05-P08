@@ -1,0 +1,98 @@
+21. /**
+22.  * 客服会话 Service 实现类
+23.  *
+24.  * @author HUIHUI
+25.  */
+26. @Service
+27. @Validated
+28. public class KeFuConversationServiceImpl implements KeFuConversationService {
+29. 
+30.     @Resource
+31.     private KeFuConversationMapper conversationMapper;
+32. 
+33.     @Override
+34.     public void deleteKefuConversation(Long id) {
+35.         // 校验存在
+36.         validateKefuConversationExists(id);
+37. 
+38.         // 只有管理员端可以删除会话，也不真的删，只是管理员端看不到啦
+39.         conversationMapper.updateById(new KeFuConversationDO().setId(id).setAdminDeleted(Boolean.TRUE));
+40.     }
+41. 
+42.     @Override
+43.     public void updateConversationPinnedByAdmin(KeFuConversationUpdatePinnedReqVO updateReqVO) {
+44.         conversationMapper.updateById(new KeFuConversationDO().setId(updateReqVO.getId()).setAdminPinned(updateReqVO.getAdminPinned()));
+45.     }
+46. 
+47.     @Override
+48.     @Transactional(rollbackFor = Exception.class)
+49.     public void updateConversationLastMessage(KeFuMessageDO kefuMessage) {
+50.         // 1.1 校验会话是否存在
+51.         KeFuConversationDO conversation = validateKefuConversationExists(kefuMessage.getConversationId());
+52.         // 1.2 更新会话消息冗余
+53.         conversationMapper.updateById(new KeFuConversationDO().setId(kefuMessage.getConversationId())
+54.                 .setLastMessageTime(kefuMessage.getCreateTime()).setLastMessageContent(kefuMessage.getContent())
+55.                 .setLastMessageContentType(kefuMessage.getContentType()));
+56. 
+57.         // 2.1 更新管理员未读消息数
+58.         if (UserTypeEnum.MEMBER.getValue().equals(kefuMessage.getSenderType())) {
+59.             conversationMapper.updateAdminUnreadMessageCount(kefuMessage.getConversationId());
+60.         }
+61.         // 2.2 会员用户发送消息时，如果管理员删除过会话则进行恢复
+62.         // TODO @puhui999：其实不用判断用户类型；只要be已删除，就恢复！
+63.         if (UserTypeEnum.MEMBER.getValue().equals(kefuMessage.getSenderType())
+64.                 && Boolean.TRUE.equals(conversation.getAdminDeleted())) {
+65.             updateConversationAdminDeleted(kefuMessage.getConversationId(), Boolean.FALSE);
+66.         }
+67.     }
+68. 
+69.     @Override
+70.     public void updateAdminUnreadMessageCountWithZero(Long id) {
+71.         validateKefuConversationExists(id);
+72.         conversationMapper.updateAdminUnreadMessageCountWithZero(id);
+73.     }
+74. 
+75.     @Override
+76.     public void updateConversationAdminDeleted(Long id, Boolean adminDeleted) {
+77.         conversationMapper.updateById(new KeFuConversationDO().setId(id).setAdminDeleted(adminDeleted));
+78.     }
+79. 
+80.     @Override
+81.     public List<KeFuConversationDO> getKefuConversationList() {
+82.         return conversationMapper.selectConversationList();
+83.     }
+84. 
+85.     @Override
+86.     public KeFuConversationDO getOrCreateConversation(Long userId) {
+87.         KeFuConversationDO conversation = conversationMapper.selectOne(KeFuConversationDO::getUserId, userId);
+88.         // 没有历史会话，则初始化一个新会话
+89.         if (conversation == null) {
+90.             conversation = new KeFuConversationDO().setUserId(userId).setLastMessageTime(LocalDateTime.now())
+91.                     .setLastMessageContent(StrUtil.EMPTY).setLastMessageContentType(KeFuMessageContentTypeEnum.TEXT.getType())
+92.                     .setAdminPinned(Boolean.FALSE).setUserDeleted(Boolean.FALSE).setAdminDeleted(Boolean.FALSE)
+93.                     .setAdminUnreadMessageCount(0);
+94.             conversationMapper.insert(conversation);
+95.         }
+96.         return conversation;
+97.     }
+98. 
+99.     @Override
+100.     public KeFuConversationDO validateKefuConversationExists(Long id) {
+101.         KeFuConversationDO conversation = conversationMapper.selectById(id);
+102.         if (conversation == null) {
+103.             throw exception(KEFU_CONVERSATION_NOT_EXISTS);
+104.         }
+105.         return conversation;
+106.     }
+107. 
+108.     @Override
+109.     public KeFuConversationDO getConversationByUserId(Long userId) {
+110.         // TODO @puhui999：service 不写 dao 的逻辑哈
+111.         return selectByUserId(userId);
+112.     }
+113. 
+114.     private KeFuConversationDO selectByUserId(Long userId) {
+115.         return conversationMapper.selectOne(KeFuConversationDO::getUserId, userId);
+116.     }
+117. 
+118. }

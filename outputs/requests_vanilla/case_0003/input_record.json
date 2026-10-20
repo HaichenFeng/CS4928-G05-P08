@@ -1,0 +1,21 @@
+{
+  "prepared_at_utc": "2026-10-20T20:42:45.129546+00:00",
+  "case_id": 3,
+  "decision": "D-08",
+  "commit": "e2b41dd358c9fc9e7ccf31083e40005c7e49f1bd",
+  "host_class": "cn.iocoder.yudao.module.crm.service.business.CrmBusinessStatusTypeServiceImpl",
+  "host_file": "yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/business/CrmBusinessStatusTypeServiceImpl.java",
+  "host_source": "outputs/requests/case_0003/host.java",
+  "host_sha256": "8bcbfd4d52b9392ff6a56f0ac003da1ed4972eb87d4bd38d85a14097790f843b",
+  "line_start": 29,
+  "line_end": 129,
+  "class_text_sha256": "260f2147f7676c9f44a4171915c50e775b8537d0c15c92e803e58d0203fd0adb",
+  "class_text_equals_telemetry_sourceCode": false,
+  "template_path": "docs/prompt_vanilla.txt",
+  "template_sha256_lf": "285e18bb72aa8accfd98981fe5607c504e7f562f3e2f28b1687282e2b8863bbb",
+  "datasets_zip_sha256": "8b2808944db28ba6620f07a71fce38224f32cc100a444bb89573f662e268c3eb",
+  "request_sha256": "58eaf91c8e3a9f6124179c91d577ecaef5271712827f50cb19a4316185a91c69",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold method and gold target are not used to build the request."
+}

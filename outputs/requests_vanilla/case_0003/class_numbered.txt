@@ -1,0 +1,101 @@
+29. /**
+30.  * 商机状态类型 Service 实现类
+31.  *
+32.  * @author ljlleo
+33.  */
+34. @Service
+35. @Validated
+36. public class CrmBusinessStatusTypeServiceImpl implements CrmBusinessStatusTypeService {
+37. 
+38.     @Resource
+39.     private CrmBusinessStatusTypeMapper businessStatusTypeMapper;
+40. 
+41.     @Resource
+42.     private CrmBusinessStatusMapper businessStatusMapper;
+43. 
+44.     @Override
+45.     @Transactional(rollbackFor = Exception.class)
+46.     public Long createBusinessStatusType(CrmBusinessStatusTypeSaveReqVO createReqVO) {
+47.         //检验名称是否存在
+48.         validateBusinessStatusTypeExists(createReqVO.getName(), null);
+49.         // 插入类型
+50.         CrmBusinessStatusTypeDO businessStatusType = BeanUtils.toBean(createReqVO, CrmBusinessStatusTypeDO.class);
+51.         businessStatusTypeMapper.insert(businessStatusType);
+52.         // 插入状态
+53.         if (CollUtil.isNotEmpty(createReqVO.getStatusList())) {
+54.             createReqVO.getStatusList().forEach(status -> status.setTypeId(businessStatusType.getId()));
+55.             businessStatusMapper.insertBatch(BeanUtils.toBean(createReqVO.getStatusList(), CrmBusinessStatusDO.class));
+56.         }
+57.         return businessStatusType.getId();
+58.     }
+59. 
+60.     @Override
+61.     @Transactional(rollbackFor = Exception.class)
+62.     public void updateBusinessStatusType(CrmBusinessStatusTypeSaveReqVO updateReqVO) {
+63.         // 校验存在
+64.         validateBusinessStatusTypeExists(updateReqVO.getId());
+65.         // 校验名称是否存在
+66.         validateBusinessStatusTypeExists(updateReqVO.getName(), updateReqVO.getId());
+67.         // 更新类型
+68.         CrmBusinessStatusTypeDO updateObj = BeanUtils.toBean(updateReqVO, CrmBusinessStatusTypeDO.class);
+69.         businessStatusTypeMapper.updateById(updateObj);
+70.         // 更新状态（删除 + 更新）
+71.         // TODO @ljlleo 可以参考 DeliveryExpressTemplateServiceImpl 的 updateExpressTemplateFree 方法；主要没变化的，还是不删除了哈。
+72.         businessStatusMapper.delete(updateReqVO.getId());
+73.         updateReqVO.getStatusList().forEach(status -> status.setTypeId(updateReqVO.getId()));
+74.         businessStatusMapper.insertBatch(BeanUtils.toBean(updateReqVO.getStatusList(), CrmBusinessStatusDO.class));
+75.     }
+76. 
+77.     @Override
+78.     @Transactional(rollbackFor = Exception.class)
+79.     public void deleteBusinessStatusType(Long id) {
+80.         // TODO 待添加被引用校验
+81.         //...
+82. 
+83.         // 校验存在
+84.         validateBusinessStatusTypeExists(id);
+85.         // 删除类型
+86.         businessStatusTypeMapper.deleteById(id);
+87.         // 删除状态
+88.         businessStatusMapper.delete(id);
+89.     }
+90. 
+91.     private void validateBusinessStatusTypeExists(Long id) {
+92.         if (businessStatusTypeMapper.selectById(id) == null) {
+93.             throw exception(BUSINESS_STATUS_TYPE_NOT_EXISTS);
+94.         }
+95.     }
+96. 
+97.     // TODO @ljlleo 这个方法，这个参考 validateDeptNameUnique 实现。
+98.     private void validateBusinessStatusTypeExists(String name, Long id) {
+99.         LambdaQueryWrapper<CrmBusinessStatusTypeDO> wrapper = new LambdaQueryWrapperX<>();
+100.         if(null != id) {
+101.             wrapper.ne(selectByIdAndName(), id);
+102.         }
+103.         long cnt = businessStatusTypeMapper.selectCount(wrapper.eq(CrmBusinessStatusTypeDO::getName, name));
+104.         if (cnt > 0) {
+105.             throw exception(BUSINESS_STATUS_TYPE_NAME_EXISTS);
+106.         }
+107.     }
+108. 
+109.     private SFunction<CrmBusinessStatusTypeDO, Object> selectByIdAndName() {
+110.         return CrmBusinessStatusTypeDO::getId;
+111.     }
+112. 
+113.     @Override
+114.     public CrmBusinessStatusTypeDO getBusinessStatusType(Long id) {
+115.         return businessStatusTypeMapper.selectById(id);
+116.     }
+117. 
+118.     @Override
+119.     public PageResult<CrmBusinessStatusTypeDO> getBusinessStatusTypePage(CrmBusinessStatusTypePageReqVO pageReqVO) {
+120.         return businessStatusTypeMapper.selectPage(pageReqVO);
+121.     }
+122. 
+123.     @Override
+124.     public List<CrmBusinessStatusTypeDO> selectList(CrmBusinessStatusTypeQueryVO queryVO) {
+125.         return businessStatusTypeMapper.selectList(queryVO);
+126.     }
+127. 
+128.     @Override
+129.     public List<CrmBusinessStatusTypeDO> getBusinessStatusTypeList(Collection<Long> ids) {

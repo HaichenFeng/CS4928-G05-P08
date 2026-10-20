@@ -1,0 +1,39 @@
+{
+  "parse_status": "json",
+  "recommendations": [
+    {
+      "rank": 1,
+      "method_name": "execute",
+      "method_signature": "public String execute(String param) throws Exception",
+      "target_class": "AiImageService",
+      "rationale": "The execute method contains business logic related to synchronizing images and updating their status, which is more appropriate for the service layer. Moving this method to AiImageService will help in separating concerns and keeping the JobHandler focused on job scheduling.",
+      "well_formed": true
+    },
+    {
+      "rank": 2,
+      "method_name": "selectByStatusAndPlatform",
+      "method_signature": "private List<AiImageDO> selectByStatusAndPlatform()",
+      "target_class": "AiImageMapper",
+      "rationale": "The selectByStatusAndPlatform method directly interacts with the database to fetch images based on their status and platform. This is a data access operation and should be part of the AiImageMapper class to maintain a clear separation between data access and business logic.",
+      "well_formed": true
+    }
+  ],
+  "finish_reason": "stop",
+  "returned_model": "gpt-4o-2024-05-13",
+  "usage": {
+    "prompt_tokens": 1361,
+    "completion_tokens": 198,
+    "total_tokens": 1559,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_ebd1d2f512"
+}

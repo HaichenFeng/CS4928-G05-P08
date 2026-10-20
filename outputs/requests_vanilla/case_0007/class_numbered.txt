@@ -1,0 +1,175 @@
+52. @Tag(name = "管理后台 - CRM 合同")
+53. @RestController
+54. @RequestMapping("/crm/contract")
+55. @Validated
+56. public class CrmContractController {
+57. 
+58.     @Resource
+59.     private CrmContractService contractService;
+60.     @Resource
+61.     private CrmCustomerService customerService;
+62.     @Resource
+63.     private CrmContactService contactService;
+64.     @Resource
+65.     private CrmBusinessService businessService;
+66.     @Resource
+67.     private CrmProductService productService;
+68. 
+69.     @Resource
+70.     private AdminUserApi adminUserApi;
+71.     @Resource
+72.     private DeptApi deptApi;
+73. 
+74.     @PostMapping("/create")
+75.     @Operation(summary = "创建合同")
+76.     @PreAuthorize("@ss.hasPermission('crm:contract:create')")
+77.     public CommonResult<Long> createContract(@Valid @RequestBody CrmContractSaveReqVO createReqVO) {
+78.         return success(contractService.createContract(createReqVO, getLoginUserId()));
+79.     }
+80. 
+81.     @PutMapping("/update")
+82.     @Operation(summary = "更新合同")
+83.     @PreAuthorize("@ss.hasPermission('crm:contract:update')")
+84.     public CommonResult<Boolean> updateContract(@Valid @RequestBody CrmContractSaveReqVO updateReqVO) {
+85.         contractService.updateContract(updateReqVO);
+86.         return success(true);
+87.     }
+88. 
+89.     @DeleteMapping("/delete")
+90.     @Operation(summary = "删除合同")
+91.     @Parameter(name = "id", description = "编号", required = true)
+92.     @PreAuthorize("@ss.hasPermission('crm:contract:delete')")
+93.     public CommonResult<Boolean> deleteContract(@RequestParam("id") Long id) {
+94.         contractService.deleteContract(id);
+95.         return success(true);
+96.     }
+97. 
+98.     @GetMapping("/get")
+99.     @Operation(summary = "获得合同")
+100.     @Parameter(name = "id", description = "编号", required = true, example = "1024")
+101.     @PreAuthorize("@ss.hasPermission('crm:contract:query')")
+102.     public CommonResult<CrmContractRespVO> getContract(@RequestParam("id") Long id) {
+103.         CrmContractDO contract = contractService.getContract(id);
+104.         return success(buildContractDetail(contract));
+105.     }
+106. 
+107.     private CrmContractRespVO buildContractDetail(CrmContractDO contract) {
+108.         if (contract == null) {
+109.             return null;
+110.         }
+111.         CrmContractRespVO contractVO = buildContractDetailList(singletonList(contract)).get(0);
+112.         // 拼接产品项
+113.         List<CrmContractProductDO> businessProducts = contractService.getContractProductListByContractId(contractVO.getId());
+114.         Map<Long, CrmProductDO> productMap = productService.getProductMap(
+115.                 convertSet(businessProducts, CrmContractProductDO::getProductId));
+116.         contractVO.setProducts(BeanUtils.toBean(businessProducts, CrmContractRespVO.Product.class, businessProductVO ->
+117.                 MapUtils.findAndThen(productMap, businessProductVO.getProductId(),
+118.                         product -> businessProductVO.setProductName(product.getName())
+119.                                 .setProductNo(product.getNo()).setProductUnit(product.getUnit()))));
+120.         return contractVO;
+121.     }
+122. 
+123.     @GetMapping("/page")
+124.     @Operation(summary = "获得合同分页")
+125.     @PreAuthorize("@ss.hasPermission('crm:contract:query')")
+126.     public CommonResult<PageResult<CrmContractRespVO>> getContractPage(@Valid CrmContractPageReqVO pageVO) {
+127.         PageResult<CrmContractDO> pageResult = contractService.getContractPage(pageVO, getLoginUserId());
+128.         return success(BeanUtils.toBean(pageResult, CrmContractRespVO.class).setList(buildContractDetailList(pageResult.getList())));
+129.     }
+130. 
+131.     @GetMapping("/page-by-customer")
+132.     @Operation(summary = "获得合同分页，基于指定客户")
+133.     public CommonResult<PageResult<CrmContractRespVO>> getContractPageByCustomer(@Valid CrmContractPageReqVO pageVO) {
+134.         Assert.notNull(pageVO.getCustomerId(), "客户编号不能为空");
+135.         PageResult<CrmContractDO> pageResult = contractService.getContractPageByCustomerId(pageVO);
+136.         return success(BeanUtils.toBean(pageResult, CrmContractRespVO.class).setList(buildContractDetailList(pageResult.getList())));
+137.     }
+138. 
+139.     @GetMapping("/export-excel")
+140.     @Operation(summary = "导出合同 Excel")
+141.     @PreAuthorize("@ss.hasPermission('crm:contract:export')")
+142.     @OperateLog(type = EXPORT)
+143.     public void exportContractExcel(@Valid CrmContractPageReqVO exportReqVO,
+144.                                     HttpServletResponse response) throws IOException {
+145.         PageResult<CrmContractDO> pageResult = contractService.getContractPage(exportReqVO, getLoginUserId());
+146.         // 导出 Excel
+147.         ExcelUtils.write(response, "合同.xls", "数据", CrmContractRespVO.class,
+148.                 BeanUtils.toBean(pageResult.getList(), CrmContractRespVO.class));
+149.     }
+150. 
+151.     @PutMapping("/transfer")
+152.     @Operation(summary = "合同转移")
+153.     @PreAuthorize("@ss.hasPermission('crm:contract:update')")
+154.     public CommonResult<Boolean> transferContract(@Valid @RequestBody CrmContractTransferReqVO reqVO) {
+155.         contractService.transferContract(reqVO, getLoginUserId());
+156.         return success(true);
+157.     }
+158. 
+159.     @PutMapping("/submit")
+160.     @Operation(summary = "提交合同审批")
+161.     @PreAuthorize("@ss.hasPermission('crm:contract:update')")
+162.     public CommonResult<Boolean> submitContract(@RequestParam("id") Long id) {
+163.         contractService.submitContract(id, getLoginUserId());
+164.         return success(true);
+165.     }
+166. 
+167.     /**
+168.      * 构建详细的合同结果
+169.      *
+170.      * @param contractList 原始合同信息
+171.      * @return 细的合同结果
+172.      */
+173.     private List<CrmContractRespVO> buildContractDetailList(List<CrmContractDO> contractList) {
+174.         if (CollUtil.isEmpty(contractList)) {
+175.             return Collections.emptyList();
+176.         }
+177.         // 1.1 获取客户列表
+178.         Map<Long, CrmCustomerDO> customerMap = customerService.getCustomerMap(
+179.                 convertSet(contractList, CrmContractDO::getCustomerId));
+180.         // 1.2 获取创建人、负责人列表
+181.         Map<Long, AdminUserRespDTO> userMap = adminUserApi.getUserMap(convertListByFlatMap(contractList,
+182.                 contact -> Stream.of(NumberUtils.parseLong(contact.getCreator()), contact.getOwnerUserId())));
+183.         Map<Long, DeptRespDTO> deptMap = deptApi.getDeptMap(convertSet(userMap.values(), AdminUserRespDTO::getDeptId));
+184.         // 1.3 获取联系人
+185.         Map<Long, CrmContactDO> contactMap = convertMap(contactService.getContactList(convertSet(contractList,
+186.                 CrmContractDO::getSignContactId)), CrmContactDO::getId);
+187.         // 1.4 获取商机
+188.         Map<Long, CrmBusinessDO> businessMap = getBusinessMap(convertSet(contractList,
+189.                 CrmContractDO::getBusinessId));
+190.         // 2. 拼接数据
+191.         return BeanUtils.toBean(contractList, CrmContractRespVO.class, contractVO -> {
+192.             // 2.1 设置客户信息
+193.             findAndThen(customerMap, contractVO.getCustomerId(), customer -> contractVO.setCustomerName(customer.getName()));
+194.             // 2.2 设置用户信息
+195.             findAndThen(userMap, Long.parseLong(contractVO.getCreator()), user -> contractVO.setCreatorName(user.getNickname()));
+196.             MapUtils.findAndThen(userMap, contractVO.getOwnerUserId(), user -> {
+197.                 contractVO.setOwnerUserName(user.getNickname());
+198.                 MapUtils.findAndThen(deptMap, user.getDeptId(), dept -> contractVO.setOwnerUserDeptName(dept.getName()));
+199.             });
+200.             findAndThen(userMap, contractVO.getSignUserId(), user -> contractVO.setSignUserName(user.getNickname()));
+201.             // 2.3 设置联系人信息
+202.             findAndThen(contactMap, contractVO.getSignContactId(), contact -> contractVO.setSignContactName(contact.getName()));
+203.             // 2.4 设置商机信息
+204.             findAndThen(businessMap, contractVO.getBusinessId(), business -> contractVO.setBusinessName(business.getName()));
+205.         });
+206.     }
+207. 
+208.     private Map<Long, CrmBusinessDO> getBusinessMap(Collection<Long> ids) {
+209.         return convertMap(businessService.getBusinessList(ids), CrmBusinessDO::getId);
+210.     }
+211. 
+212.     @GetMapping("/check-contract-count")
+213.     @Operation(summary = "获得待审核合同数量")
+214.     @PreAuthorize("@ss.hasPermission('crm:contract:query')")
+215.     public CommonResult<Long> getCheckContractCount() {
+216.         return success(contractService.getCheckContractCount(getLoginUserId()));
+217.     }
+218. 
+219.     @GetMapping("/end-contract-count")
+220.     @Operation(summary = "获得即将到期的合同数量")
+221.     @PreAuthorize("@ss.hasPermission('crm:contract:query')")
+222.     public CommonResult<Long> getEndContractCount() {
+223.         return success(contractService.getEndContractCount(getLoginUserId()));
+224.     }
+225. 
+226. }

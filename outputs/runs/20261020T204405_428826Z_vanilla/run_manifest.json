@@ -1,0 +1,25 @@
+{
+  "created_utc": "2026-10-20T20:44:05.429719+00:00",
+  "decision": "D-08",
+  "model": "gpt-4o-2024-05-13",
+  "temperature": 0,
+  "endpoint": "https://api.openai.com/v1/chat/completions",
+  "sample_ids": [
+    1,
+    2,
+    3,
+    5,
+    7,
+    8,
+    14,
+    15,
+    16,
+    17,
+    19,
+    21
+  ],
+  "requests_dir": "outputs/requests_vanilla",
+  "phase": "PILOT",
+  "runner_sha256": "76d1a18f9c2e62ffc4de8f5b04a514647ef73293ad0723030c92f62e5d6cf66c",
+  "parser_sha256": "6d71c582ff80b366ee29003fa86a193d731ecda8a82e1e47455bfbe1dc5e9176"
+}

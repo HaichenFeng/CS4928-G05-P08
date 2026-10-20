@@ -1,0 +1,6 @@
+Frozen commit: eeaa68241593014a50ebbbf8bed822562d96ea3b
+FQN: org.apache.flink.cep.pattern.Pattern
+Tree path: flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/pattern/Pattern.java
+URL: https://raw.githubusercontent.com/apache/flink/eeaa68241593014a50ebbbf8bed822562d96ea3b/flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/pattern/Pattern.java
+Source SHA256: c0bee7ffa9ccbaf648e5cd9c96813da124b05fb6f0ea72d36ce4ec91253933d4
+Fetched UTC: 2026-10-20T20:47:36.274416+00:00

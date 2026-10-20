@@ -1,0 +1,47 @@
+{
+  "parse_status": "json",
+  "recommendations": [
+    {
+      "rank": 1,
+      "method_name": "validateBusinessStatusTypeExists",
+      "method_signature": "private void validateBusinessStatusTypeExists(Long id)",
+      "target_class": "CrmBusinessStatusTypeValidator",
+      "rationale": "This method is responsible for validation logic, which is better suited to a dedicated validator class to adhere to the Single Responsibility Principle.",
+      "well_formed": true
+    },
+    {
+      "rank": 2,
+      "method_name": "validateBusinessStatusTypeExists",
+      "method_signature": "private void validateBusinessStatusTypeExists(String name, Long id)",
+      "target_class": "CrmBusinessStatusTypeValidator",
+      "rationale": "This method is responsible for validation logic, which is better suited to a dedicated validator class to adhere to the Single Responsibility Principle.",
+      "well_formed": true
+    },
+    {
+      "rank": 3,
+      "method_name": "selectByIdAndName",
+      "method_signature": "private SFunction<CrmBusinessStatusTypeDO, Object> selectByIdAndName()",
+      "target_class": "CrmBusinessStatusTypeValidator",
+      "rationale": "This method is used in validation logic and should be moved along with the validation methods to the validator class.",
+      "well_formed": true
+    }
+  ],
+  "finish_reason": "stop",
+  "returned_model": "gpt-4o-2024-05-13",
+  "usage": {
+    "prompt_tokens": 1464,
+    "completion_tokens": 243,
+    "total_tokens": 1707,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_ebd1d2f512"
+}

@@ -1,0 +1,54 @@
+18. /**
+19.  * 客户公海配置 Service 实现类
+20.  *
+21.  * @author Wanwan
+22.  */
+23. @Service
+24. @Validated
+25. public class CrmCustomerPoolConfigServiceImpl implements CrmCustomerPoolConfigService {
+26. 
+27.     @Resource
+28.     private CrmCustomerPoolConfigMapper customerPoolConfigMapper;
+29. 
+30.     /**
+31.      * 获得客户公海配置
+32.      *
+33.      * @return 客户公海配置
+34.      */
+35.     @Override
+36.     public CrmCustomerPoolConfigDO getCustomerPoolConfig() {
+37.         // TODO @puhui999：这个要搞到 mapper 里噢。
+38.         return selectOne();
+39.     }
+40. 
+41.     private CrmCustomerPoolConfigDO selectOne() {
+42.         return customerPoolConfigMapper.selectOne(new LambdaQueryWrapperX<CrmCustomerPoolConfigDO>().last("LIMIT 1"));
+43.     }
+44. 
+45.     /**
+46.      * 保存客户公海配置
+47.      *
+48.      * @param saveReqVO 更新信息
+49.      */
+50.     @Override
+51.     @LogRecord(type = CRM_CUSTOMER_POOL_CONFIG_TYPE, subType = CRM_CUSTOMER_POOL_CONFIG_SUB_TYPE, bizNo = "{{#poolConfigId}}",
+52.             success = CRM_CUSTOMER_POOL_CONFIG_SUCCESS)
+53.     public void saveCustomerPoolConfig(CrmCustomerPoolConfigSaveReqVO saveReqVO) {
+54.         // 存在，则进行更新
+55.         CrmCustomerPoolConfigDO dbConfig = getCustomerPoolConfig();
+56.         CrmCustomerPoolConfigDO poolConfig = CrmCustomerConvert.INSTANCE.convert(saveReqVO);
+57.         if (Objects.nonNull(dbConfig)) {
+58.             customerPoolConfigMapper.updateById(poolConfig.setId(dbConfig.getId()));
+59.             // 记录操作日志上下文
+60.             LogRecordContext.putVariable("isPoolConfigUpdate", Boolean.TRUE);
+61.             LogRecordContext.putVariable("poolConfigId", poolConfig.getId());
+62.             return;
+63.         }
+64.         // 不存在，则进行插入
+65.         customerPoolConfigMapper.insert(poolConfig);
+66.         // 记录操作日志上下文
+67.         LogRecordContext.putVariable("isPoolConfigUpdate", Boolean.FALSE);
+68.         LogRecordContext.putVariable("poolConfigId", poolConfig.getId());
+69.     }
+70. 
+71. }
