@@ -95,3 +95,63 @@ Group decision. This supersedes the "INCONCLUSIVE pending coordinator review" st
   5. H2 coded without IDE precondition checks (D-04 deviation 2); prompt deviations recorded in D-06; n = 12, one run at temperature 0.
   6. Input format, found 2026-10-20 after execution: MM-Assist passes the LLM only the host class text (`PsiClass.text`, without package/imports) with `<file line>. ` prefixed to every line (`ApplySuggestRefactoringIntention.kt` lines 79-108, `Utils.kt` `addLineNumbersToCodeSnippet`, @ 8b0898f). M2 sent the whole .java file without line numbers. Not documented in D-04.
 - **Next:** run the supplementary analysis registered in D-08, then tag `M2_REPRO` and `PRE_EVENT_A`. Event A is read only after the tags are pushed.
+
+## D-08 — Supplementary run with the paper's vanilla prompt (pre-registration, 2026-10-20)
+
+Registered **after** the M2 result was seen and **before** any request of this run is prepared or sent. It tests D-07 threat 1 (and threat 6). It does not replace or re-decide the M2 result in D-07.
+
+### Purpose
+D-07 threat 1 explains M2's 0/12 H1+H2 by the target-only prompt, which gives the LLM the method m. This run removes that deviation and the input-format deviation (threat 6): it uses the paper's own vanilla prompt and MM-Assist's own input format.
+
+### Fixed before execution
+- **Sample:** the same 12 cases (`data/sample_ids.csv`), same frozen commits. No additions, removals or replacements.
+- **Model:** `gpt-4o-2024-05-13`, temperature 0, one run, OpenAI Chat Completions; no other parameters set. Same route as D-05.
+- **Prompt:** `docs/prompt_vanilla.txt` (sha256 `285e18bb72aa8accfd98981fe5607c504e7f562f3e2f28b1687282e2b8863bbb`, LF). Rendered verbatim from `MoveMethodRefactoringPrompt.kt` `getPrompt()` @ 8b0898f (sha256 of that file `86b1d57d…`) with Kotlin `trimIndent()` semantics; the system message is from `SuggestRefactoringPrompt.kt` line 24. No wording, typo, trailing space or trailing comma is changed.
+- **Input `{HOST_CLASS_NUMBERED}`:** host class text from the frozen `outputs/requests/case_<id>/host.java` (CRLF -> LF), file lines `lineStart`..`lineEnd` from the dataset field `telemetry.hostFunctionTelemetryData`, with the first line's leading indentation removed (`PsiClass.text` starts at the class start offset), and `"<line>. "` prefixed to each line. The dataset's `sourceCode` field is a cross-check only.
+  - Cross-check done 2026-10-20: 11/12 identical to `sourceCode` (ref_id 21 differs only by the first-line indent, handled by the rule above). **ref_id 3 differs**: the MM-Assist run saw `selectByIdAndName(Long id, String name)`, the released commit contains `selectByIdAndName() : SFunction<…>` (cf. D-05). The checkout is used, as in M1/M2; reported as a limitation.
+- **Requests:** all 12 requests are prepared, saved and hashed into a new directory `outputs/requests_vanilla/` before any API call. Ref_id 1 is the pilot; the pilot is retained.
+- **Output:** a new run directory `outputs/runs/<UTC timestamp>_vanilla/`. Nothing under the M2 run directory or `outputs/requests/` is modified.
+- **No reruns, no exclusions.** A transport failure with no HTTP response is retried once automatically. An HTTP error response (e.g. 401, 429, 5xx) is not an observation: the run stops, the attempt is archived as `case_<id>.attempt<n>.failed/`, and the same frozen request is resent after the cause is fixed. A response that cannot be parsed is a valid observation with zero recommendations; the run continues.
+
+### Parsing
+Strip a surrounding ``` fence; `json.loads`; if that fails, remove trailing commas before `}` or `]` (the few-shot answer itself has one) and `json.loads` again. A JSON list is the recommendation list; its rank is its list position. Anything that still does not parse, or is not a list, gives zero recommendations. Use `method_name` (text before any `(`) and `target_class`; `method_signature` is used only to pick between overloads.
+
+### Coding each recommendation (exactly one label, in this order)
+1. **Resolve the target** (generic arguments and a `.java` suffix are dropped; `Outer.Inner` is allowed).
+   - FQN (first segment lowercase): exists in the project -> that class; equal to an import of H -> external; otherwise unresolved.
+   - Simple name, in this order: H's imports (if the imported package is a project package the class must exist, else unresolved; otherwise external); types nested in H's file; H's package; H's wildcard imports; common JDK names (`String`, `Object`, `List`, `Map`, `Set`, `Optional`, `Collection`, boxed types) -> external; a unique project class of that simple name; several -> the one in the static candidate set (step 4) if exactly one is, otherwise "ambiguous".
+   - Project classes: `.java` files in `outputs/source_checks/<id>_tree.txt` (the frozen commit's tree), FQN = path after the last `/java/` (Maven layout); a nested type must be declared in its outer file. Each looked-up file is fetched at the frozen commit and saved with its sha256 in `outputs/vanilla/h_check/`.
+   - `java.*`, `javax.*` and library classes ("external") exist but are never in the candidate set.
+2. **H1** — the target is unresolved (does not exist at the frozen commit).
+   **Method lookup** for steps 3-4: methods of H with that name; if several overloads, the one whose parameter types equal those in `method_signature`, else the one with the same parameter count, else the first declared. A name that only matches a constructor is a constructor.
+3. **H3** — the method is invalid to move: no method named `method_name` in H; or a constructor; or annotated `@Override` or `@Test`; or a getter/setter (body is a single `return <field>;` or `<field> = <param>;`); or an empty/comments-only body. (Paper Sec. III-B sanity checks; same filters as the plugin, `ApplyMoveMethodInteractiveIntention.kt` lines 106-107.)
+4. **H2** — the target exists but is not in the static candidate set of that method: field types of H ∪ parameter types of the method, per `docs/coding_manual.md` (and D-04 deviation 2: no IDE precondition run). "Ambiguous" targets are H2.
+5. Otherwise **Valid**.
+
+### Metrics
+- Per recommendation (paper Table I comparison): R, and H1/R, H2/R, H3/R, (H1+H2+H3)/R. Paper real-world: R = 1293, H1 33%, H2 21%, H3 25%, total ~80%.
+- Per case, top-1 only (M2 comparison): number of cases whose rank-1 recommendation is H1 or H2, out of 12 (M2: 0/12).
+- RecallM@k: the gold method name is among the top-k `method_name`s (name match; each host has one method of that name, D-05).
+- RecallMC@k: a top-k recommendation has the gold method name **and** a resolved target equal to the frozen gold FQN (exact, as in M2; ref_id 14 kept as frozen).
+- RecallC@k = RecallMC@k / RecallM@k (paper definition). k = 1 and 3.
+
+### Expected result and decision rule (written before execution)
+- **Expectation:** (H1+H2+H3)/R between 40% and 80%; top-1 H1+H2 in 2-6 of 12 cases; RecallM@1 4-7/12 (11 of 12 hosts have fewer than 15 methods, the paper's "small class" group, Vanilla-LLM RecallM@1 52%); RecallMC@1 2-6/12.
+- **Threat 1 supported:** (H1+H2+H3)/R >= 50%, or top-1 H1+H2 >= 4/12.
+- **Threat 1 not supported:** (H1+H2+H3)/R <= 20% and top-1 H1+H2 <= 1/12. The low M2 rate then is not explained by the target-only prompt.
+- **Otherwise:** partial; reported as observed.
+- Whatever the outcome, the RQ1 decision in D-07 (NOT REPRODUCED under the pre-registered M1 method) is unchanged. This run is reported as a supplementary sensitivity analysis in M2.
+
+### Implementation (committed with this entry, before execution)
+- `scripts/prepare_vanilla_inputs.py --datasets <datasets.zip>` -> `outputs/requests_vanilla/` (checks the prompt and datasets.zip hashes; no API call).
+- `scripts/run_vanilla_lab.py` (GUI, key in memory; adapted from `run_frozen_lab.py`; ref_id 1 pilot, then `pilot_approved.json` gate) -> `outputs/runs/<UTC>_vanilla/`; the runner and parser are copied into the run folder.
+- `scripts/vanilla_parse.py` (parsing rule above), `scripts/evaluate_vanilla.py --run <run> [--offline]` (coding and metrics) -> `outputs/vanilla/`.
+- Java facts come from `scripts/java_ast.py` (tree-sitter 0.26.0, tree-sitter-java 0.23.5), because JavaParser (used in M2) cannot be downloaded in the analysis environment. Equivalence check `scripts/check_ast_equivalence.py`: for all 12 gold methods, fields, parameters, locals, member accesses, imports and method line equal the M2 JavaParser ASTs (`outputs/vanilla/ast_equivalence.json`). The static candidate rule (`concrete_types`, `resolve`) is copied unchanged from `evaluate_lab4.py`.
+- Dry tests before execution used a scratch copy of the requests and a fabricated response set, never the API; no file under `outputs/requests_vanilla/` or `outputs/runs/` was created by them.
+- Known property of the coding (from the gold labels, not from any response): when the gold target is neither a field type of H nor a parameter type of m (e.g. ref_id 21, `Quantifier.Times`), a correct recommendation is coded H2. Recall is computed independently of the label.
+
+### Known deviations from the paper
+One run at temperature 0 (the paper averages 5 runs at each of temperatures 0, 0.5, 1 for RecallX, and uses temperature 0 for Table I); 12 cases instead of 210; H2 without IDE preconditions; host input from the released reconstruction commit (ref_id 3 differs from what MM-Assist saw).
+
+### Status
+Registered 2026-10-20; binding from the commit that adds this entry. That commit must be pushed before `outputs/requests_vanilla/` is created and before the run directory exists. AI-assisted: drafted by an AI assistant; prompt source, input format and the ref_id 3 discrepancy were checked against the upstream repository and dataset. Accepted by the group for execution on 2026-10-20.

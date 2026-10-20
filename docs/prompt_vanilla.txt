@@ -1,0 +1,53 @@
+# Paper's vanilla Move Method prompt, rendered verbatim (D-08).
+# Source: cuboulder-se-research/move-method-assist @ 8b0898f,
+#   src/main/kotlin/com/intellij/ml/llm/template/prompts/MoveMethodRefactoringPrompt.kt getPrompt() lines 12-54,
+#   system message SuggestRefactoringPrompt.kt line 24.
+# The two raw string literals are rendered with Kotlin trimIndent() semantics: blank first/last lines dropped,
+# the minimal indent of non-blank lines removed from every line; trailing spaces and the few-shot trailing comma kept.
+# {HOST_CLASS_NUMBERED} = UserMessage.from(methodCode): the host class text (PsiClass.text) with
+#   "<file line>. " prefixed to each line (Utils.kt addLineNumbersToCodeSnippet), as passed by
+#   ApplySuggestRefactoringIntention.kt lines 79-108. Nothing else is added.
+
+[SYSTEM]
+You are an expert programmer performing refactoring operations.
+
+[USER]
+Please provide suggestions to improve the following Java method/class. 
+Your task is to identify methods that do not belong to the class and suggest an appropriate class to move them.
+Only provide suggestions that are: Move Method.
+    
+    
+Ensure that your recommendations are specific to this method/class and are actionable immediately. 
+Your response should be formatted as a JSON list of objects. Each object should comprise of the following fields. 
+The first field, named "method_name", should be the name of the method that needs to move.
+The second field, names "method_signature", should be the signature of the method that needs to move.
+The third field, "target_class" is the class it should move to.
+The fourth field "rationale", is the reason why it should be moved.
+    
+class Order {
+    private Customer customer;
+    private double amount;
+
+    public double calculateDiscount() {
+        if (customer.getLoyaltyPoints() > 1000) {
+            return amount * 0.1;
+        } else if (customer.getMembershipLevel().equals("Gold")) {
+            return amount * 0.05;
+        } else {
+            return 0;
+        }
+    }
+}
+
+[ASSISTANT]
+[
+    {
+        "method_name":"calculateDiscount",
+        "method_signature": "public calculateDiscount(double amount): double",
+        "target_class": "Customer",
+        "rationale": "calculateDiscount() relies heavily on the Customer class, so it might be more appropriate to move this method to the Customer class.",
+    }
+]
+
+[USER]
+{HOST_CLASS_NUMBERED}

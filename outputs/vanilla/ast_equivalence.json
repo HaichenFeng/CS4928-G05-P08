@@ -1,0 +1,187 @@
+{
+  "parser": "tree-sitter-java",
+  "reference": "outputs/evaluation/*_ast.json (JavaParser 3.26.2, M2)",
+  "all_equal": true,
+  "cases": [
+    {
+      "case_id": 1,
+      "method": "selectOne",
+      "unique_method": true,
+      "checks": {
+        "package": true,
+        "imports": true,
+        "fields": true,
+        "parameters": true,
+        "locals": true,
+        "member_accesses": true,
+        "method_line": true
+      },
+      "equal": true
+    },
+    {
+      "case_id": 2,
+      "method": "selectByUserIdAndSpuId",
+      "unique_method": true,
+      "checks": {
+        "package": true,
+        "imports": true,
+        "fields": true,
+        "parameters": true,
+        "locals": true,
+        "member_accesses": true,
+        "method_line": true
+      },
+      "equal": true
+    },
+    {
+      "case_id": 3,
+      "method": "selectByIdAndName",
+      "unique_method": true,
+      "checks": {
+        "package": true,
+        "imports": true,
+        "fields": true,
+        "parameters": true,
+        "locals": true,
+        "member_accesses": true,
+        "method_line": true
+      },
+      "equal": true
+    },
+    {
+      "case_id": 5,
+      "method": "selectCountByCategoryId",
+      "unique_method": true,
+      "checks": {
+        "package": true,
+        "imports": true,
+        "fields": true,
+        "parameters": true,
+        "locals": true,
+        "member_accesses": true,
+        "method_line": true
+      },
+      "equal": true
+    },
+    {
+      "case_id": 7,
+      "method": "getBusinessMap",
+      "unique_method": true,
+      "checks": {
+        "package": true,
+        "imports": true,
+        "fields": true,
+        "parameters": true,
+        "locals": true,
+        "member_accesses": true,
+        "method_line": true
+      },
+      "equal": true
+    },
+    {
+      "case_id": 8,
+      "method": "getBusinessMap",
+      "unique_method": true,
+      "checks": {
+        "package": true,
+        "imports": true,
+        "fields": true,
+        "parameters": true,
+        "locals": true,
+        "member_accesses": true,
+        "method_line": true
+      },
+      "equal": true
+    },
+    {
+      "case_id": 14,
+      "method": "validateAvailable",
+      "unique_method": true,
+      "checks": {
+        "package": true,
+        "imports": true,
+        "fields": true,
+        "parameters": true,
+        "locals": true,
+        "member_accesses": true,
+        "method_line": true
+      },
+      "equal": true
+    },
+    {
+      "case_id": 15,
+      "method": "selectByStatusAndPlatform",
+      "unique_method": true,
+      "checks": {
+        "package": true,
+        "imports": true,
+        "fields": true,
+        "parameters": true,
+        "locals": true,
+        "member_accesses": true,
+        "method_line": true
+      },
+      "equal": true
+    },
+    {
+      "case_id": 16,
+      "method": "updateConversationLastMessage",
+      "unique_method": true,
+      "checks": {
+        "package": true,
+        "imports": true,
+        "fields": true,
+        "parameters": true,
+        "locals": true,
+        "member_accesses": true,
+        "method_line": true
+      },
+      "equal": true
+    },
+    {
+      "case_id": 17,
+      "method": "selectByUserId",
+      "unique_method": true,
+      "checks": {
+        "package": true,
+        "imports": true,
+        "fields": true,
+        "parameters": true,
+        "locals": true,
+        "member_accesses": true,
+        "method_line": true
+      },
+      "equal": true
+    },
+    {
+      "case_id": 19,
+      "method": "getSpuMap",
+      "unique_method": true,
+      "checks": {
+        "package": true,
+        "imports": true,
+        "fields": true,
+        "parameters": true,
+        "locals": true,
+        "member_accesses": true,
+        "method_line": true
+      },
+      "equal": true
+    },
+    {
+      "case_id": 21,
+      "method": "getWindowSize",
+      "unique_method": true,
+      "checks": {
+        "package": true,
+        "imports": true,
+        "fields": true,
+        "parameters": true,
+        "locals": true,
+        "member_accesses": true,
+        "method_line": true
+      },
+      "equal": true
+    }
+  ]
+}
