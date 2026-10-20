@@ -77,3 +77,21 @@ This corrects the record only. No request, response, score or decision rule is c
   3. The method to move is named in the first user message, before the few-shot example, as well as after the host class. This is a placement choice within D-04 deviation 1 (the method is given to the LLM).
 - **Expected impact.** Items 1-2 only touch the few-shot example. Item 3 gives the same information as the revision, earlier in the prompt. None changes what the LLM is told about the host class or the method. The effect on H1/H2 and Recall@1 is expected to be small but is not measured; recorded as a threat to validity.
 - **No re-run.** The as-frozen result stands. Any further run is a distinct new run and must be registered in this log before execution (see D-08); it does not replace this run.
+
+## D-07 — M2 result finalised as-frozen (2026-10-20)
+
+Group decision. This supersedes the "INCONCLUSIVE pending coordinator review" status in D-05 and `outputs/lab4/`; the earlier text is kept unchanged.
+
+- **M2 result (final, primary):** the as-frozen 12-case run is the bounded reproduction result and the primary answer to RQ1. No coordinator review was sought or awaited. No correction run replaces it; a supplementary run that tests threat 1 is registered separately in D-08 and does not change this result.
+  - RQ1: H1+H2 = 0/12 (paper comparison figure ~55%). Pre-registered rule (<= 3/12): **NOT REPRODUCED**.
+  - RQ2: Hybrid Recall@1 10/12 = LLM-only 10/12 (static 8/12). Non-decrease rule **SUPPORTED by equality**. No hallucination reduction was demonstrated, because no hallucinations occurred and the hybrid fallback was never used.
+  - LLM-static top-1 agreement: 9/12 (E3 expected < 6/12; not met).
+- **Reason:** the brief accepts non-reproduction as a result when the method and evidence are sound. The validity issues below concern how the result is interpreted, not whether the frozen procedure was followed.
+- **Threats to validity (carried into the final synthesis):**
+  1. Target-only prompt (D-04 deviation 1): the LLM is given m, which removes H3 and makes H1/H2 and Recall@1 not directly comparable with the paper's vanilla setting. This is the most likely reason the hallucination rate is far below the paper's.
+  2. Sample: 11/12 cases from ruoyi-vue-pro (D-03), mostly Service -> Mapper moves with an obvious field-type target.
+  3. Frozen signatures differ materially from reconstructed source in ref_ids 3, 5, 15, 16, 19, 21 (D-05); all 12 differ in visibility.
+  4. Ref_id 14 gold package (`service.impl`) differs from the existing interface (`service`); scored as a miss as frozen. With a corrected gold, LLM-only Recall@1 would be 11/12.
+  5. H2 coded without IDE precondition checks (D-04 deviation 2); prompt deviations recorded in D-06; n = 12, one run at temperature 0.
+  6. Input format, found 2026-10-20 after execution: MM-Assist passes the LLM only the host class text (`PsiClass.text`, without package/imports) with `<file line>. ` prefixed to every line (`ApplySuggestRefactoringIntention.kt` lines 79-108, `Utils.kt` `addLineNumbersToCodeSnippet`, @ 8b0898f). M2 sent the whole .java file without line numbers. Not documented in D-04.
+- **Next:** run the supplementary analysis registered in D-08, then tag `M2_REPRO` and `PRE_EVENT_A`. Event A is read only after the tags are pushed.
