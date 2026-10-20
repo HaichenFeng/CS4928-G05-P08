@@ -18,7 +18,8 @@ The frozen arithmetic gives RQ1 **NOT REPRODUCED** and satisfies RQ2's non-decre
 - [Per-case results](outputs/lab4/results.csv) · [Machine-readable totals](outputs/lab4/summary.json)
 - [Input/gold audit](outputs/lab4/input_audit.json) · [Coordinator checkpoint](outputs/lab4/COORDINATOR_CHECKPOINT.md)
 - Raw requests/responses: `outputs/runs/20261020T172353_759166Z/`
-- Verify without API credits: `python scripts/evaluate_lab4.py --offline`, then `python scripts/verify_lab4.py`.
+- Verify without API credits: `python scripts/evaluate_lab4.py --offline`, then `python scripts/verify_lab4.py`. For the supplementary run: `pip install -r requirements.txt`, then `python scripts/evaluate_vanilla.py --run outputs/runs/20261020T204405_428826Z_vanilla --offline`.
+- Re-running the offline evaluation on another OS rewrites `outputs/lab4/` and `outputs/static/` with line-ending (CRLF/LF), path-separator and `evaluated_utc` differences only; compare with `git diff --ignore-cr-at-eol` (D-10).
 
 The original frozen M1 text and its pre-execution amendments are retained below.
 
@@ -96,9 +97,9 @@ Can a simple hybrid rule reduce hallucinated recommendations without lowering Re
 
 | Path | Contents |
 |---|---|
-| `docs/` | decision log (D-03, D-04), artefact version, dataset format, prompts, static coding manual |
+| `docs/` | decision log (D-03 to D-10), artefact version, dataset format, prompts (original, adapted, vanilla, unused revision), static coding manual |
 | `data/` | frozen sample and screening log |
-| `scripts/` | sample selection script |
-| `outputs/` | raw run logs and outputs |
+| `scripts/` | sample selection, request preparation, LLM runners (`run_frozen_lab.py`, `run_vanilla_lab.py`), evaluation and verification |
+| `outputs/` | screening log, prepared requests, raw runs (`outputs/runs/`), static rankings, H1/H2 evidence, Lab4 (M2) and vanilla (D-08) results |
 
 **Reproduce sample selection:** `python scripts/select_sample.py --data <unzipped datasets.zip>/data --check-source`

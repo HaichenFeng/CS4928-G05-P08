@@ -1,5 +1,7 @@
 # G05 / P08 — Week 6 Lab4 coordinator checkpoint
 
+> **Superseded 2026-10-20 by D-07 (`docs/Decisions.md`):** the as-frozen run is the final M2 result; no coordinator review was sought. The text below is kept unchanged as the Lab4 record.
+
 **Status to show:** frozen 12-case execution complete; **INCONCLUSIVE for paper-level interpretation pending input/gold validity review**.
 
 | Checkpoint | Where to look |

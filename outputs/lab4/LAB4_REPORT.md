@@ -2,6 +2,8 @@
 
 Execution date: 20 October 2026. Frozen plan: `M1_PLAN` (`53c2827dbc8aa579cff9814a541fab4c2dcb5033`).
 
+> **Superseded 2026-10-20 by D-07 (`docs/Decisions.md`):** the as-frozen run is the final M2 result; no coordinator review was sought. The text below is kept unchanged as the Lab4 record.
+
 **Current status: INCONCLUSIVE for the intended paper-level comparison because input/gold validity needs coordinator review. Execution of the 12 frozen requests is complete.** No cases were replaced, dropped or rerun to improve the result.
 
 ## Questions and frozen rules

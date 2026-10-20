@@ -1,0 +1,4 @@
+# Needed only for the D-08 supplementary evaluation (scripts/java_ast.py).
+# The M2 scripts use the Python standard library only.
+tree-sitter==0.26.0
+tree-sitter-java==0.23.5

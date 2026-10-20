@@ -181,10 +181,25 @@ D-08 was committed (17ec648) before the run but pushed after it, contrary to its
 
 ### Post-hoc comparison with M2 (not pre-registered; exploratory)
 - Top-1 fully correct (method and target): M2 10/12 (method given) vs vanilla 4/12. Paired exact McNemar: 6 cases correct only in M2, 0 only in vanilla, p = 0.031.
-- Hallucinations: M2 0/12 vs vanilla 8/34 per recommendation (Fisher p = 0.09); top-1 H1/H2 0/12 vs 2/12 (p = 0.48). Not significant at n = 12.
-- Both runs are far below the paper (binomial p < 0.001).
+- Hallucinations: M2 0/12 vs vanilla 8/34 per recommendation (Fisher p = 0.09); top-1 H1/H2 0/12 vs 2/12 (p = 0.48). Not significant at n = 12. *[Corrected in D-10: the first comparison mixes units and is withdrawn.]*
+- Both runs are far below the paper (binomial p < 0.001). *[Qualified in D-10: the vanilla p-value assumes independent recommendations.]*
 
 ### Interpretation
 - The target-only prompt mainly inflated accuracy: giving the LLM the method raised top-1 accuracy from 4/12 to 10/12. Its effect on hallucinations is in the expected direction but small and not significant here.
 - Even with the paper's own prompt and input format, the hallucination rate (23.5%) does not reproduce Table I (79%). The non-reproduction in D-07 is therefore not explained by our prompt adaptation alone. Remaining candidate explanations: sample (D-07 threat 2: mostly Service -> Mapper moves in small classes, 11/12 with fewer than 15 methods), the narrow H2 rule (H2 = 0 in both runs vs 21% in the paper; D-04 deviation 2), fewer recommendations per class (2.8 vs about 6), and a single run at temperature 0.
 - M2 remains the primary, pre-registered RQ1 result (D-07: NOT REPRODUCED). This run is the closest operational replication of the paper's vanilla setting and is reported as a supplementary sensitivity analysis.
+
+## D-10 — Record corrections before tagging M2_REPRO (2026-10-20)
+
+Record and housekeeping changes only. No request, response, score, threshold, sample or decision changes, and nothing is re-run. The M2 result (D-07) and the D-08 decision (D-09: PARTIAL) are unchanged.
+
+1. **D-09 statistics (exploratory part only).**
+   - The Fisher test "M2 0/12 vs vanilla 8/34" compares a per-case count (top-1 of 12 cases) with a per-recommendation count (34 recommendations). The units differ, so this comparison is withdrawn. The like-for-like comparison is top-1 H1/H2 0/12 vs 2/12 (Fisher p = 0.48), as already reported.
+   - "Both runs are far below the paper (binomial p < 0.001)": for M2 (one top-1 per case, 0/12 vs 55%) the test is valid (p = 6.9e-5). For the vanilla run (8/34 vs 79.4%) the binomial test treats the 34 recommendations as independent, but they are clustered within 12 cases (e.g. ref_id 3 contributes three H1). Its p-value is therefore too small and is indicative only. The direction (far below the paper) is unchanged.
+   - D-09 text is kept; a pointer to this entry is added to the two bullets.
+2. **Non-English text in group scripts.** The GUI labels and status messages of `scripts/run_frozen_lab.py` and `scripts/run_vanilla_lab.py` were partly in Chinese (group rule: all group-written material in English). They are translated. Only Tk label/status strings change; request construction, parsing, file layout and the API call are untouched.
+   - The runner snapshots inside the run folders (`outputs/runs/*/runner.py`) are **not** changed, because `run_manifest.json` records their sha256. They remain the exact code that was executed. From this commit on, `scripts/run_*_lab.py` differ from those snapshots only in these strings (the D-09 statement "byte-identical to 17ec648" refers to the code as executed).
+3. **Stale status in Lab4 files.** `outputs/lab4/LAB4_REPORT.md` and `COORDINATOR_CHECKPOINT.md` still say "INCONCLUSIVE pending coordinator review". A one-line "superseded by D-07" note is added at the top of each; the rest is kept as the Lab4 record. Neither file is listed in `evidence_manifest.sha256`.
+4. **Reproducibility notes.** Added `requirements.txt` (tree-sitter versions from D-08). README now states that an offline re-evaluation on another OS rewrites `outputs/lab4/` and `outputs/static/` with only line-ending, path-separator and `evaluated_utc` differences (checked on Linux 2026-10-20: `git diff --ignore-cr-at-eol` shows only `evaluated_utc` and `run` path), and the repository layout table is updated.
+
+AI-assisted: these issues were found in a repository review by an AI assistant and checked by the group before committing.

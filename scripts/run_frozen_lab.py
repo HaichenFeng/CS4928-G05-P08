@@ -49,12 +49,12 @@ class Runner:
         ttk.Label(self.win, text='Key stays in memory and goes only to api.openai.com. It is never saved.').pack()
         self.entry = ttk.Entry(self.win, textvariable=self.key, show='*', width=90)
         self.entry.pack(padx=20, pady=12)
-        ttk.Button(self.win, text='Paste API key / 粘贴密钥', command=self.paste_key).pack(pady=2)
+        ttk.Button(self.win, text='Paste API key', command=self.paste_key).pack(pady=2)
         self.entry.bind('<Control-v>', self.paste_key)
         self.entry.bind('<Control-V>', self.paste_key)
         self.entry.bind('<Shift-Insert>', self.paste_key)
         paste_menu = tk.Menu(self.win, tearoff=False)
-        paste_menu.add_command(label='Paste / 粘贴', command=self.paste_key)
+        paste_menu.add_command(label='Paste', command=self.paste_key)
         self.entry.bind('<Button-3>', lambda event: paste_menu.tk_popup(event.x_root, event.y_root))
         self.win.after(200, self.entry.focus_force)
         self.pilot = ttk.Button(self.win, text='Run ref_id 1 pilot (one API request)', command=self.begin)
@@ -72,13 +72,13 @@ class Runner:
         try:
             value = self.win.clipboard_get().strip()
             if not value.startswith('sk-'):
-                self.status.set('剪贴板中没有 OpenAI Key。请先复制完整的 sk- 开头密钥，再点击粘贴。')
+                self.status.set('No OpenAI key on the clipboard. Copy the full key starting with sk-, then click Paste.')
             else:
                 self.key.set(value)
-                self.status.set('密钥已粘贴（隐藏显示、未保存）。点击 Run ref_id 1 pilot 开始。')
+                self.status.set('Key pasted (hidden, not saved). Click Run ref_id 1 pilot to start.')
             value = None
         except tk.TclError:
-            self.status.set('无法读取剪贴板文字。请重新复制完整密钥，再点击粘贴；也可直接输入。')
+            self.status.set('Could not read text from the clipboard. Copy the full key again and click Paste, or type it in.')
         return 'break'
 
     def check_gate(self):
