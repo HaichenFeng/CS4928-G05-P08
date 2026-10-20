@@ -8,6 +8,8 @@ The 12 frozen target-only requests completed using **gpt-4o-2024-05-13**, temper
 
 The frozen arithmetic gives RQ1 **NOT REPRODUCED** and satisfies RQ2's non-decrease rule by equality. It does **not** demonstrate hallucination reduction. Overall paper-level interpretation is **INCONCLUSIVE pending coordinator review** because six frozen signatures differ materially from reconstructed source and ref_id 14 has a gold-package discrepancy. Inputs, gold labels and the decision rule were not changed; no result-driven reruns were performed.
 
+**Prompt version (D-06):** the run used the `M1_PLAN` version of `docs/prompt_adapted.txt` (verified by `template_sha256` in each `input_record.json`). A 2026-10-19 revision was merged only after the run and was never used; it is kept as `docs/prompt_adapted_rev2026-10-19_UNUSED.txt`.
+
 - [Lab4 report and evidence chain](outputs/lab4/LAB4_REPORT.md)
 - [Per-case results](outputs/lab4/results.csv) · [Machine-readable totals](outputs/lab4/summary.json)
 - [Input/gold audit](outputs/lab4/input_audit.json) · [Coordinator checkpoint](outputs/lab4/COORDINATOR_CHECKPOINT.md)

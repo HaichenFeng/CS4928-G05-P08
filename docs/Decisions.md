@@ -61,3 +61,19 @@ This is a dated execution record, not a retrospective rewrite of D-03/D-04.
 - Overall intended paper-level interpretation: INCONCLUSIVE pending coordinator review of input/oracle validity. The bounded API execution and as-frozen calculations are complete. See `outputs/lab4/LAB4_REPORT.md`.
 - No corrective method/sample/model change has been implemented. Any coordinator-approved correction must be recorded prospectively before a distinct new run, preserving this run and M1 unchanged. No Event/held-out material used. The M4 ranking-interface decision remains deferred.
 - GenAI helped write support scripts and this audit. The group must review the source-based coding and interpretation; assistant-generated prose is not raw experimental evidence.
+
+## D-06 — Prompt version used in the Lab4 run (record correction, 2026-10-20)
+
+This corrects the record only. No request, response, score or decision rule is changed, and no run is repeated.
+
+- **Version used.** All 12 requests in `outputs/runs/20261020T172353_759166Z/` were rendered from `docs/prompt_adapted.txt` as frozen at tag `M1_PLAN` (commit 39b6642, unchanged in 5cf9f03).
+  - Evidence: every `outputs/requests/case_*/input_record.json` records `template_sha256 = ef3ed569ee78d943a559319e2661354a9feab91c54be2a56731c7b92a982fbe1`. This equals the sha256 of `M1_PLAN:docs/prompt_adapted.txt` checked out with CRLF line endings (Windows). The 2026-10-19 revision (1f8cf01) hashes to `818270187dabdc67…` (LF) / `e3b9adb3fecb0255…` (CRLF) and matches no request.
+  - Check: `git show M1_PLAN:docs/prompt_adapted.txt | sed 's/$/\r/' | sha256sum`
+- **Why HEAD differed.** The revision 1f8cf01 (2026-10-19, "before any LLM call") was committed on a separate branch. The run branch (eb33a96) was based on 5cf9f03 and did not contain it. The revision entered `main` only through merge d11a925, after the run. It was never used.
+- **Correction.** `docs/prompt_adapted.txt` is restored to the M1_PLAN content, so `scripts/prepare_frozen_inputs.py` regenerates the requests actually sent. The unused revision is kept as `docs/prompt_adapted_rev2026-10-19_UNUSED.txt`.
+- **Differences between the used (M1_PLAN) prompt and `docs/prompt_original.txt`, beyond D-04 deviation 1:**
+  1. Few-shot method signature written as `public calculateDiscount(): double`; the original has `public calculateDiscount(double amount): double`. Not documented in M1_PLAN.
+  2. Trailing comma after the few-shot `rationale` field removed; the original keeps it. Not documented in M1_PLAN.
+  3. The method to move is named in the first user message, before the few-shot example, as well as after the host class. This is a placement choice within D-04 deviation 1 (the method is given to the LLM).
+- **Expected impact.** Items 1-2 only touch the few-shot example. Item 3 gives the same information as the revision, earlier in the prompt. None changes what the LLM is told about the host class or the method. The effect on H1/H2 and Recall@1 is expected to be small but is not measured; recorded as a threat to validity.
+- **No re-run.** The as-frozen result stands. Any further run is a distinct new run and must be registered in this log before execution (see D-08); it does not replace this run.
