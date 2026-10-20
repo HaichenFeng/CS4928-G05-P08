@@ -1,0 +1,21 @@
+{
+  "top1": "cn.iocoder.yudao.module.promotion.dal.mysql.kefu.KeFuConversationMapper",
+  "rationale": "The method selectByUserId is a data access operation that directly interacts with the database. It is more appropriate to place this method in the KeFuConversationMapper class, which is responsible for database operations related to KeFuConversationDO.",
+  "returned_model": "gpt-4o-2024-05-13",
+  "usage": {
+    "prompt_tokens": 1438,
+    "completion_tokens": 89,
+    "total_tokens": 1527,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_84e1c6e8ad"
+}

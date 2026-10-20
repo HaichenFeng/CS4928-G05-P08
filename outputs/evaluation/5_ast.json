@@ -1,0 +1,82 @@
+{
+  "case_id": 5,
+  "host": "cn.iocoder.yudao.module.crm.service.product.CrmProductServiceImpl",
+  "package": "cn.iocoder.yudao.module.crm.service.product",
+  "imports": [
+    "import cn.hutool.core.collection.CollUtil;\r\n",
+    "import cn.hutool.core.collection.ListUtil;\r\n",
+    "import cn.iocoder.yudao.framework.common.pojo.PageResult;\r\n",
+    "import cn.iocoder.yudao.framework.common.util.object.BeanUtils;\r\n",
+    "import cn.iocoder.yudao.module.crm.controller.admin.product.vo.product.CrmProductPageReqVO;\r\n",
+    "import cn.iocoder.yudao.module.crm.controller.admin.product.vo.product.CrmProductSaveReqVO;\r\n",
+    "import cn.iocoder.yudao.module.crm.dal.dataobject.product.CrmProductCategoryDO;\r\n",
+    "import cn.iocoder.yudao.module.crm.dal.dataobject.product.CrmProductDO;\r\n",
+    "import cn.iocoder.yudao.module.crm.dal.mysql.product.CrmProductMapper;\r\n",
+    "import cn.iocoder.yudao.module.crm.enums.common.CrmBizTypeEnum;\r\n",
+    "import cn.iocoder.yudao.module.crm.enums.permission.CrmPermissionLevelEnum;\r\n",
+    "import cn.iocoder.yudao.module.crm.framework.permission.core.annotations.CrmPermission;\r\n",
+    "import cn.iocoder.yudao.module.crm.service.permission.CrmPermissionService;\r\n",
+    "import cn.iocoder.yudao.module.crm.service.permission.bo.CrmPermissionCreateReqBO;\r\n",
+    "import cn.iocoder.yudao.module.system.api.user.AdminUserApi;\r\n",
+    "import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;\r\n",
+    "import com.mzt.logapi.context.LogRecordContext;\r\n",
+    "import com.mzt.logapi.service.impl.DiffParseFunction;\r\n",
+    "import com.mzt.logapi.starter.annotation.LogRecord;\r\n",
+    "import jakarta.annotation.Resource;\r\n",
+    "import org.springframework.stereotype.Service;\r\n",
+    "import org.springframework.transaction.annotation.Transactional;\r\n",
+    "import org.springframework.validation.annotation.Validated;\r\n",
+    "import java.util.Collection;\r\n",
+    "import java.util.Collections;\r\n",
+    "import java.util.List;\r\n",
+    "import static cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionUtil.exception;\r\n",
+    "import static cn.iocoder.yudao.module.crm.enums.ErrorCodeConstants.*;\r\n",
+    "import static cn.iocoder.yudao.module.crm.enums.LogRecordConstants.*;\r\n"
+  ],
+  "fields": [
+    {
+      "name": "productMapper",
+      "line": 46,
+      "type": "CrmProductMapper"
+    },
+    {
+      "name": "productCategoryService",
+      "line": 49,
+      "type": "CrmProductCategoryService"
+    },
+    {
+      "name": "permissionService",
+      "line": 51,
+      "type": "CrmPermissionService"
+    },
+    {
+      "name": "adminUserApi",
+      "line": 54,
+      "type": "AdminUserApi"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "categoryId",
+      "line": 158,
+      "type": "Long"
+    }
+  ],
+  "locals": [],
+  "method_source": "private CrmProductDO selectCountByCategoryId(Long categoryId) {\r\n    return productMapper.selectOne(new LambdaQueryWrapper<CrmProductDO>().eq(CrmProductDO::getCategoryId, categoryId));\r\n}",
+  "method_line": 158,
+  "member_accesses": [
+    {
+      "kind": "call",
+      "scope": "productMapper",
+      "line": 159,
+      "member": "selectOne"
+    },
+    {
+      "kind": "call",
+      "scope": "new LambdaQueryWrapper<CrmProductDO>()",
+      "line": 159,
+      "member": "eq"
+    }
+  ]
+}

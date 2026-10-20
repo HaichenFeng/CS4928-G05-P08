@@ -1,0 +1,7 @@
+{
+  "verified_at_utc": "2026-10-20T17:18:03.467172+00:00",
+  "source_url": "https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/2df8667d786d5879d9a7d8dfbddb804b5808d3a9/yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/controller/admin/history/ProductBrowseHistoryController.java",
+  "sha256": "c0044db0cbdfd08ea76c3b5457a926580c361d08e0ea0668c2b69e46933f8971",
+  "matches_preserved_source": true,
+  "request_sha256": "3b138ec7fe524c1b5b987c74463953879a1a81086e469e949247fa1bc4fa47fc"
+}

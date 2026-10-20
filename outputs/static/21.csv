@@ -1,0 +1,6 @@
+candidate_fqn,source,occurrences,score
+org.apache.flink.cep.pattern.Pattern,field,327:currentPattern.getWindowTime,1
+org.apache.flink.cep.nfa.State,field,,0
+org.apache.flink.cep.nfa.aftermatch.AfterMatchSkipStrategy,field,,0
+org.apache.flink.cep.nfa.compiler.NFAStateNameHandler,field,,0
+org.apache.flink.cep.pattern.GroupPattern,field,,0

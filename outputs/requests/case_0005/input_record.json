@@ -1,0 +1,17 @@
+{
+  "prepared_at_utc": "2026-10-20T17:18:02.694443+00:00",
+  "case_id": 5,
+  "repository": "https://github.com/YunaiV/ruoyi-vue-pro.git",
+  "commit": "ad5c0ea90744cad50e17d5e820080e432f0368cf",
+  "host_file": "yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/product/CrmProductServiceImpl.java",
+  "host_class": "cn.iocoder.yudao.module.crm.service.product.CrmProductServiceImpl",
+  "method_signature_from_frozen_sample": "public selectCountByCategoryId(categoryId Long) : Long",
+  "host_sha256": "01a470810549046cc8a7f8a1fa284361a20ceef9e7eb0fdcb08a3ed4c455485b",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "ef3ed569ee78d943a559319e2661354a9feab91c54be2a56731c7b92a982fbe1",
+  "request_sha256": "0482ee2491030e4837975560b39bf9a0c03a228f22ba6b73c29c4efcc6bdb4a7",
+  "source_url": "https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/ad5c0ea90744cad50e17d5e820080e432f0368cf/yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/product/CrmProductServiceImpl.java",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold target and author recommendations excluded from request; frozen template unchanged."
+}

@@ -1,0 +1,138 @@
+{
+  "case_id": 16,
+  "host": "cn.iocoder.yudao.module.promotion.service.kefu.KeFuMessageServiceImpl",
+  "package": "cn.iocoder.yudao.module.promotion.service.kefu",
+  "imports": [
+    "import cn.hutool.core.collection.CollUtil;\r\n",
+    "import cn.hutool.extra.spring.SpringUtil;\r\n",
+    "import cn.iocoder.yudao.framework.common.enums.UserTypeEnum;\r\n",
+    "import cn.iocoder.yudao.framework.common.pojo.PageResult;\r\n",
+    "import cn.iocoder.yudao.framework.common.util.object.BeanUtils;\r\n",
+    "import cn.iocoder.yudao.module.infra.api.websocket.WebSocketSenderApi;\r\n",
+    "import cn.iocoder.yudao.module.member.api.user.MemberUserApi;\r\n",
+    "import cn.iocoder.yudao.module.promotion.controller.admin.kefu.vo.message.KeFuMessagePageReqVO;\r\n",
+    "import cn.iocoder.yudao.module.promotion.controller.admin.kefu.vo.message.KeFuMessageSendReqVO;\r\n",
+    "import cn.iocoder.yudao.module.promotion.dal.dataobject.kefu.KeFuConversationDO;\r\n",
+    "import cn.iocoder.yudao.module.promotion.dal.dataobject.kefu.KeFuMessageDO;\r\n",
+    "import cn.iocoder.yudao.module.promotion.dal.mysql.kefu.KeFuMessageMapper;\r\n",
+    "import cn.iocoder.yudao.module.system.api.user.AdminUserApi;\r\n",
+    "import jakarta.annotation.Resource;\r\n",
+    "import org.springframework.scheduling.annotation.Async;\r\n",
+    "import org.springframework.stereotype.Service;\r\n",
+    "import org.springframework.transaction.annotation.Transactional;\r\n",
+    "import org.springframework.validation.annotation.Validated;\r\n",
+    "import java.time.LocalDateTime;\r\n",
+    "import java.util.List;\r\n",
+    "import static cn.iocoder.yudao.framework.common.util.collection.CollectionUtils.convertSet;\r\n",
+    "import static cn.iocoder.yudao.framework.common.util.collection.CollectionUtils.getFirst;\r\n"
+  ],
+  "fields": [
+    {
+      "name": "KEFU_MESSAGE_TYPE",
+      "line": 38,
+      "type": "String"
+    },
+    {
+      "name": "messageMapper",
+      "line": 42,
+      "type": "KeFuMessageMapper"
+    },
+    {
+      "name": "conversationService",
+      "line": 45,
+      "type": "KeFuConversationService"
+    },
+    {
+      "name": "adminUserApi",
+      "line": 48,
+      "type": "AdminUserApi"
+    },
+    {
+      "name": "memberUserApi",
+      "line": 50,
+      "type": "MemberUserApi"
+    },
+    {
+      "name": "webSocketSenderApi",
+      "line": 52,
+      "type": "WebSocketSenderApi"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "conversation",
+      "line": 82,
+      "type": "KeFuConversationDO"
+    },
+    {
+      "name": "kefuMessage",
+      "line": 82,
+      "type": "KeFuMessageDO"
+    }
+  ],
+  "locals": [],
+  "method_source": "private void updateConversationLastMessage(KeFuConversationDO conversation, KeFuMessageDO kefuMessage) {\r\n    if (UserTypeEnum.MEMBER.getValue().equals(kefuMessage.getSenderType()) && Boolean.TRUE.equals(conversation.getAdminDeleted())) {\r\n        conversationService.updateConversationAdminDeleted(kefuMessage.getConversationId(), Boolean.FALSE);\r\n    }\r\n}",
+  "method_line": 82,
+  "member_accesses": [
+    {
+      "kind": "call",
+      "scope": "UserTypeEnum.MEMBER.getValue()",
+      "line": 83,
+      "member": "equals"
+    },
+    {
+      "kind": "call",
+      "scope": "UserTypeEnum.MEMBER",
+      "line": 83,
+      "member": "getValue"
+    },
+    {
+      "kind": "call",
+      "scope": "kefuMessage",
+      "line": 83,
+      "member": "getSenderType"
+    },
+    {
+      "kind": "call",
+      "scope": "Boolean.TRUE",
+      "line": 83,
+      "member": "equals"
+    },
+    {
+      "kind": "call",
+      "scope": "conversation",
+      "line": 83,
+      "member": "getAdminDeleted"
+    },
+    {
+      "kind": "call",
+      "scope": "conversationService",
+      "line": 84,
+      "member": "updateConversationAdminDeleted"
+    },
+    {
+      "kind": "call",
+      "scope": "kefuMessage",
+      "line": 84,
+      "member": "getConversationId"
+    },
+    {
+      "kind": "field",
+      "scope": "UserTypeEnum",
+      "line": 83,
+      "member": "MEMBER"
+    },
+    {
+      "kind": "field",
+      "scope": "Boolean",
+      "line": 83,
+      "member": "TRUE"
+    },
+    {
+      "kind": "field",
+      "scope": "Boolean",
+      "line": 84,
+      "member": "FALSE"
+    }
+  ]
+}

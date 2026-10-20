@@ -1,0 +1,12 @@
+Frozen commit: e2b41dd358c9fc9e7ccf31083e40005c7e49f1bd
+LLM FQN: cn.iocoder.yudao.module.crm.dal.mysql.business.CrmBusinessStatusTypeMapper
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro ls-tree -r --name-only e2b41dd358c9fc9e7ccf31083e40005c7e49f1bd -- yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/business/CrmBusinessStatusTypeMapper.java
+yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/business/CrmBusinessStatusTypeMapper.java
+
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro grep -n -E (class|interface|enum|record)[[:space:]]+CrmBusinessStatusTypeMapper([[:space:]]|<|\{) e2b41dd358c9fc9e7ccf31083e40005c7e49f1bd -- yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/business/CrmBusinessStatusTypeMapper.java
+e2b41dd358c9fc9e7ccf31083e40005c7e49f1bd:yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/business/CrmBusinessStatusTypeMapper.java:19:public interface CrmBusinessStatusTypeMapper extends BaseMapperX<CrmBusinessStatusTypeDO> {
+
+Source package verified: cn.iocoder.yudao.module.crm.dal.mysql.business
+Source SHA256: 6debcf1e28342efbb5372b2550c5e83adbe15d6084c9548328dc0ac81a6f0def
+Exists: true
+In static candidate set: True

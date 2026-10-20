@@ -1,0 +1,4 @@
+candidate_fqn,source,occurrences,score
+cn.iocoder.yudao.module.ai.dal.mysql.image.AiImageMapper,field,81:imageMapper.selectList,1
+cn.iocoder.yudao.framework.ai.core.model.midjourney.api.MidjourneyApi,field,,0
+cn.iocoder.yudao.module.ai.service.image.AiImageService,field,,0

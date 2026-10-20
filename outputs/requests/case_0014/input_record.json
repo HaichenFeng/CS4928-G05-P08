@@ -1,0 +1,17 @@
+{
+  "prepared_at_utc": "2026-10-20T17:18:03.361146+00:00",
+  "case_id": 14,
+  "repository": "https://github.com/YunaiV/ruoyi-vue-pro.git",
+  "commit": "03f78f37afdc0f87b207087e52557c7d1809339c",
+  "host_file": "yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/impl/AiChatConversationServiceImpl.java",
+  "host_class": "cn.iocoder.yudao.module.ai.service.impl.AiChatConversationServiceImpl",
+  "method_signature_from_frozen_sample": "public validateAvailable(chatModal AiChatModalRes) : void",
+  "host_sha256": "ad83a07997e501814bd0eb7bd2795c64db542102763eba3cd073f47db4d16858",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "ef3ed569ee78d943a559319e2661354a9feab91c54be2a56731c7b92a982fbe1",
+  "request_sha256": "20a3dad9a8197505f248939d73ab3e1159580af27ad0f3eb7b171adcb043e517",
+  "source_url": "https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/03f78f37afdc0f87b207087e52557c7d1809339c/yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/impl/AiChatConversationServiceImpl.java",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold target and author recommendations excluded from request; frozen template unchanged."
+}

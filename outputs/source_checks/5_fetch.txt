@@ -1,0 +1,3 @@
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro fetch --depth=1 --filter=blob:none origin ad5c0ea90744cad50e17d5e820080e432f0368cf
+From https://github.com/YunaiV/ruoyi-vue-pro
+ * branch            ad5c0ea90744cad50e17d5e820080e432f0368cf -> FETCH_HEAD

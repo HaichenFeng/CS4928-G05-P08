@@ -1,0 +1,17 @@
+{
+  "prepared_at_utc": "2026-10-20T17:18:02.345165+00:00",
+  "case_id": 2,
+  "repository": "https://github.com/YunaiV/ruoyi-vue-pro.git",
+  "commit": "1bebd852ca5fde578332ee3106987ed1db303e5a",
+  "host_file": "yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/service/history/ProductBrowseHistoryServiceImpl.java",
+  "host_class": "cn.iocoder.yudao.module.product.service.history.ProductBrowseHistoryServiceImpl",
+  "method_signature_from_frozen_sample": "public selectByUserIdAndSpuId(userId Long, spuId Long) : ProductBrowseHistoryDO",
+  "host_sha256": "105d54caaa0cfafff78eabea0d0ac468bfc4d07bf7f05db20309d7808c365362",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "ef3ed569ee78d943a559319e2661354a9feab91c54be2a56731c7b92a982fbe1",
+  "request_sha256": "ade5f626b3de8eb7bcd0040bf656c17225504ee893ce24a3dc196db14c2d0e05",
+  "source_url": "https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/1bebd852ca5fde578332ee3106987ed1db303e5a/yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/service/history/ProductBrowseHistoryServiceImpl.java",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold target and author recommendations excluded from request; frozen template unchanged."
+}

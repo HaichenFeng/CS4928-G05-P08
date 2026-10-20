@@ -1,0 +1,62 @@
+{
+  "case_id": 8,
+  "host": "cn.iocoder.yudao.module.crm.controller.admin.followup.CrmFollowUpRecordController",
+  "actual_method_source": "private Map<Long, CrmBusinessDO> getBusinessMap(Collection<Long> ids) {\r\n    return convertMap(businessService.getBusinessList(ids), CrmBusinessDO::getId);\r\n}",
+  "variables": {
+    "followUpRecordService": "cn.iocoder.yudao.module.crm.service.followup.CrmFollowUpRecordService",
+    "contactService": "cn.iocoder.yudao.module.crm.service.contact.CrmContactService",
+    "businessService": "cn.iocoder.yudao.module.crm.service.business.CrmBusinessService"
+  },
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.service.business.CrmBusinessService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "businessService",
+          "line": 47,
+          "type": "CrmBusinessService"
+        }
+      ],
+      "occurrences": [
+        {
+          "kind": "call",
+          "scope": "businessService",
+          "line": 94,
+          "member": "getBusinessList"
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.service.contact.CrmContactService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "contactService",
+          "line": 45,
+          "type": "CrmContactService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.service.followup.CrmFollowUpRecordService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "followUpRecordService",
+          "line": 43,
+          "type": "CrmFollowUpRecordService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "rule": "docs/coding_manual.md; direct host fields + actual named-method parameters; generic element types; count each AST member-access occurrence once; score-desc/FQN-asc"
+}

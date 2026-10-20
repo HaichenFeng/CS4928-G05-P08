@@ -1,0 +1,12 @@
+{
+  "reviewed_utc": "2026-10-20T17:24:47.062474+00:00",
+  "status": "PILOT_VALID",
+  "http_status": 200,
+  "model": "gpt-4o-2024-05-13",
+  "temperature": 0,
+  "request_matches_frozen_preparation": true,
+  "raw_response_preserved": true,
+  "pilot_included_in_final_12": true,
+  "rerun_pilot": false,
+  "notes": "Connection verified. No sample, prompt, model or decision-rule change. Full static/H1-H2 coding follows frozen manual."
+}

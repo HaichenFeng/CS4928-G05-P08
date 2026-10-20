@@ -1,0 +1,12 @@
+Frozen commit: eeaa68241593014a50ebbbf8bed822562d96ea3b
+LLM FQN: org.apache.flink.cep.pattern.Pattern
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\flink ls-tree -r --name-only eeaa68241593014a50ebbbf8bed822562d96ea3b -- flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/pattern/Pattern.java
+flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/pattern/Pattern.java
+
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\flink grep -n -E (class|interface|enum|record)[[:space:]]+Pattern([[:space:]]|<|\{) eeaa68241593014a50ebbbf8bed822562d96ea3b -- flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/pattern/Pattern.java
+eeaa68241593014a50ebbbf8bed822562d96ea3b:flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/pattern/Pattern.java:55:public class Pattern<T, F extends T> {
+
+Source package verified: org.apache.flink.cep.pattern
+Source SHA256: c0bee7ffa9ccbaf648e5cd9c96813da124b05fb6f0ea72d36ce4ec91253933d4
+Exists: true
+In static candidate set: True

@@ -1,0 +1,8 @@
+candidate_fqn,source,occurrences,score
+cn.iocoder.yudao.module.promotion.dal.dataobject.kefu.KeFuMessageDO,param,83:kefuMessage.getSenderType;84:kefuMessage.getConversationId,2
+cn.iocoder.yudao.module.promotion.dal.dataobject.kefu.KeFuConversationDO,param,83:conversation.getAdminDeleted,1
+cn.iocoder.yudao.module.promotion.service.kefu.KeFuConversationService,field,84:conversationService.updateConversationAdminDeleted,1
+cn.iocoder.yudao.module.infra.api.websocket.WebSocketSenderApi,field,,0
+cn.iocoder.yudao.module.member.api.user.MemberUserApi,field,,0
+cn.iocoder.yudao.module.promotion.dal.mysql.kefu.KeFuMessageMapper,field,,0
+cn.iocoder.yudao.module.system.api.user.AdminUserApi,field,,0

@@ -1,0 +1,32 @@
+{
+  "evaluated_utc": "2026-10-20T17:33:23.369219+00:00",
+  "n": 12,
+  "run": "outputs\\runs\\20261020T172353_759166Z",
+  "model": "gpt-4o-2024-05-13",
+  "temperature": 0,
+  "successful_responses": 12,
+  "usage": {
+    "prompt_tokens": 26446,
+    "completion_tokens": 1114,
+    "total_tokens": 27560
+  },
+  "H1": 0,
+  "H2": 0,
+  "H1_H2_rate": 0.0,
+  "llm_recall1": 10,
+  "static_recall1": 8,
+  "hybrid_recall1": 10,
+  "llm_static_agreement": 9,
+  "RQ1_arithmetic_rule": "NOT REPRODUCED",
+  "RQ2_non_decrease_rule": "SUPPORTED",
+  "hallucination_reduction_observed": false,
+  "interpretation_status": "INCONCLUSIVE for intended paper reproduction pending input/gold validity review; as-frozen execution complete",
+  "material_signature_mismatch_ids": [
+    3,
+    5,
+    15,
+    16,
+    19,
+    21
+  ]
+}

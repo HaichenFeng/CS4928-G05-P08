@@ -1,0 +1,17 @@
+{
+  "prepared_at_utc": "2026-10-20T17:18:03.040303+00:00",
+  "case_id": 16,
+  "repository": "https://github.com/YunaiV/ruoyi-vue-pro.git",
+  "commit": "f2281c70cec384b33cc8713ac727cb0b1ca8fe2b",
+  "host_file": "yudao-module-mall/yudao-module-promotion-biz/src/main/java/cn/iocoder/yudao/module/promotion/service/kefu/KeFuMessageServiceImpl.java",
+  "host_class": "cn.iocoder.yudao.module.promotion.service.kefu.KeFuMessageServiceImpl",
+  "method_signature_from_frozen_sample": "public updateConversationLastMessage(kefuMessage KeFuMessageDO) : void",
+  "host_sha256": "f4511aa728f8e9aa0370e003c404ccd4d39961fe9d7e89760c4810b04aa7a40b",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "ef3ed569ee78d943a559319e2661354a9feab91c54be2a56731c7b92a982fbe1",
+  "request_sha256": "a65143a92631da762f40a3c2cd917e945ad9f4a02f48c99864f4635c1073ba03",
+  "source_url": "https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/f2281c70cec384b33cc8713ac727cb0b1ca8fe2b/yudao-module-mall/yudao-module-promotion-biz/src/main/java/cn/iocoder/yudao/module/promotion/service/kefu/KeFuMessageServiceImpl.java",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold target and author recommendations excluded from request; frozen template unchanged."
+}

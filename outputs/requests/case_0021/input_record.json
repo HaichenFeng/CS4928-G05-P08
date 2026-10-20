@@ -1,0 +1,17 @@
+{
+  "prepared_at_utc": "2026-10-20T17:18:03.788271+00:00",
+  "case_id": 21,
+  "repository": "https://github.com/apache/flink.git",
+  "commit": "eeaa68241593014a50ebbbf8bed822562d96ea3b",
+  "host_file": "flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/nfa/compiler/NFACompiler.java",
+  "host_class": "org.apache.flink.cep.nfa.compiler.NFACompiler.NFAFactoryCompiler",
+  "method_signature_from_frozen_sample": "public getWindowSize() : Optional<Duration>",
+  "host_sha256": "b8a8efab9433554a3118f73236ae8520a6262c98543b4f8e24482bef8f9ec66c",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "ef3ed569ee78d943a559319e2661354a9feab91c54be2a56731c7b92a982fbe1",
+  "request_sha256": "2b400b12fa1658f4d74e09e6248944d68a710b734550f25e16340061a9a341a2",
+  "source_url": "https://raw.githubusercontent.com/apache/flink/eeaa68241593014a50ebbbf8bed822562d96ea3b/flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/nfa/compiler/NFACompiler.java",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold target and author recommendations excluded from request; frozen template unchanged."
+}

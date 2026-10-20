@@ -1,0 +1,47 @@
+{
+  "case_id": 17,
+  "host": "cn.iocoder.yudao.module.promotion.service.kefu.KeFuConversationServiceImpl",
+  "package": "cn.iocoder.yudao.module.promotion.service.kefu",
+  "imports": [
+    "import cn.hutool.core.util.StrUtil;\r\n",
+    "import cn.iocoder.yudao.framework.common.enums.UserTypeEnum;\r\n",
+    "import cn.iocoder.yudao.module.promotion.controller.admin.kefu.vo.conversation.KeFuConversationUpdatePinnedReqVO;\r\n",
+    "import cn.iocoder.yudao.module.promotion.dal.dataobject.kefu.KeFuConversationDO;\r\n",
+    "import cn.iocoder.yudao.module.promotion.dal.dataobject.kefu.KeFuMessageDO;\r\n",
+    "import cn.iocoder.yudao.module.promotion.dal.mysql.kefu.KeFuConversationMapper;\r\n",
+    "import cn.iocoder.yudao.module.promotion.enums.kehu.KeFuMessageContentTypeEnum;\r\n",
+    "import jakarta.annotation.Resource;\r\n",
+    "import org.springframework.stereotype.Service;\r\n",
+    "import org.springframework.transaction.annotation.Transactional;\r\n",
+    "import org.springframework.validation.annotation.Validated;\r\n",
+    "import java.time.LocalDateTime;\r\n",
+    "import java.util.List;\r\n",
+    "import static cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionUtil.exception;\r\n",
+    "import static cn.iocoder.yudao.module.promotion.enums.ErrorCodeConstants.KEFU_CONVERSATION_NOT_EXISTS;\r\n"
+  ],
+  "fields": [
+    {
+      "name": "conversationMapper",
+      "line": 31,
+      "type": "KeFuConversationMapper"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "userId",
+      "line": 114,
+      "type": "Long"
+    }
+  ],
+  "locals": [],
+  "method_source": "private KeFuConversationDO selectByUserId(Long userId) {\r\n    return conversationMapper.selectOne(KeFuConversationDO::getUserId, userId);\r\n}",
+  "method_line": 114,
+  "member_accesses": [
+    {
+      "kind": "call",
+      "scope": "conversationMapper",
+      "line": 115,
+      "member": "selectOne"
+    }
+  ]
+}

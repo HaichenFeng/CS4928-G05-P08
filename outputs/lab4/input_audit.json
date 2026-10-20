@@ -1,0 +1,255 @@
+[
+  {
+    "case_id": 1,
+    "frozen_signature": "public selectOne() : CrmCustomerPoolConfigDO",
+    "actual_declaration": "private CrmCustomerPoolConfigDO selectOne()",
+    "frozen_parameter_count": 0,
+    "actual_parameter_count": 0,
+    "frozen_parameter_types": [],
+    "actual_parameter_types": [],
+    "parameter_types_match": true,
+    "frozen_return_type": "CrmCustomerPoolConfigDO",
+    "actual_return_type": "CrmCustomerPoolConfigDO",
+    "return_type_matches": true,
+    "material_signature_mismatch": false,
+    "gold_path_matches": [
+      "yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/customer/CrmCustomerPoolConfigMapper.java"
+    ],
+    "note": "Actual named method selected uniquely by JavaParser; signatures preserved verbatim in the LLM request, never corrected after execution."
+  },
+  {
+    "case_id": 2,
+    "frozen_signature": "public selectByUserIdAndSpuId(userId Long, spuId Long) : ProductBrowseHistoryDO",
+    "actual_declaration": "private ProductBrowseHistoryDO selectByUserIdAndSpuId(Long userId, Long spuId)",
+    "frozen_parameter_count": 2,
+    "actual_parameter_count": 2,
+    "frozen_parameter_types": [
+      "Long",
+      "Long"
+    ],
+    "actual_parameter_types": [
+      "Long",
+      "Long"
+    ],
+    "parameter_types_match": true,
+    "frozen_return_type": "ProductBrowseHistoryDO",
+    "actual_return_type": "ProductBrowseHistoryDO",
+    "return_type_matches": true,
+    "material_signature_mismatch": false,
+    "gold_path_matches": [
+      "yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/dal/mysql/history/ProductBrowseHistoryMapper.java"
+    ],
+    "note": "Actual named method selected uniquely by JavaParser; signatures preserved verbatim in the LLM request, never corrected after execution."
+  },
+  {
+    "case_id": 3,
+    "frozen_signature": "public selectByIdAndName(id Long, name String) : CrmBusinessStatusTypeDO",
+    "actual_declaration": "private SFunction<CrmBusinessStatusTypeDO, Object> selectByIdAndName()",
+    "frozen_parameter_count": 2,
+    "actual_parameter_count": 0,
+    "frozen_parameter_types": [
+      "Long",
+      "String"
+    ],
+    "actual_parameter_types": [],
+    "parameter_types_match": false,
+    "frozen_return_type": "CrmBusinessStatusTypeDO",
+    "actual_return_type": "SFunction<CrmBusinessStatusTypeDO,Object>",
+    "return_type_matches": false,
+    "material_signature_mismatch": true,
+    "gold_path_matches": [
+      "yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/business/CrmBusinessStatusTypeMapper.java"
+    ],
+    "note": "Actual named method selected uniquely by JavaParser; signatures preserved verbatim in the LLM request, never corrected after execution."
+  },
+  {
+    "case_id": 5,
+    "frozen_signature": "public selectCountByCategoryId(categoryId Long) : Long",
+    "actual_declaration": "private CrmProductDO selectCountByCategoryId(Long categoryId)",
+    "frozen_parameter_count": 1,
+    "actual_parameter_count": 1,
+    "frozen_parameter_types": [
+      "Long"
+    ],
+    "actual_parameter_types": [
+      "Long"
+    ],
+    "parameter_types_match": true,
+    "frozen_return_type": "Long",
+    "actual_return_type": "CrmProductDO",
+    "return_type_matches": false,
+    "material_signature_mismatch": true,
+    "gold_path_matches": [
+      "yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/product/CrmProductMapper.java"
+    ],
+    "note": "Actual named method selected uniquely by JavaParser; signatures preserved verbatim in the LLM request, never corrected after execution."
+  },
+  {
+    "case_id": 7,
+    "frozen_signature": "public getBusinessMap(ids Collection<Long>) : Map<Long,CrmBusinessDO>",
+    "actual_declaration": "private Map<Long, CrmBusinessDO> getBusinessMap(Collection<Long> ids)",
+    "frozen_parameter_count": 1,
+    "actual_parameter_count": 1,
+    "frozen_parameter_types": [
+      "Collection<Long>"
+    ],
+    "actual_parameter_types": [
+      "Collection<Long>"
+    ],
+    "parameter_types_match": true,
+    "frozen_return_type": "Map<Long,CrmBusinessDO>",
+    "actual_return_type": "Map<Long,CrmBusinessDO>",
+    "return_type_matches": true,
+    "material_signature_mismatch": false,
+    "gold_path_matches": [
+      "yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/business/CrmBusinessService.java"
+    ],
+    "note": "Actual named method selected uniquely by JavaParser; signatures preserved verbatim in the LLM request, never corrected after execution."
+  },
+  {
+    "case_id": 8,
+    "frozen_signature": "public getBusinessMap(ids Collection<Long>) : Map<Long,CrmBusinessDO>",
+    "actual_declaration": "private Map<Long, CrmBusinessDO> getBusinessMap(Collection<Long> ids)",
+    "frozen_parameter_count": 1,
+    "actual_parameter_count": 1,
+    "frozen_parameter_types": [
+      "Collection<Long>"
+    ],
+    "actual_parameter_types": [
+      "Collection<Long>"
+    ],
+    "parameter_types_match": true,
+    "frozen_return_type": "Map<Long,CrmBusinessDO>",
+    "actual_return_type": "Map<Long,CrmBusinessDO>",
+    "return_type_matches": true,
+    "material_signature_mismatch": false,
+    "gold_path_matches": [
+      "yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/business/CrmBusinessService.java"
+    ],
+    "note": "Actual named method selected uniquely by JavaParser; signatures preserved verbatim in the LLM request, never corrected after execution."
+  },
+  {
+    "case_id": 14,
+    "frozen_signature": "public validateAvailable(chatModal AiChatModalRes) : void",
+    "actual_declaration": "private void validateAvailable(AiChatModalRes chatModal)",
+    "frozen_parameter_count": 1,
+    "actual_parameter_count": 1,
+    "frozen_parameter_types": [
+      "AiChatModalRes"
+    ],
+    "actual_parameter_types": [
+      "AiChatModalRes"
+    ],
+    "parameter_types_match": true,
+    "frozen_return_type": "void",
+    "actual_return_type": "void",
+    "return_type_matches": true,
+    "material_signature_mismatch": false,
+    "gold_path_matches": [],
+    "note": "Actual named method selected uniquely by JavaParser; signatures preserved verbatim in the LLM request, never corrected after execution."
+  },
+  {
+    "case_id": 15,
+    "frozen_signature": "public selectByStatusAndPlatform(statusEnum AiImageStatusEnum, platformEnum AiPlatformEnum) : List<AiImageDO>",
+    "actual_declaration": "private List<AiImageDO> selectByStatusAndPlatform()",
+    "frozen_parameter_count": 2,
+    "actual_parameter_count": 0,
+    "frozen_parameter_types": [
+      "AiImageStatusEnum",
+      "AiPlatformEnum"
+    ],
+    "actual_parameter_types": [],
+    "parameter_types_match": false,
+    "frozen_return_type": "List<AiImageDO>",
+    "actual_return_type": "List<AiImageDO>",
+    "return_type_matches": true,
+    "material_signature_mismatch": true,
+    "gold_path_matches": [
+      "yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/dal/mysql/image/AiImageMapper.java"
+    ],
+    "note": "Actual named method selected uniquely by JavaParser; signatures preserved verbatim in the LLM request, never corrected after execution."
+  },
+  {
+    "case_id": 16,
+    "frozen_signature": "public updateConversationLastMessage(kefuMessage KeFuMessageDO) : void",
+    "actual_declaration": "private void updateConversationLastMessage(KeFuConversationDO conversation, KeFuMessageDO kefuMessage)",
+    "frozen_parameter_count": 1,
+    "actual_parameter_count": 2,
+    "frozen_parameter_types": [
+      "KeFuMessageDO"
+    ],
+    "actual_parameter_types": [
+      "KeFuConversationDO",
+      "KeFuMessageDO"
+    ],
+    "parameter_types_match": false,
+    "frozen_return_type": "void",
+    "actual_return_type": "void",
+    "return_type_matches": true,
+    "material_signature_mismatch": true,
+    "gold_path_matches": [
+      "yudao-module-mall/yudao-module-promotion-biz/src/main/java/cn/iocoder/yudao/module/promotion/service/kefu/KeFuConversationService.java"
+    ],
+    "note": "Actual named method selected uniquely by JavaParser; signatures preserved verbatim in the LLM request, never corrected after execution."
+  },
+  {
+    "case_id": 17,
+    "frozen_signature": "public selectByUserId(userId Long) : KeFuConversationDO",
+    "actual_declaration": "private KeFuConversationDO selectByUserId(Long userId)",
+    "frozen_parameter_count": 1,
+    "actual_parameter_count": 1,
+    "frozen_parameter_types": [
+      "Long"
+    ],
+    "actual_parameter_types": [
+      "Long"
+    ],
+    "parameter_types_match": true,
+    "frozen_return_type": "KeFuConversationDO",
+    "actual_return_type": "KeFuConversationDO",
+    "return_type_matches": true,
+    "material_signature_mismatch": false,
+    "gold_path_matches": [
+      "yudao-module-mall/yudao-module-promotion-biz/src/main/java/cn/iocoder/yudao/module/promotion/dal/mysql/kefu/KeFuConversationMapper.java"
+    ],
+    "note": "Actual named method selected uniquely by JavaParser; signatures preserved verbatim in the LLM request, never corrected after execution."
+  },
+  {
+    "case_id": 19,
+    "frozen_signature": "public getSpuMap(ids Collection<Long>) : Map<Long,ProductSpuDO>",
+    "actual_declaration": "private Map<Long, ProductSpuDO> getSpuMap(Set<Long> spuIds)",
+    "frozen_parameter_count": 1,
+    "actual_parameter_count": 1,
+    "frozen_parameter_types": [
+      "Collection<Long>"
+    ],
+    "actual_parameter_types": [
+      "Set<Long>"
+    ],
+    "parameter_types_match": false,
+    "frozen_return_type": "Map<Long,ProductSpuDO>",
+    "actual_return_type": "Map<Long,ProductSpuDO>",
+    "return_type_matches": true,
+    "material_signature_mismatch": true,
+    "gold_path_matches": [
+      "yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/service/spu/ProductSpuService.java"
+    ],
+    "note": "Actual named method selected uniquely by JavaParser; signatures preserved verbatim in the LLM request, never corrected after execution."
+  },
+  {
+    "case_id": 21,
+    "frozen_signature": "public getWindowSize() : Optional<Duration>",
+    "actual_declaration": "private void getWindowSize()",
+    "frozen_parameter_count": 0,
+    "actual_parameter_count": 0,
+    "frozen_parameter_types": [],
+    "actual_parameter_types": [],
+    "parameter_types_match": true,
+    "frozen_return_type": "Optional<Duration>",
+    "actual_return_type": "void",
+    "return_type_matches": false,
+    "material_signature_mismatch": true,
+    "gold_path_matches": [],
+    "note": "Actual named method selected uniquely by JavaParser; signatures preserved verbatim in the LLM request, never corrected after execution."
+  }
+]

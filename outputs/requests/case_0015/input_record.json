@@ -1,0 +1,17 @@
+{
+  "prepared_at_utc": "2026-10-20T17:18:03.052548+00:00",
+  "case_id": 15,
+  "repository": "https://github.com/YunaiV/ruoyi-vue-pro.git",
+  "commit": "9bd531bedf21668537a95d15c4ab5d519a42f18e",
+  "host_file": "yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/job/MidjourneyJob.java",
+  "host_class": "cn.iocoder.yudao.module.ai.job.MidjourneyJob",
+  "method_signature_from_frozen_sample": "public selectByStatusAndPlatform(statusEnum AiImageStatusEnum, platformEnum AiPlatformEnum) : List<AiImageDO>",
+  "host_sha256": "59d2fff46239edd19fbfc2680c70ebde888433a2b7e69a2ae9f247aa036c4393",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "ef3ed569ee78d943a559319e2661354a9feab91c54be2a56731c7b92a982fbe1",
+  "request_sha256": "918412fcd32a76bb1285438923e19dabb17f9bcf67e8fd31c7722bf99395c6d6",
+  "source_url": "https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/9bd531bedf21668537a95d15c4ab5d519a42f18e/yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/job/MidjourneyJob.java",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold target and author recommendations excluded from request; frozen template unchanged."
+}

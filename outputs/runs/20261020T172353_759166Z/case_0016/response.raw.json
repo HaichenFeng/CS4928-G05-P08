@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eb7sWmwPoK263tlvDUW6jd1mkI61b",
+  "object": "chat.completion",
+  "created": 1792517128,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n    {\n        \"target_class\": \"cn.iocoder.yudao.module.promotion.service.kefu.KeFuConversationService\",\n        \"rationale\": \"The method updateConversationLastMessage() deals with updating conversation details, which is more aligned with the responsibilities of the KeFuConversationService class.\"\n    }\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1790,
+    "completion_tokens": 64,
+    "total_tokens": 1854,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_a140ee58f6"
+}

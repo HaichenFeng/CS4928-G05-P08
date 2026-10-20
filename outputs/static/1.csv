@@ -1,0 +1,2 @@
+candidate_fqn,source,occurrences,score
+cn.iocoder.yudao.module.crm.dal.mysql.customer.CrmCustomerPoolConfigMapper,field,42:customerPoolConfigMapper.selectOne,1

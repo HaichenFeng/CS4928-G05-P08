@@ -1,0 +1,12 @@
+Frozen commit: f2281c70cec384b33cc8713ac727cb0b1ca8fe2b
+LLM FQN: cn.iocoder.yudao.module.promotion.service.kefu.KeFuConversationService
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro ls-tree -r --name-only f2281c70cec384b33cc8713ac727cb0b1ca8fe2b -- yudao-module-mall/yudao-module-promotion-biz/src/main/java/cn/iocoder/yudao/module/promotion/service/kefu/KeFuConversationService.java
+yudao-module-mall/yudao-module-promotion-biz/src/main/java/cn/iocoder/yudao/module/promotion/service/kefu/KeFuConversationService.java
+
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro grep -n -E (class|interface|enum|record)[[:space:]]+KeFuConversationService([[:space:]]|<|\{) f2281c70cec384b33cc8713ac727cb0b1ca8fe2b -- yudao-module-mall/yudao-module-promotion-biz/src/main/java/cn/iocoder/yudao/module/promotion/service/kefu/KeFuConversationService.java
+f2281c70cec384b33cc8713ac727cb0b1ca8fe2b:yudao-module-mall/yudao-module-promotion-biz/src/main/java/cn/iocoder/yudao/module/promotion/service/kefu/KeFuConversationService.java:15:public interface KeFuConversationService {
+
+Source package verified: cn.iocoder.yudao.module.promotion.service.kefu
+Source SHA256: c572ce08b4a064c25208925d07e81c57383efea9e782e46b83fbd3a7f6869a6c
+Exists: true
+In static candidate set: True

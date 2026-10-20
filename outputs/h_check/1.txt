@@ -1,0 +1,12 @@
+Frozen commit: a5b60c39ce0400a92b80070de8558daabc581acf
+LLM FQN: cn.iocoder.yudao.module.crm.dal.mysql.customer.CrmCustomerPoolConfigMapper
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro ls-tree -r --name-only a5b60c39ce0400a92b80070de8558daabc581acf -- yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/customer/CrmCustomerPoolConfigMapper.java
+yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/customer/CrmCustomerPoolConfigMapper.java
+
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro grep -n -E (class|interface|enum|record)[[:space:]]+CrmCustomerPoolConfigMapper([[:space:]]|<|\{) a5b60c39ce0400a92b80070de8558daabc581acf -- yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/customer/CrmCustomerPoolConfigMapper.java
+a5b60c39ce0400a92b80070de8558daabc581acf:yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/customer/CrmCustomerPoolConfigMapper.java:13:public interface CrmCustomerPoolConfigMapper extends BaseMapperX<CrmCustomerPoolConfigDO> {
+
+Source package verified: cn.iocoder.yudao.module.crm.dal.mysql.customer
+Source SHA256: eb5ee8cc6d1383366aa1f657c261db7522462319bf96d5ca0f62021a5c5f0437
+Exists: true
+In static candidate set: True

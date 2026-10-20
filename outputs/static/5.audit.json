@@ -1,0 +1,77 @@
+{
+  "case_id": 5,
+  "host": "cn.iocoder.yudao.module.crm.service.product.CrmProductServiceImpl",
+  "actual_method_source": "private CrmProductDO selectCountByCategoryId(Long categoryId) {\r\n    return productMapper.selectOne(new LambdaQueryWrapper<CrmProductDO>().eq(CrmProductDO::getCategoryId, categoryId));\r\n}",
+  "variables": {
+    "productMapper": "cn.iocoder.yudao.module.crm.dal.mysql.product.CrmProductMapper",
+    "productCategoryService": "cn.iocoder.yudao.module.crm.service.product.CrmProductCategoryService",
+    "permissionService": "cn.iocoder.yudao.module.crm.service.permission.CrmPermissionService",
+    "adminUserApi": "cn.iocoder.yudao.module.system.api.user.AdminUserApi"
+  },
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.dal.mysql.product.CrmProductMapper",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "productMapper",
+          "line": 46,
+          "type": "CrmProductMapper"
+        }
+      ],
+      "occurrences": [
+        {
+          "kind": "call",
+          "scope": "productMapper",
+          "line": 159,
+          "member": "selectOne"
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.service.permission.CrmPermissionService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "permissionService",
+          "line": 51,
+          "type": "CrmPermissionService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.service.product.CrmProductCategoryService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "productCategoryService",
+          "line": 49,
+          "type": "CrmProductCategoryService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.system.api.user.AdminUserApi",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "adminUserApi",
+          "line": 54,
+          "type": "AdminUserApi"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "rule": "docs/coding_manual.md; direct host fields + actual named-method parameters; generic element types; count each AST member-access occurrence once; score-desc/FQN-asc"
+}

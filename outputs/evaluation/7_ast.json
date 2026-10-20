@@ -1,0 +1,108 @@
+{
+  "case_id": 7,
+  "host": "cn.iocoder.yudao.module.crm.controller.admin.contract.CrmContractController",
+  "package": "cn.iocoder.yudao.module.crm.controller.admin.contract",
+  "imports": [
+    "import cn.hutool.core.collection.CollUtil;\r\n",
+    "import cn.hutool.core.lang.Assert;\r\n",
+    "import cn.iocoder.yudao.framework.common.pojo.CommonResult;\r\n",
+    "import cn.iocoder.yudao.framework.common.pojo.PageResult;\r\n",
+    "import cn.iocoder.yudao.framework.common.util.collection.MapUtils;\r\n",
+    "import cn.iocoder.yudao.framework.common.util.number.NumberUtils;\r\n",
+    "import cn.iocoder.yudao.framework.common.util.object.BeanUtils;\r\n",
+    "import cn.iocoder.yudao.framework.excel.core.util.ExcelUtils;\r\n",
+    "import cn.iocoder.yudao.framework.operatelog.core.annotations.OperateLog;\r\n",
+    "import cn.iocoder.yudao.module.crm.controller.admin.contract.vo.CrmContractPageReqVO;\r\n",
+    "import cn.iocoder.yudao.module.crm.controller.admin.contract.vo.CrmContractRespVO;\r\n",
+    "import cn.iocoder.yudao.module.crm.controller.admin.contract.vo.CrmContractSaveReqVO;\r\n",
+    "import cn.iocoder.yudao.module.crm.controller.admin.contract.vo.CrmContractTransferReqVO;\r\n",
+    "import cn.iocoder.yudao.module.crm.dal.dataobject.business.CrmBusinessDO;\r\n",
+    "import cn.iocoder.yudao.module.crm.dal.dataobject.contact.CrmContactDO;\r\n",
+    "import cn.iocoder.yudao.module.crm.dal.dataobject.contract.CrmContractDO;\r\n",
+    "import cn.iocoder.yudao.module.crm.dal.dataobject.contract.CrmContractProductDO;\r\n",
+    "import cn.iocoder.yudao.module.crm.dal.dataobject.customer.CrmCustomerDO;\r\n",
+    "import cn.iocoder.yudao.module.crm.dal.dataobject.product.CrmProductDO;\r\n",
+    "import cn.iocoder.yudao.module.crm.service.business.CrmBusinessService;\r\n",
+    "import cn.iocoder.yudao.module.crm.service.contact.CrmContactService;\r\n",
+    "import cn.iocoder.yudao.module.crm.service.contract.CrmContractService;\r\n",
+    "import cn.iocoder.yudao.module.crm.service.customer.CrmCustomerService;\r\n",
+    "import cn.iocoder.yudao.module.crm.service.product.CrmProductService;\r\n",
+    "import cn.iocoder.yudao.module.system.api.dept.DeptApi;\r\n",
+    "import cn.iocoder.yudao.module.system.api.dept.dto.DeptRespDTO;\r\n",
+    "import cn.iocoder.yudao.module.system.api.user.AdminUserApi;\r\n",
+    "import cn.iocoder.yudao.module.system.api.user.dto.AdminUserRespDTO;\r\n",
+    "import io.swagger.v3.oas.annotations.Operation;\r\n",
+    "import io.swagger.v3.oas.annotations.Parameter;\r\n",
+    "import io.swagger.v3.oas.annotations.tags.Tag;\r\n",
+    "import jakarta.annotation.Resource;\r\n",
+    "import jakarta.servlet.http.HttpServletResponse;\r\n",
+    "import jakarta.validation.Valid;\r\n",
+    "import org.springframework.security.access.prepost.PreAuthorize;\r\n",
+    "import org.springframework.validation.annotation.Validated;\r\n",
+    "import org.springframework.web.bind.annotation.*;\r\n",
+    "import java.io.IOException;\r\n",
+    "import java.util.*;\r\n",
+    "import java.util.stream.Stream;\r\n",
+    "import static cn.iocoder.yudao.framework.common.pojo.CommonResult.success;\r\n",
+    "import static cn.iocoder.yudao.framework.common.util.collection.CollectionUtils.*;\r\n",
+    "import static cn.iocoder.yudao.framework.common.util.collection.MapUtils.findAndThen;\r\n",
+    "import static cn.iocoder.yudao.framework.operatelog.core.enums.OperateTypeEnum.EXPORT;\r\n",
+    "import static cn.iocoder.yudao.framework.security.core.util.SecurityFrameworkUtils.getLoginUserId;\r\n",
+    "import static java.util.Collections.singletonList;\r\n"
+  ],
+  "fields": [
+    {
+      "name": "contractService",
+      "line": 59,
+      "type": "CrmContractService"
+    },
+    {
+      "name": "customerService",
+      "line": 61,
+      "type": "CrmCustomerService"
+    },
+    {
+      "name": "contactService",
+      "line": 63,
+      "type": "CrmContactService"
+    },
+    {
+      "name": "businessService",
+      "line": 65,
+      "type": "CrmBusinessService"
+    },
+    {
+      "name": "productService",
+      "line": 67,
+      "type": "CrmProductService"
+    },
+    {
+      "name": "adminUserApi",
+      "line": 70,
+      "type": "AdminUserApi"
+    },
+    {
+      "name": "deptApi",
+      "line": 72,
+      "type": "DeptApi"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "ids",
+      "line": 208,
+      "type": "Collection<Long>"
+    }
+  ],
+  "locals": [],
+  "method_source": "private Map<Long, CrmBusinessDO> getBusinessMap(Collection<Long> ids) {\r\n    return convertMap(businessService.getBusinessList(ids), CrmBusinessDO::getId);\r\n}",
+  "method_line": 208,
+  "member_accesses": [
+    {
+      "kind": "call",
+      "scope": "businessService",
+      "line": 209,
+      "member": "getBusinessList"
+    }
+  ]
+}

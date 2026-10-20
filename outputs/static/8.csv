@@ -1,0 +1,4 @@
+candidate_fqn,source,occurrences,score
+cn.iocoder.yudao.module.crm.service.business.CrmBusinessService,field,94:businessService.getBusinessList,1
+cn.iocoder.yudao.module.crm.service.contact.CrmContactService,field,,0
+cn.iocoder.yudao.module.crm.service.followup.CrmFollowUpRecordService,field,,0

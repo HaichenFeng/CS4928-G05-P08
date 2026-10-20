@@ -1,0 +1,12 @@
+Frozen commit: 1bebd852ca5fde578332ee3106987ed1db303e5a
+LLM FQN: cn.iocoder.yudao.module.product.dal.mysql.history.ProductBrowseHistoryMapper
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro ls-tree -r --name-only 1bebd852ca5fde578332ee3106987ed1db303e5a -- yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/dal/mysql/history/ProductBrowseHistoryMapper.java
+yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/dal/mysql/history/ProductBrowseHistoryMapper.java
+
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro grep -n -E (class|interface|enum|record)[[:space:]]+ProductBrowseHistoryMapper([[:space:]]|<|\{) 1bebd852ca5fde578332ee3106987ed1db303e5a -- yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/dal/mysql/history/ProductBrowseHistoryMapper.java
+1bebd852ca5fde578332ee3106987ed1db303e5a:yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/dal/mysql/history/ProductBrowseHistoryMapper.java:21:public interface ProductBrowseHistoryMapper extends BaseMapperX<ProductBrowseHistoryDO> {
+
+Source package verified: cn.iocoder.yudao.module.product.dal.mysql.history
+Source SHA256: 75df36068053d67ed497015365d6cafb4cb4d09c00c131123cac635aec2ec448
+Exists: true
+In static candidate set: True

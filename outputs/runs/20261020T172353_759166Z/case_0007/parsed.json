@@ -1,0 +1,21 @@
+{
+  "top1": "cn.iocoder.yudao.module.crm.service.business.CrmBusinessService",
+  "rationale": "The getBusinessMap method is directly related to business operations and retrieves business data. It is more appropriate to place this method in the CrmBusinessService class, which is responsible for business-related services.",
+  "returned_model": "gpt-4o-2024-05-13",
+  "usage": {
+    "prompt_tokens": 2894,
+    "completion_tokens": 73,
+    "total_tokens": 2967,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_7a1c6d335a"
+}

@@ -1,0 +1,92 @@
+{
+  "case_id": 14,
+  "host": "cn.iocoder.yudao.module.ai.service.impl.AiChatConversationServiceImpl",
+  "actual_method_source": "private void validateAvailable(AiChatModalRes chatModal) {\r\n    if (AiChatModalDisableEnum.YES.getValue().equals(chatModal.getDisable())) {\r\n        throw ServiceExceptionUtil.exception(ErrorCodeConstants.AI_MODAL_DISABLE_NOT_USED);\r\n    }\r\n}",
+  "variables": {
+    "aiChatModalMapper": "cn.iocoder.yudao.module.ai.dal.mysql.AiChatModalMapper",
+    "aiChatModalService": "cn.iocoder.yudao.module.ai.service.AiChatModalService",
+    "aiChatRoleService": "cn.iocoder.yudao.module.ai.service.AiChatRoleService",
+    "aiChatConversationMapper": "cn.iocoder.yudao.module.ai.dal.mysql.AiChatConversationMapper",
+    "chatModal": "cn.iocoder.yudao.module.ai.controller.admin.model.vo.model.AiChatModalRes"
+  },
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.ai.controller.admin.model.vo.model.AiChatModalRes",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "name": "chatModal",
+          "line": 101,
+          "type": "AiChatModalRes"
+        }
+      ],
+      "occurrences": [
+        {
+          "kind": "call",
+          "scope": "chatModal",
+          "line": 102,
+          "member": "getDisable"
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.ai.dal.mysql.AiChatConversationMapper",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "aiChatConversationMapper",
+          "line": 43,
+          "type": "AiChatConversationMapper"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.ai.dal.mysql.AiChatModalMapper",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "aiChatModalMapper",
+          "line": 40,
+          "type": "AiChatModalMapper"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.ai.service.AiChatModalService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "aiChatModalService",
+          "line": 41,
+          "type": "AiChatModalService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.ai.service.AiChatRoleService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "aiChatRoleService",
+          "line": 42,
+          "type": "AiChatRoleService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "rule": "docs/coding_manual.md; direct host fields + actual named-method parameters; generic element types; count each AST member-access occurrence once; score-desc/FQN-asc"
+}

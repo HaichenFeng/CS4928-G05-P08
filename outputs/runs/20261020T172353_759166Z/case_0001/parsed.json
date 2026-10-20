@@ -1,0 +1,21 @@
+{
+  "top1": "cn.iocoder.yudao.module.crm.dal.mysql.customer.CrmCustomerPoolConfigMapper",
+  "rationale": "The selectOne() method is responsible for querying the database, which is the primary responsibility of the Mapper class. Moving this method to CrmCustomerPoolConfigMapper will adhere to the single responsibility principle and keep the service class focused on business logic.",
+  "returned_model": "gpt-4o-2024-05-13",
+  "usage": {
+    "prompt_tokens": 929,
+    "completion_tokens": 86,
+    "total_tokens": 1015,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_ebd1d2f512"
+}

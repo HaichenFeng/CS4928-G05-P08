@@ -5,3 +5,12 @@ mm-assist/
 .env
 __pycache__/
 .DS_Store
+
+# Local IDE state, caches and plugin development (not Lab4 evidence)
+.idea/
+Codex-MM-Assist/
+*.class
+*.pyc
+*.log.tmp
+.env.*
+!.env.example

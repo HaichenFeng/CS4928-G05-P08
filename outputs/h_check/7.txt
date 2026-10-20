@@ -1,0 +1,12 @@
+Frozen commit: c23e6e9b1d38db1fe7080082c573e1dfcc9c77b7
+LLM FQN: cn.iocoder.yudao.module.crm.service.business.CrmBusinessService
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro ls-tree -r --name-only c23e6e9b1d38db1fe7080082c573e1dfcc9c77b7 -- yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/business/CrmBusinessService.java
+yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/business/CrmBusinessService.java
+
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro grep -n -E (class|interface|enum|record)[[:space:]]+CrmBusinessService([[:space:]]|<|\{) c23e6e9b1d38db1fe7080082c573e1dfcc9c77b7 -- yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/business/CrmBusinessService.java
+c23e6e9b1d38db1fe7080082c573e1dfcc9c77b7:yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/business/CrmBusinessService.java:25:public interface CrmBusinessService {
+
+Source package verified: cn.iocoder.yudao.module.crm.service.business
+Source SHA256: a115c6934949d90bdc8cf61e506c2901e5909e1ed03cefb87e27cd224a082f99
+Exists: true
+In static candidate set: True

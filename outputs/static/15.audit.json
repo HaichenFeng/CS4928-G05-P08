@@ -1,0 +1,62 @@
+{
+  "case_id": 15,
+  "host": "cn.iocoder.yudao.module.ai.job.MidjourneyJob",
+  "actual_method_source": "private List<AiImageDO> selectByStatusAndPlatform() {\r\n    List<AiImageDO> imageList = imageMapper.selectList(new LambdaUpdateWrapper<AiImageDO>().eq(AiImageDO::getStatus, AiImageStatusEnum.IN_PROGRESS.getStatus()).eq(AiImageDO::getPlatform, AiPlatformEnum.MIDJOURNEY.getPlatform()));\r\n    return imageList;\r\n}",
+  "variables": {
+    "midjourneyApi": "cn.iocoder.yudao.framework.ai.core.model.midjourney.api.MidjourneyApi",
+    "imageMapper": "cn.iocoder.yudao.module.ai.dal.mysql.image.AiImageMapper",
+    "imageService": "cn.iocoder.yudao.module.ai.service.image.AiImageService"
+  },
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.ai.dal.mysql.image.AiImageMapper",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "imageMapper",
+          "line": 37,
+          "type": "AiImageMapper"
+        }
+      ],
+      "occurrences": [
+        {
+          "kind": "call",
+          "scope": "imageMapper",
+          "line": 81,
+          "member": "selectList"
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.framework.ai.core.model.midjourney.api.MidjourneyApi",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "midjourneyApi",
+          "line": 35,
+          "type": "MidjourneyApi"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.ai.service.image.AiImageService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "imageService",
+          "line": 39,
+          "type": "AiImageService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "rule": "docs/coding_manual.md; direct host fields + actual named-method parameters; generic element types; count each AST member-access occurrence once; score-desc/FQN-asc"
+}

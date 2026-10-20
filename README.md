@@ -2,6 +2,20 @@
 
 Group G05 | Project P08: Move Method Refactoring with LLM + Static Evidence. The study is Bellur et al., ICSME 2025 (MM-Assist).
 
+## Lab4 execution update — 2026-10-20
+
+The 12 frozen target-only requests completed using **gpt-4o-2024-05-13**, temperature 0. H1+H2 = **0/12**; LLM/static/hybrid Recall@1 = **10/12, 8/12, 10/12**; LLM-static agreement = **9/12**.
+
+The frozen arithmetic gives RQ1 **NOT REPRODUCED** and satisfies RQ2's non-decrease rule by equality. It does **not** demonstrate hallucination reduction. Overall paper-level interpretation is **INCONCLUSIVE pending coordinator review** because six frozen signatures differ materially from reconstructed source and ref_id 14 has a gold-package discrepancy. Inputs, gold labels and the decision rule were not changed; no result-driven reruns were performed.
+
+- [Lab4 report and evidence chain](outputs/lab4/LAB4_REPORT.md)
+- [Per-case results](outputs/lab4/results.csv) · [Machine-readable totals](outputs/lab4/summary.json)
+- [Input/gold audit](outputs/lab4/input_audit.json) · [Coordinator checkpoint](outputs/lab4/COORDINATOR_CHECKPOINT.md)
+- Raw requests/responses: `outputs/runs/20261020T172353_759166Z/`
+- Verify without API credits: `python scripts/evaluate_lab4.py --offline`, then `python scripts/verify_lab4.py`.
+
+The original frozen M1 text and its pre-execution amendments are retained below.
+
 The RQ, method and expected-result sections below are the same as the shared workbook (Student Tracker, G05 row). Amendments are appended with their dates; the original text is kept.
 
 ## RQ1

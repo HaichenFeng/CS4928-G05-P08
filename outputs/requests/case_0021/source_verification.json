@@ -1,0 +1,7 @@
+{
+  "verified_at_utc": "2026-10-20T17:18:03.791489+00:00",
+  "source_url": "https://raw.githubusercontent.com/apache/flink/eeaa68241593014a50ebbbf8bed822562d96ea3b/flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/nfa/compiler/NFACompiler.java",
+  "sha256": "b8a8efab9433554a3118f73236ae8520a6262c98543b4f8e24482bef8f9ec66c",
+  "matches_preserved_source": true,
+  "request_sha256": "2b400b12fa1658f4d74e09e6248944d68a710b734550f25e16340061a9a341a2"
+}

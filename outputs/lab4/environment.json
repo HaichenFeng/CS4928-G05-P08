@@ -1,0 +1,22 @@
+{
+  "execution_date": "2026-10-20",
+  "display_timezone": "Europe/London",
+  "evidence_timestamps": "UTC with explicit offsets",
+  "platform": "Windows",
+  "python": "3.12.14, MSC v.1944 64 bit AMD64",
+  "api_client": "Python standard-library urllib.request; no automatic retries",
+  "api_endpoint": "https://api.openai.com/v1/chat/completions",
+  "model": "gpt-4o-2024-05-13",
+  "temperature": 0,
+  "git": "2.53.0.windows.3",
+  "java": "OpenJDK 17.0.12, JBR-17.0.12+1-b1207.37-jcef",
+  "javaparser": "3.26.2",
+  "gson": "2.10.1",
+  "static_execution": "scripts/InspectCases.java → outputs/evaluation/*_ast.json → scripts/evaluate_lab4.py",
+  "input_preparation": "scripts/prepare_frozen_inputs.py; original ref_id 1 request and source retained",
+  "llm_execution": "scripts/run_frozen_lab.py; exact executed script archived as runner.py under the run directory",
+  "analysis_replay": "python scripts/evaluate_lab4.py --offline",
+  "evidence_verification": "python scripts/verify_lab4.py",
+  "credentials": "Local GUI input, memory only; not included in requests saved to disk, logs or repository",
+  "plugin": "The locally adapted IDE plugin is not the experimental execution route"
+}

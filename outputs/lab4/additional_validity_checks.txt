@@ -1,0 +1,16 @@
+Checked 2026-10-20 after the bounded run. No input/gold edits or reruns performed.
+
+ref_id 14 frozen commit: 03f78f37afdc0f87b207087e52557c7d1809339c
+Tree paths matching AiChatModalService:
+yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/AiChatModalService.java
+yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/impl/AiChatModalServiceImpl.java
+
+git --git-dir=repos/ruoyi-vue-pro grep -n -E '(class|interface|enum|record)[[:space:]]+AiChatModalService([[:space:]]|<|\{)' 03f78f37afdc0f87b207087e52557c7d1809339c -- 'yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/impl/*.java'
+Exit code: 1 (no matching declaration in the frozen gold package's direct Java files).
+Interpretation: flag the gold-package discrepancy; preserve the exact frozen label for scoring.
+
+ref_id 21 frozen commit: eeaa68241593014a50ebbbf8bed822562d96ea3b
+git --git-dir=repos/flink grep -n -E '(class|interface|enum|record)[[:space:]]+Times([[:space:]]|<|\{)' eeaa68241593014a50ebbbf8bed822562d96ea3b -- 'flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/pattern/Quantifier.java'
+Exit code: 0
+eeaa68241593014a50ebbbf8bed822562d96ea3b:flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/pattern/Quantifier.java:190:    public static class Times {
+Interpretation: Quantifier.Times is a real nested class, not an absent class merely because Times.java is missing.

@@ -1,0 +1,8 @@
+candidate_fqn,source,occurrences,score
+cn.iocoder.yudao.module.crm.service.business.CrmBusinessService,field,209:businessService.getBusinessList,1
+cn.iocoder.yudao.module.crm.service.contact.CrmContactService,field,,0
+cn.iocoder.yudao.module.crm.service.contract.CrmContractService,field,,0
+cn.iocoder.yudao.module.crm.service.customer.CrmCustomerService,field,,0
+cn.iocoder.yudao.module.crm.service.product.CrmProductService,field,,0
+cn.iocoder.yudao.module.system.api.dept.DeptApi,field,,0
+cn.iocoder.yudao.module.system.api.user.AdminUserApi,field,,0

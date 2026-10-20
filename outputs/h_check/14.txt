@@ -1,0 +1,12 @@
+Frozen commit: 03f78f37afdc0f87b207087e52557c7d1809339c
+LLM FQN: cn.iocoder.yudao.module.ai.service.AiChatModalService
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro ls-tree -r --name-only 03f78f37afdc0f87b207087e52557c7d1809339c -- yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/AiChatModalService.java
+yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/AiChatModalService.java
+
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro grep -n -E (class|interface|enum|record)[[:space:]]+AiChatModalService([[:space:]]|<|\{) 03f78f37afdc0f87b207087e52557c7d1809339c -- yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/AiChatModalService.java
+03f78f37afdc0f87b207087e52557c7d1809339c:yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/service/AiChatModalService.java:16:public interface AiChatModalService {
+
+Source package verified: cn.iocoder.yudao.module.ai.service
+Source SHA256: 98143a5c97d08960969c1ce0221df35482ad864b7a6b6ee1ef7c9928890a65ab
+Exists: true
+In static candidate set: True

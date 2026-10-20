@@ -1,0 +1,22 @@
+{
+  "created_utc": "2026-10-20T17:23:53.769392+00:00",
+  "model": "gpt-4o-2024-05-13",
+  "temperature": 0,
+  "endpoint": "https://api.openai.com/v1/chat/completions",
+  "sample_ids": [
+    1,
+    2,
+    3,
+    5,
+    7,
+    8,
+    14,
+    15,
+    16,
+    17,
+    19,
+    21
+  ],
+  "phase": "PILOT",
+  "runner_sha256": "6dd9fd6cf208509faa470ddfec45679ee157a89268ebc132f001ce625005abeb"
+}

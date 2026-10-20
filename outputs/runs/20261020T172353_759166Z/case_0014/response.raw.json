@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eb7sSIRK0iKW7i4ZhYQzFXEawHRZZ",
+  "object": "chat.completion",
+  "created": 1792517124,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n    {\n        \"target_class\": \"cn.iocoder.yudao.module.ai.service.AiChatModalService\",\n        \"rationale\": \"The validateAvailable method is specifically validating the availability of an AiChatModalRes object, which is directly related to the AiChatModalService. Moving this method to AiChatModalService would encapsulate the validation logic within the service responsible for handling AiChatModal objects.\"\n    }\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1608,
+    "completion_tokens": 86,
+    "total_tokens": 1694,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_84e1c6e8ad"
+}

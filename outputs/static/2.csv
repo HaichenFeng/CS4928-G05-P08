@@ -1,0 +1,2 @@
+candidate_fqn,source,occurrences,score
+cn.iocoder.yudao.module.product.dal.mysql.history.ProductBrowseHistoryMapper,field,56:browseHistoryMapper.selectOne,1

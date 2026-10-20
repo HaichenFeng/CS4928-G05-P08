@@ -1,0 +1,3 @@
+candidate_fqn,source,occurrences,score
+cn.iocoder.yudao.module.crm.dal.mysql.business.CrmBusinessStatusMapper,field,,0
+cn.iocoder.yudao.module.crm.dal.mysql.business.CrmBusinessStatusTypeMapper,field,,0

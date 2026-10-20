@@ -1,0 +1,122 @@
+{
+  "case_id": 7,
+  "host": "cn.iocoder.yudao.module.crm.controller.admin.contract.CrmContractController",
+  "actual_method_source": "private Map<Long, CrmBusinessDO> getBusinessMap(Collection<Long> ids) {\r\n    return convertMap(businessService.getBusinessList(ids), CrmBusinessDO::getId);\r\n}",
+  "variables": {
+    "contractService": "cn.iocoder.yudao.module.crm.service.contract.CrmContractService",
+    "customerService": "cn.iocoder.yudao.module.crm.service.customer.CrmCustomerService",
+    "contactService": "cn.iocoder.yudao.module.crm.service.contact.CrmContactService",
+    "businessService": "cn.iocoder.yudao.module.crm.service.business.CrmBusinessService",
+    "productService": "cn.iocoder.yudao.module.crm.service.product.CrmProductService",
+    "adminUserApi": "cn.iocoder.yudao.module.system.api.user.AdminUserApi",
+    "deptApi": "cn.iocoder.yudao.module.system.api.dept.DeptApi"
+  },
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.service.business.CrmBusinessService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "businessService",
+          "line": 65,
+          "type": "CrmBusinessService"
+        }
+      ],
+      "occurrences": [
+        {
+          "kind": "call",
+          "scope": "businessService",
+          "line": 209,
+          "member": "getBusinessList"
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.service.contact.CrmContactService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "contactService",
+          "line": 63,
+          "type": "CrmContactService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.service.contract.CrmContractService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "contractService",
+          "line": 59,
+          "type": "CrmContractService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.service.customer.CrmCustomerService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "customerService",
+          "line": 61,
+          "type": "CrmCustomerService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.service.product.CrmProductService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "productService",
+          "line": 67,
+          "type": "CrmProductService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.system.api.dept.DeptApi",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "deptApi",
+          "line": 72,
+          "type": "DeptApi"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.system.api.user.AdminUserApi",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "adminUserApi",
+          "line": 70,
+          "type": "AdminUserApi"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "rule": "docs/coding_manual.md; direct host fields + actual named-method parameters; generic element types; count each AST member-access occurrence once; score-desc/FQN-asc"
+}

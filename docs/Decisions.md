@@ -48,3 +48,16 @@ Deviations from the paper:
 3. **RQ1 comparison figure.** RQ1 is compared against H1+H2 = (431+275)/1293 ~ 55% (Table I), not ~80% (which includes H3). Amendment 2026-10-18, made before any execution. AI-assisted: suggested by an AI assistant and checked by the group against Table I.
 
 No LLM calls were executed before this entry was frozen.
+
+## D-05 — Lab4 execution and post-execution validity audit (2026-10-20)
+
+This is a dated execution record, not a retrospective rewrite of D-03/D-04.
+
+- Executed the frozen target-only requests directly through OpenAI Chat Completions using `gpt-4o-2024-05-13`, temperature 0. No replacement model. The exploratory IDE plugin attempts returned empty candidates and are not empirical LLM observations.
+- Run: `outputs/runs/20261020T172353_759166Z/`. Ref_id 1 was the pilot; its request matched the previously prepared request. It was retained in the 12-case run. All twelve returned HTTP 200 and valid complete JSON. No valid observations were rerun or excluded.
+- After execution, checked reconstructed declarations against frozen signatures. Material differences were found in ref_ids 3, 5, 15, 16, 19, 21; all twelve source methods also use private visibility while frozen signatures say public. Static coding uses the uniquely named method's actual source parameters/body. Original prompts and labels remain unchanged.
+- Ref_id 14 gold names `service.impl.AiChatModalService`, while the checked source and existing interface use `service.AiChatModalService`. Keep the frozen exact-match gold and record the discrepancy. Do not relabel it as a hit.
+- Observed H1/H2 = 0/12, LLM/static/hybrid Recall@1 = 10/12, 8/12, 10/12. Frozen arithmetic: RQ1 NOT REPRODUCED; RQ2 non-decrease rule satisfied. No hallucination reduction was demonstrated, because no hallucinations or hybrid fallbacks occurred.
+- Overall intended paper-level interpretation: INCONCLUSIVE pending coordinator review of input/oracle validity. The bounded API execution and as-frozen calculations are complete. See `outputs/lab4/LAB4_REPORT.md`.
+- No corrective method/sample/model change has been implemented. Any coordinator-approved correction must be recorded prospectively before a distinct new run, preserving this run and M1 unchanged. No Event/held-out material used. The M4 ranking-interface decision remains deferred.
+- GenAI helped write support scripts and this audit. The group must review the source-based coding and interpretation; assistant-generated prose is not raw experimental evidence.

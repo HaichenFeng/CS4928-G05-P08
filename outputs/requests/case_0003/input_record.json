@@ -1,0 +1,17 @@
+{
+  "prepared_at_utc": "2026-10-20T17:18:02.333851+00:00",
+  "case_id": 3,
+  "repository": "https://github.com/YunaiV/ruoyi-vue-pro.git",
+  "commit": "e2b41dd358c9fc9e7ccf31083e40005c7e49f1bd",
+  "host_file": "yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/business/CrmBusinessStatusTypeServiceImpl.java",
+  "host_class": "cn.iocoder.yudao.module.crm.service.business.CrmBusinessStatusTypeServiceImpl",
+  "method_signature_from_frozen_sample": "public selectByIdAndName(id Long, name String) : CrmBusinessStatusTypeDO",
+  "host_sha256": "8bcbfd4d52b9392ff6a56f0ac003da1ed4972eb87d4bd38d85a14097790f843b",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "ef3ed569ee78d943a559319e2661354a9feab91c54be2a56731c7b92a982fbe1",
+  "request_sha256": "5b76fb7ed2b070c5129dfba8792216cd9dd90398e6199f26b5c0c5cb633fd80c",
+  "source_url": "https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/e2b41dd358c9fc9e7ccf31083e40005c7e49f1bd/yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/service/business/CrmBusinessStatusTypeServiceImpl.java",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold target and author recommendations excluded from request; frozen template unchanged."
+}

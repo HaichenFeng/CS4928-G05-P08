@@ -1,0 +1,116 @@
+{
+  "case_id": 21,
+  "host": "org.apache.flink.cep.nfa.compiler.NFACompiler.NFAFactoryCompiler",
+  "actual_method_source": "private void getWindowSize() {\r\n    windowTime = Optional.ofNullable(currentPattern.getWindowTime()).map(Time::toMilliseconds);\r\n}",
+  "variables": {
+    "stateNameHandler": "org.apache.flink.cep.nfa.compiler.NFAStateNameHandler",
+    "currentGroupPattern": "org.apache.flink.cep.pattern.GroupPattern",
+    "currentPattern": "org.apache.flink.cep.pattern.Pattern",
+    "followingPattern": "org.apache.flink.cep.pattern.Pattern",
+    "afterMatchSkipStrategy": "org.apache.flink.cep.nfa.aftermatch.AfterMatchSkipStrategy"
+  },
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "org.apache.flink.cep.pattern.Pattern",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "currentPattern",
+          "line": 152,
+          "type": "Pattern<T,?>"
+        },
+        {
+          "origin": "field",
+          "name": "followingPattern",
+          "line": 153,
+          "type": "Pattern<T,?>"
+        }
+      ],
+      "occurrences": [
+        {
+          "kind": "call",
+          "scope": "currentPattern",
+          "line": 327,
+          "member": "getWindowTime"
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "org.apache.flink.cep.nfa.State",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "stopStates",
+          "line": 145,
+          "type": "Map<String,State<T>>"
+        },
+        {
+          "origin": "field",
+          "name": "states",
+          "line": 146,
+          "type": "List<State<T>>"
+        },
+        {
+          "origin": "field",
+          "name": "originalStateMap",
+          "line": 155,
+          "type": "Map<String,State<T>>"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.apache.flink.cep.nfa.aftermatch.AfterMatchSkipStrategy",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "afterMatchSkipStrategy",
+          "line": 154,
+          "type": "AfterMatchSkipStrategy"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.apache.flink.cep.nfa.compiler.NFAStateNameHandler",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "stateNameHandler",
+          "line": 144,
+          "type": "NFAStateNameHandler"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.apache.flink.cep.pattern.GroupPattern",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "currentGroupPattern",
+          "line": 150,
+          "type": "GroupPattern<T,?>"
+        },
+        {
+          "origin": "field",
+          "name": "firstOfLoopMap",
+          "line": 151,
+          "type": "Map<GroupPattern<T,?>,Boolean>"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "rule": "docs/coding_manual.md; direct host fields + actual named-method parameters; generic element types; count each AST member-access occurrence once; score-desc/FQN-asc"
+}

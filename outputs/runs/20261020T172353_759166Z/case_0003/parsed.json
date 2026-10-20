@@ -1,0 +1,21 @@
+{
+  "top1": "cn.iocoder.yudao.module.crm.dal.mysql.business.CrmBusinessStatusTypeMapper",
+  "rationale": "The method selectByIdAndName is responsible for querying the database for a CrmBusinessStatusTypeDO object based on id and name. This functionality is more appropriate for the Mapper class, which is responsible for database operations.",
+  "returned_model": "gpt-4o-2024-05-13",
+  "usage": {
+    "prompt_tokens": 1590,
+    "completion_tokens": 167,
+    "total_tokens": 1757,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_7a1c6d335a"
+}

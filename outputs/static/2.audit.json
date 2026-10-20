@@ -1,0 +1,33 @@
+{
+  "case_id": 2,
+  "host": "cn.iocoder.yudao.module.product.service.history.ProductBrowseHistoryServiceImpl",
+  "actual_method_source": "private ProductBrowseHistoryDO selectByUserIdAndSpuId(Long userId, Long spuId) {\r\n    ProductBrowseHistoryDO historyDO = browseHistoryMapper.selectOne(ProductBrowseHistoryDO::getUserId, userId, ProductBrowseHistoryDO::getSpuId, spuId);\r\n    return historyDO;\r\n}",
+  "variables": {
+    "browseHistoryMapper": "cn.iocoder.yudao.module.product.dal.mysql.history.ProductBrowseHistoryMapper",
+    "historyDO": "cn.iocoder.yudao.module.product.dal.dataobject.history.ProductBrowseHistoryDO"
+  },
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.product.dal.mysql.history.ProductBrowseHistoryMapper",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "browseHistoryMapper",
+          "line": 26,
+          "type": "ProductBrowseHistoryMapper"
+        }
+      ],
+      "occurrences": [
+        {
+          "kind": "call",
+          "scope": "browseHistoryMapper",
+          "line": 56,
+          "member": "selectOne"
+        }
+      ],
+      "score": 1
+    }
+  ],
+  "rule": "docs/coding_manual.md; direct host fields + actual named-method parameters; generic element types; count each AST member-access occurrence once; score-desc/FQN-asc"
+}

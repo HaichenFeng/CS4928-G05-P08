@@ -1,0 +1,118 @@
+{
+  "case_id": 21,
+  "host": "org.apache.flink.cep.nfa.compiler.NFACompiler.NFAFactoryCompiler",
+  "package": "org.apache.flink.cep.nfa.compiler",
+  "imports": [
+    "import org.apache.flink.api.java.tuple.Tuple2;\r\n",
+    "import org.apache.flink.cep.nfa.NFA;\r\n",
+    "import org.apache.flink.cep.nfa.State;\r\n",
+    "import org.apache.flink.cep.nfa.StateTransition;\r\n",
+    "import org.apache.flink.cep.nfa.StateTransitionAction;\r\n",
+    "import org.apache.flink.cep.nfa.aftermatch.AfterMatchSkipStrategy;\r\n",
+    "import org.apache.flink.cep.pattern.GroupPattern;\r\n",
+    "import org.apache.flink.cep.pattern.MalformedPatternException;\r\n",
+    "import org.apache.flink.cep.pattern.Pattern;\r\n",
+    "import org.apache.flink.cep.pattern.Quantifier;\r\n",
+    "import org.apache.flink.cep.pattern.Quantifier.Times;\r\n",
+    "import org.apache.flink.cep.pattern.WithinType;\r\n",
+    "import org.apache.flink.cep.pattern.conditions.BooleanConditions;\r\n",
+    "import org.apache.flink.cep.pattern.conditions.IterativeCondition;\r\n",
+    "import org.apache.flink.cep.pattern.conditions.RichAndCondition;\r\n",
+    "import org.apache.flink.cep.pattern.conditions.RichNotCondition;\r\n",
+    "import org.apache.flink.streaming.api.windowing.time.Time;\r\n",
+    "import java.io.Serializable;\r\n",
+    "import java.util.ArrayList;\r\n",
+    "import java.util.Collection;\r\n",
+    "import java.util.Collections;\r\n",
+    "import java.util.HashMap;\r\n",
+    "import java.util.HashSet;\r\n",
+    "import java.util.List;\r\n",
+    "import java.util.Map;\r\n",
+    "import java.util.Optional;\r\n",
+    "import java.util.Set;\r\n",
+    "import java.util.Stack;\r\n",
+    "import static org.apache.flink.cep.nfa.compiler.NFAStateNameHandler.STATE_NAME_DELIM;\r\n",
+    "import static org.apache.flink.util.Preconditions.checkNotNull;\r\n"
+  ],
+  "fields": [
+    {
+      "name": "stateNameHandler",
+      "line": 144,
+      "type": "NFAStateNameHandler"
+    },
+    {
+      "name": "stopStates",
+      "line": 145,
+      "type": "Map<String,State<T>>"
+    },
+    {
+      "name": "states",
+      "line": 146,
+      "type": "List<State<T>>"
+    },
+    {
+      "name": "windowTimes",
+      "line": 147,
+      "type": "Map<String,Long>"
+    },
+    {
+      "name": "windowTime",
+      "line": 149,
+      "type": "Optional<Long>"
+    },
+    {
+      "name": "currentGroupPattern",
+      "line": 150,
+      "type": "GroupPattern<T,?>"
+    },
+    {
+      "name": "firstOfLoopMap",
+      "line": 151,
+      "type": "Map<GroupPattern<T,?>,Boolean>"
+    },
+    {
+      "name": "currentPattern",
+      "line": 152,
+      "type": "Pattern<T,?>"
+    },
+    {
+      "name": "followingPattern",
+      "line": 153,
+      "type": "Pattern<T,?>"
+    },
+    {
+      "name": "afterMatchSkipStrategy",
+      "line": 154,
+      "type": "AfterMatchSkipStrategy"
+    },
+    {
+      "name": "originalStateMap",
+      "line": 155,
+      "type": "Map<String,State<T>>"
+    }
+  ],
+  "parameters": [],
+  "locals": [],
+  "method_source": "private void getWindowSize() {\r\n    windowTime = Optional.ofNullable(currentPattern.getWindowTime()).map(Time::toMilliseconds);\r\n}",
+  "method_line": 325,
+  "member_accesses": [
+    {
+      "kind": "call",
+      "scope": "Optional.ofNullable(currentPattern.getWindowTime())",
+      "line": 327,
+      "member": "map"
+    },
+    {
+      "kind": "call",
+      "scope": "Optional",
+      "line": 327,
+      "member": "ofNullable"
+    },
+    {
+      "kind": "call",
+      "scope": "currentPattern",
+      "line": 327,
+      "member": "getWindowTime"
+    }
+  ]
+}

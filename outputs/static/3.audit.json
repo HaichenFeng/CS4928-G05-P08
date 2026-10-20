@@ -1,0 +1,40 @@
+{
+  "case_id": 3,
+  "host": "cn.iocoder.yudao.module.crm.service.business.CrmBusinessStatusTypeServiceImpl",
+  "actual_method_source": "private SFunction<CrmBusinessStatusTypeDO, Object> selectByIdAndName() {\r\n    return CrmBusinessStatusTypeDO::getId;\r\n}",
+  "variables": {
+    "businessStatusTypeMapper": "cn.iocoder.yudao.module.crm.dal.mysql.business.CrmBusinessStatusTypeMapper",
+    "businessStatusMapper": "cn.iocoder.yudao.module.crm.dal.mysql.business.CrmBusinessStatusMapper"
+  },
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.dal.mysql.business.CrmBusinessStatusMapper",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "businessStatusMapper",
+          "line": 42,
+          "type": "CrmBusinessStatusMapper"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.dal.mysql.business.CrmBusinessStatusTypeMapper",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "businessStatusTypeMapper",
+          "line": 39,
+          "type": "CrmBusinessStatusTypeMapper"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "rule": "docs/coding_manual.md; direct host fields + actual named-method parameters; generic element types; count each AST member-access occurrence once; score-desc/FQN-asc"
+}

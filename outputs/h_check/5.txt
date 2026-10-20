@@ -1,0 +1,12 @@
+Frozen commit: ad5c0ea90744cad50e17d5e820080e432f0368cf
+LLM FQN: cn.iocoder.yudao.module.crm.dal.mysql.product.CrmProductMapper
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro ls-tree -r --name-only ad5c0ea90744cad50e17d5e820080e432f0368cf -- yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/product/CrmProductMapper.java
+yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/product/CrmProductMapper.java
+
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro grep -n -E (class|interface|enum|record)[[:space:]]+CrmProductMapper([[:space:]]|<|\{) ad5c0ea90744cad50e17d5e820080e432f0368cf -- yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/product/CrmProductMapper.java
+ad5c0ea90744cad50e17d5e820080e432f0368cf:yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/dal/mysql/product/CrmProductMapper.java:18:public interface CrmProductMapper extends BaseMapperX<CrmProductDO> {
+
+Source package verified: cn.iocoder.yudao.module.crm.dal.mysql.product
+Source SHA256: 800533795b2275c5d5988541b60f23c8dc7ab3c659a442b9e08519aa53d25a93
+Exists: true
+In static candidate set: True

@@ -1,0 +1,32 @@
+{
+  "case_id": 1,
+  "host": "cn.iocoder.yudao.module.crm.service.customer.CrmCustomerPoolConfigServiceImpl",
+  "actual_method_source": "private CrmCustomerPoolConfigDO selectOne() {\r\n    return customerPoolConfigMapper.selectOne(new LambdaQueryWrapperX<CrmCustomerPoolConfigDO>().last(\"LIMIT 1\"));\r\n}",
+  "variables": {
+    "customerPoolConfigMapper": "cn.iocoder.yudao.module.crm.dal.mysql.customer.CrmCustomerPoolConfigMapper"
+  },
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.crm.dal.mysql.customer.CrmCustomerPoolConfigMapper",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "customerPoolConfigMapper",
+          "line": 28,
+          "type": "CrmCustomerPoolConfigMapper"
+        }
+      ],
+      "occurrences": [
+        {
+          "kind": "call",
+          "scope": "customerPoolConfigMapper",
+          "line": 42,
+          "member": "selectOne"
+        }
+      ],
+      "score": 1
+    }
+  ],
+  "rule": "docs/coding_manual.md; direct host fields + actual named-method parameters; generic element types; count each AST member-access occurrence once; score-desc/FQN-asc"
+}

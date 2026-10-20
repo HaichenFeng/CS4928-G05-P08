@@ -1,0 +1,12 @@
+Frozen commit: 2df8667d786d5879d9a7d8dfbddb804b5808d3a9
+LLM FQN: cn.iocoder.yudao.module.product.service.spu.ProductSpuService
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro ls-tree -r --name-only 2df8667d786d5879d9a7d8dfbddb804b5808d3a9 -- yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/service/spu/ProductSpuService.java
+yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/service/spu/ProductSpuService.java
+
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro grep -n -E (class|interface|enum|record)[[:space:]]+ProductSpuService([[:space:]]|<|\{) 2df8667d786d5879d9a7d8dfbddb804b5808d3a9 -- yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/service/spu/ProductSpuService.java
+2df8667d786d5879d9a7d8dfbddb804b5808d3a9:yudao-module-mall/yudao-module-product-biz/src/main/java/cn/iocoder/yudao/module/product/service/spu/ProductSpuService.java:21:public interface ProductSpuService {
+
+Source package verified: cn.iocoder.yudao.module.product.service.spu
+Source SHA256: b57e1bc5830e356803cd5e398814bd99dc2535e3c7607ac78901b7e49115404e
+Exists: true
+In static candidate set: True

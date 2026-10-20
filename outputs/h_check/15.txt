@@ -1,0 +1,12 @@
+Frozen commit: 9bd531bedf21668537a95d15c4ab5d519a42f18e
+LLM FQN: cn.iocoder.yudao.module.ai.dal.mysql.image.AiImageMapper
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro ls-tree -r --name-only 9bd531bedf21668537a95d15c4ab5d519a42f18e -- yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/dal/mysql/image/AiImageMapper.java
+yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/dal/mysql/image/AiImageMapper.java
+
+$ C:/Users/jl/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe --git-dir=F:\CS4928-G05-P08\repos\ruoyi-vue-pro grep -n -E (class|interface|enum|record)[[:space:]]+AiImageMapper([[:space:]]|<|\{) 9bd531bedf21668537a95d15c4ab5d519a42f18e -- yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/dal/mysql/image/AiImageMapper.java
+9bd531bedf21668537a95d15c4ab5d519a42f18e:yudao-module-ai/yudao-module-ai-biz/src/main/java/cn/iocoder/yudao/module/ai/dal/mysql/image/AiImageMapper.java:16:public interface AiImageMapper extends BaseMapperX<AiImageDO> {
+
+Source package verified: cn.iocoder.yudao.module.ai.dal.mysql.image
+Source SHA256: 9e89d140ac677e160fa34758c77c3a62e4121d7f25c0afdb98ead377ab09ce01
+Exists: true
+In static candidate set: True

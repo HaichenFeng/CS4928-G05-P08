@@ -1,0 +1,5 @@
+candidate_fqn,source,occurrences,score
+cn.iocoder.yudao.module.crm.dal.mysql.product.CrmProductMapper,field,159:productMapper.selectOne,1
+cn.iocoder.yudao.module.crm.service.permission.CrmPermissionService,field,,0
+cn.iocoder.yudao.module.crm.service.product.CrmProductCategoryService,field,,0
+cn.iocoder.yudao.module.system.api.user.AdminUserApi,field,,0

@@ -1,0 +1,47 @@
+{
+  "case_id": 19,
+  "host": "cn.iocoder.yudao.module.product.controller.admin.history.ProductBrowseHistoryController",
+  "actual_method_source": "private Map<Long, ProductSpuDO> getSpuMap(Set<Long> spuIds) {\r\n    Map<Long, ProductSpuDO> spuMap = convertMap(productSpuService.getSpuList(spuIds), ProductSpuDO::getId);\r\n    return spuMap;\r\n}",
+  "variables": {
+    "browseHistoryService": "cn.iocoder.yudao.module.product.service.history.ProductBrowseHistoryService",
+    "productSpuService": "cn.iocoder.yudao.module.product.service.spu.ProductSpuService"
+  },
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.product.service.spu.ProductSpuService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "productSpuService",
+          "line": 40,
+          "type": "ProductSpuService"
+        }
+      ],
+      "occurrences": [
+        {
+          "kind": "call",
+          "scope": "productSpuService",
+          "line": 60,
+          "member": "getSpuList"
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.product.service.history.ProductBrowseHistoryService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "browseHistoryService",
+          "line": 38,
+          "type": "ProductBrowseHistoryService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "rule": "docs/coding_manual.md; direct host fields + actual named-method parameters; generic element types; count each AST member-access occurrence once; score-desc/FQN-asc"
+}

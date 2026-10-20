@@ -1,0 +1,17 @@
+{
+  "prepared_at_utc": "2026-10-20T17:18:02.698437+00:00",
+  "case_id": 7,
+  "repository": "https://github.com/YunaiV/ruoyi-vue-pro.git",
+  "commit": "c23e6e9b1d38db1fe7080082c573e1dfcc9c77b7",
+  "host_file": "yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/controller/admin/contract/CrmContractController.java",
+  "host_class": "cn.iocoder.yudao.module.crm.controller.admin.contract.CrmContractController",
+  "method_signature_from_frozen_sample": "public getBusinessMap(ids Collection<Long>) : Map<Long,CrmBusinessDO>",
+  "host_sha256": "a5cb11e0a32e2fc2fd8fbc506979c4eb2f759188afe33b7ebdbcdb3706cb66b6",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "ef3ed569ee78d943a559319e2661354a9feab91c54be2a56731c7b92a982fbe1",
+  "request_sha256": "8a966e24dd3a123f97234accc5b3d5c560ac760fca1ac4021b42c6dc5f8cae5a",
+  "source_url": "https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/c23e6e9b1d38db1fe7080082c573e1dfcc9c77b7/yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/controller/admin/contract/CrmContractController.java",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold target and author recommendations excluded from request; frozen template unchanged."
+}

@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eb7sQJi45t1Jnvx1SoZZu4G2FxTQj",
+  "object": "chat.completion",
+  "created": 1792517122,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n    {\n        \"target_class\": \"cn.iocoder.yudao.module.crm.service.business.CrmBusinessService\",\n        \"rationale\": \"The getBusinessMap method is directly related to business operations and utilizes the CrmBusinessService to fetch business data. Moving it to CrmBusinessService will encapsulate business-related logic within the appropriate service class.\"\n    }\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1482,
+    "completion_tokens": 75,
+    "total_tokens": 1557,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_7a1c6d335a"
+}

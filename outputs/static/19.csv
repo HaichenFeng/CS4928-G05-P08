@@ -1,0 +1,3 @@
+candidate_fqn,source,occurrences,score
+cn.iocoder.yudao.module.product.service.spu.ProductSpuService,field,60:productSpuService.getSpuList,1
+cn.iocoder.yudao.module.product.service.history.ProductBrowseHistoryService,field,,0

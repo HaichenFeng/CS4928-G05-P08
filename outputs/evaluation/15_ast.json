@@ -1,0 +1,95 @@
+{
+  "case_id": 15,
+  "host": "cn.iocoder.yudao.module.ai.job.MidjourneyJob",
+  "package": "cn.iocoder.yudao.module.ai.job",
+  "imports": [
+    "import cn.hutool.core.collection.CollUtil;\r\n",
+    "import cn.iocoder.yudao.framework.ai.core.enums.AiPlatformEnum;\r\n",
+    "import cn.iocoder.yudao.framework.ai.core.model.midjourney.api.MidjourneyApi;\r\n",
+    "import cn.iocoder.yudao.framework.quartz.core.handler.JobHandler;\r\n",
+    "import cn.iocoder.yudao.module.ai.controller.admin.image.vo.MidjourneyNotifyReqVO;\r\n",
+    "import cn.iocoder.yudao.module.ai.dal.dataobject.image.AiImageDO;\r\n",
+    "import cn.iocoder.yudao.module.ai.dal.mysql.image.AiImageMapper;\r\n",
+    "import cn.iocoder.yudao.module.ai.enums.image.AiImageStatusEnum;\r\n",
+    "import cn.iocoder.yudao.module.ai.service.image.AiImageService;\r\n",
+    "import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;\r\n",
+    "import lombok.extern.slf4j.Slf4j;\r\n",
+    "import org.springframework.beans.factory.annotation.Autowired;\r\n",
+    "import org.springframework.stereotype.Component;\r\n",
+    "import java.util.ArrayList;\r\n",
+    "import java.util.List;\r\n",
+    "import java.util.Map;\r\n",
+    "import java.util.stream.Collectors;\r\n"
+  ],
+  "fields": [
+    {
+      "name": "midjourneyApi",
+      "line": 35,
+      "type": "MidjourneyApi"
+    },
+    {
+      "name": "imageMapper",
+      "line": 37,
+      "type": "AiImageMapper"
+    },
+    {
+      "name": "imageService",
+      "line": 39,
+      "type": "AiImageService"
+    }
+  ],
+  "parameters": [],
+  "locals": [
+    {
+      "name": "imageList",
+      "line": 81,
+      "type": "List<AiImageDO>"
+    }
+  ],
+  "method_source": "private List<AiImageDO> selectByStatusAndPlatform() {\r\n    List<AiImageDO> imageList = imageMapper.selectList(new LambdaUpdateWrapper<AiImageDO>().eq(AiImageDO::getStatus, AiImageStatusEnum.IN_PROGRESS.getStatus()).eq(AiImageDO::getPlatform, AiPlatformEnum.MIDJOURNEY.getPlatform()));\r\n    return imageList;\r\n}",
+  "method_line": 80,
+  "member_accesses": [
+    {
+      "kind": "call",
+      "scope": "imageMapper",
+      "line": 81,
+      "member": "selectList"
+    },
+    {
+      "kind": "call",
+      "scope": "new LambdaUpdateWrapper<AiImageDO>().eq(AiImageDO::getStatus, AiImageStatusEnum.IN_PROGRESS.getStatus())",
+      "line": 82,
+      "member": "eq"
+    },
+    {
+      "kind": "call",
+      "scope": "new LambdaUpdateWrapper<AiImageDO>()",
+      "line": 82,
+      "member": "eq"
+    },
+    {
+      "kind": "call",
+      "scope": "AiImageStatusEnum.IN_PROGRESS",
+      "line": 83,
+      "member": "getStatus"
+    },
+    {
+      "kind": "call",
+      "scope": "AiPlatformEnum.MIDJOURNEY",
+      "line": 84,
+      "member": "getPlatform"
+    },
+    {
+      "kind": "field",
+      "scope": "AiImageStatusEnum",
+      "line": 83,
+      "member": "IN_PROGRESS"
+    },
+    {
+      "kind": "field",
+      "scope": "AiPlatformEnum",
+      "line": 84,
+      "member": "MIDJOURNEY"
+    }
+  ]
+}

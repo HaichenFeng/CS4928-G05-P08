@@ -1,0 +1,6 @@
+candidate_fqn,source,occurrences,score
+cn.iocoder.yudao.module.ai.controller.admin.model.vo.model.AiChatModalRes,param,102:chatModal.getDisable,1
+cn.iocoder.yudao.module.ai.dal.mysql.AiChatConversationMapper,field,,0
+cn.iocoder.yudao.module.ai.dal.mysql.AiChatModalMapper,field,,0
+cn.iocoder.yudao.module.ai.service.AiChatModalService,field,,0
+cn.iocoder.yudao.module.ai.service.AiChatRoleService,field,,0

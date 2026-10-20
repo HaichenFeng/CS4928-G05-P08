@@ -1,0 +1,4 @@
+# Preserve exact experimental bytes and hashes across Windows/Linux checkouts.
+outputs/** -text -whitespace
+docs/prompt_*.txt -text whitespace=cr-at-eol
+data/sample_ids.csv -text whitespace=cr-at-eol

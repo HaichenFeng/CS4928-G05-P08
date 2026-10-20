@@ -1,0 +1,142 @@
+{
+  "case_id": 16,
+  "host": "cn.iocoder.yudao.module.promotion.service.kefu.KeFuMessageServiceImpl",
+  "actual_method_source": "private void updateConversationLastMessage(KeFuConversationDO conversation, KeFuMessageDO kefuMessage) {\r\n    if (UserTypeEnum.MEMBER.getValue().equals(kefuMessage.getSenderType()) && Boolean.TRUE.equals(conversation.getAdminDeleted())) {\r\n        conversationService.updateConversationAdminDeleted(kefuMessage.getConversationId(), Boolean.FALSE);\r\n    }\r\n}",
+  "variables": {
+    "messageMapper": "cn.iocoder.yudao.module.promotion.dal.mysql.kefu.KeFuMessageMapper",
+    "conversationService": "cn.iocoder.yudao.module.promotion.service.kefu.KeFuConversationService",
+    "adminUserApi": "cn.iocoder.yudao.module.system.api.user.AdminUserApi",
+    "memberUserApi": "cn.iocoder.yudao.module.member.api.user.MemberUserApi",
+    "webSocketSenderApi": "cn.iocoder.yudao.module.infra.api.websocket.WebSocketSenderApi",
+    "conversation": "cn.iocoder.yudao.module.promotion.dal.dataobject.kefu.KeFuConversationDO",
+    "kefuMessage": "cn.iocoder.yudao.module.promotion.dal.dataobject.kefu.KeFuMessageDO"
+  },
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.promotion.dal.dataobject.kefu.KeFuMessageDO",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "name": "kefuMessage",
+          "line": 82,
+          "type": "KeFuMessageDO"
+        }
+      ],
+      "occurrences": [
+        {
+          "kind": "call",
+          "scope": "kefuMessage",
+          "line": 83,
+          "member": "getSenderType"
+        },
+        {
+          "kind": "call",
+          "scope": "kefuMessage",
+          "line": 84,
+          "member": "getConversationId"
+        }
+      ],
+      "score": 2
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.promotion.dal.dataobject.kefu.KeFuConversationDO",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "name": "conversation",
+          "line": 82,
+          "type": "KeFuConversationDO"
+        }
+      ],
+      "occurrences": [
+        {
+          "kind": "call",
+          "scope": "conversation",
+          "line": 83,
+          "member": "getAdminDeleted"
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.promotion.service.kefu.KeFuConversationService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "conversationService",
+          "line": 45,
+          "type": "KeFuConversationService"
+        }
+      ],
+      "occurrences": [
+        {
+          "kind": "call",
+          "scope": "conversationService",
+          "line": 84,
+          "member": "updateConversationAdminDeleted"
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.infra.api.websocket.WebSocketSenderApi",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "webSocketSenderApi",
+          "line": 52,
+          "type": "WebSocketSenderApi"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.member.api.user.MemberUserApi",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "memberUserApi",
+          "line": 50,
+          "type": "MemberUserApi"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.promotion.dal.mysql.kefu.KeFuMessageMapper",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "messageMapper",
+          "line": 42,
+          "type": "KeFuMessageMapper"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.system.api.user.AdminUserApi",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "adminUserApi",
+          "line": 48,
+          "type": "AdminUserApi"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "rule": "docs/coding_manual.md; direct host fields + actual named-method parameters; generic element types; count each AST member-access occurrence once; score-desc/FQN-asc"
+}

@@ -1,0 +1,32 @@
+{
+  "case_id": 17,
+  "host": "cn.iocoder.yudao.module.promotion.service.kefu.KeFuConversationServiceImpl",
+  "actual_method_source": "private KeFuConversationDO selectByUserId(Long userId) {\r\n    return conversationMapper.selectOne(KeFuConversationDO::getUserId, userId);\r\n}",
+  "variables": {
+    "conversationMapper": "cn.iocoder.yudao.module.promotion.dal.mysql.kefu.KeFuConversationMapper"
+  },
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "cn.iocoder.yudao.module.promotion.dal.mysql.kefu.KeFuConversationMapper",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "conversationMapper",
+          "line": 31,
+          "type": "KeFuConversationMapper"
+        }
+      ],
+      "occurrences": [
+        {
+          "kind": "call",
+          "scope": "conversationMapper",
+          "line": 115,
+          "member": "selectOne"
+        }
+      ],
+      "score": 1
+    }
+  ],
+  "rule": "docs/coding_manual.md; direct host fields + actual named-method parameters; generic element types; count each AST member-access occurrence once; score-desc/FQN-asc"
+}

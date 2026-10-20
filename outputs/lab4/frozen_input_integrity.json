@@ -1,0 +1,26 @@
+[
+  {
+    "path": "data/sample_ids.csv",
+    "matches_M1_PLAN_after_line_ending_normalisation": true,
+    "working_sha256": "d6cde22a9a636809f9079301848451587c24a5acc95f0cf8be2be1c5e54a378e",
+    "note": "Frozen empirical input unchanged."
+  },
+  {
+    "path": "docs/prompt_adapted.txt",
+    "matches_M1_PLAN_after_line_ending_normalisation": true,
+    "working_sha256": "ef3ed569ee78d943a559319e2661354a9feab91c54be2a56731c7b92a982fbe1",
+    "note": "Frozen empirical input unchanged."
+  },
+  {
+    "path": "docs/prompt_original.txt",
+    "matches_M1_PLAN_after_line_ending_normalisation": true,
+    "working_sha256": "b4aca91bea16e12c41dee56bcb8d6f29c55550c1d6bf5f88834b00ed87937a2b",
+    "note": "Frozen empirical input unchanged."
+  },
+  {
+    "path": "docs/coding_manual.md",
+    "matches_M1_PLAN_after_line_ending_normalisation": false,
+    "working_sha256": "7ee6908f8982490ed20c8e27c72b76dd85c95d1e76295be5689f7d77d70b82ce",
+    "note": "Existing punctuation/section-symbol/union-symbol spelling differs from tag; empirical rules unchanged."
+  }
+]

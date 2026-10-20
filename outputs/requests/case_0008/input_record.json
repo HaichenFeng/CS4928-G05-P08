@@ -1,0 +1,17 @@
+{
+  "prepared_at_utc": "2026-10-20T17:18:02.702328+00:00",
+  "case_id": 8,
+  "repository": "https://github.com/YunaiV/ruoyi-vue-pro.git",
+  "commit": "4a6198bad61c180bdf1bf80cb552151c3202fac7",
+  "host_file": "yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/controller/admin/followup/CrmFollowUpRecordController.java",
+  "host_class": "cn.iocoder.yudao.module.crm.controller.admin.followup.CrmFollowUpRecordController",
+  "method_signature_from_frozen_sample": "public getBusinessMap(ids Collection<Long>) : Map<Long,CrmBusinessDO>",
+  "host_sha256": "bfb9b3f0d35ed4f6d3a969b96a9d7fcad5af301e109bb44630bff0a22eabab72",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "ef3ed569ee78d943a559319e2661354a9feab91c54be2a56731c7b92a982fbe1",
+  "request_sha256": "86af3c4a867f71a0dbcf22f3e546c9eb999fe93e2db765b1bfceb4f5b25c5cbf",
+  "source_url": "https://raw.githubusercontent.com/YunaiV/ruoyi-vue-pro/4a6198bad61c180bdf1bf80cb552151c3202fac7/yudao-module-crm/yudao-module-crm-biz/src/main/java/cn/iocoder/yudao/module/crm/controller/admin/followup/CrmFollowUpRecordController.java",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "notes": "Gold target and author recommendations excluded from request; frozen template unchanged."
+}
