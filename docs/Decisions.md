@@ -155,3 +155,36 @@ One run at temperature 0 (the paper averages 5 runs at each of temperatures 0, 0
 
 ### Status
 Registered 2026-10-20; binding from the commit that adds this entry. That commit must be pushed before `outputs/requests_vanilla/` is created and before the run directory exists. AI-assisted: drafted by an AI assistant; prompt source, input format and the ref_id 3 discrepancy were checked against the upstream repository and dataset. Accepted by the group for execution on 2026-10-20.
+
+## D-09 — Result of the D-08 supplementary run (2026-10-20)
+
+Records the outcome of the run registered in D-08. Nothing in D-08 (prompt, sample, coding rules, thresholds) was changed after execution. The M2 result in D-07 is unchanged.
+
+### Timeline
+D-08 was committed (17ec648) before the run but pushed after it, contrary to its "push first" rule; the scripts and prompt used are byte-identical to that commit. This is the only vanilla run and it is reported in full.
+
+### Execution
+- 12/12 HTTP 200, model `gpt-4o-2024-05-13`, all `finish_reason = stop`, all 12 responses plain JSON (the trailing-comma rule was never needed). No API errors, no retries, no exclusions. Pilot ref_id 1 retained.
+- Independent check (2026-10-20): requests re-prepared from the frozen inputs in a second environment are byte-identical; offline re-evaluation (`evaluate_vanilla.py --offline`) reproduces `recommendations.csv` and `cases.csv` byte-for-byte.
+
+### Results (`outputs/vanilla/summary.json`, `cases.csv`, `recommendations.csv`)
+- Recommendations R = 34 (1-10 per case, mean 2.8). Labels: H1 5, H2 0, H3 3, Valid 26.
+- Hallucination rate (H1+H2+H3)/R = 8/34 = 23.5% (paper Table I real-world: 1026/1293 = 79.4%). H1+H2 = 5/34 = 14.7%.
+- Top-1 H1/H2: 2/12 cases (ref_ids 3, 16); M2: 0/12.
+- RecallM@1 5/12, @3 9/12; RecallMC@1 4/12, @3 7/12; RecallC@1 4/5, @3 7/9.
+- **Pre-registered decision (D-08): PARTIAL** (rate between 20% and 50%; top-1 H1+H2 between 1 and 4). D-07 threat 1 is partly supported.
+
+### Coding audit (no rule changed)
+- All 5 H1 targets are absent from the frozen trees: `CrmBusinessStatusTypeValidator` (ref_id 3, ranks 1-3), `UserValidationService` and `WebSocketSenderService` (ref_id 16; the existing class is `WebSocketSenderApi`, imported by the host). All 3 H3 are `@Override` methods (ref_ids 15, 17).
+- Ref_id 3 ranks 1 and 2 are identical; counted as two recommendations per D-08. Deduplicated: R = 33, rate 7/33 = 21.2%, decision unchanged.
+- Ref_id 14: top-1 has the gold method and target `cn.iocoder.yudao.module.ai.service.AiChatModalService`, scored as a miss against the frozen gold `...service.impl.AiChatModalService` (D-07 threat 4). With a corrected gold, RecallMC@1 would be 5/12.
+
+### Post-hoc comparison with M2 (not pre-registered; exploratory)
+- Top-1 fully correct (method and target): M2 10/12 (method given) vs vanilla 4/12. Paired exact McNemar: 6 cases correct only in M2, 0 only in vanilla, p = 0.031.
+- Hallucinations: M2 0/12 vs vanilla 8/34 per recommendation (Fisher p = 0.09); top-1 H1/H2 0/12 vs 2/12 (p = 0.48). Not significant at n = 12.
+- Both runs are far below the paper (binomial p < 0.001).
+
+### Interpretation
+- The target-only prompt mainly inflated accuracy: giving the LLM the method raised top-1 accuracy from 4/12 to 10/12. Its effect on hallucinations is in the expected direction but small and not significant here.
+- Even with the paper's own prompt and input format, the hallucination rate (23.5%) does not reproduce Table I (79%). The non-reproduction in D-07 is therefore not explained by our prompt adaptation alone. Remaining candidate explanations: sample (D-07 threat 2: mostly Service -> Mapper moves in small classes, 11/12 with fewer than 15 methods), the narrow H2 rule (H2 = 0 in both runs vs 21% in the paper; D-04 deviation 2), fewer recommendations per class (2.8 vs about 6), and a single run at temperature 0.
+- M2 remains the primary, pre-registered RQ1 result (D-07: NOT REPRODUCED). This run is the closest operational replication of the paper's vanilla setting and is reported as a supplementary sensitivity analysis.

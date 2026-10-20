@@ -10,6 +10,8 @@ The frozen arithmetic gives RQ1 **NOT REPRODUCED** and satisfies RQ2's non-decre
 
 **M2 status (D-07, supersedes the "pending coordinator review" wording above):** the as-frozen run is the final M2 result. RQ1 NOT REPRODUCED (H1+H2 0/12); RQ2 non-decrease rule supported by equality, with no hallucination reduction demonstrated. The signature, gold (ref_id 14), prompt and sample issues are recorded as threats to validity in D-07. A supplementary run with the paper's original vanilla prompt is registered in D-08; it does not replace this result.
 
+**Supplementary run (D-08, D-09):** with the paper's own vanilla prompt and input format, the hallucination rate was 8/34 = 23.5% (paper 79%); pre-registered decision PARTIAL. Top-1 accuracy fell from 10/12 (M2, method given) to 4/12 (McNemar p = 0.031, post hoc). The non-reproduction is therefore not explained by our prompt adaptation alone. Run: `outputs/runs/20261020T204405_428826Z_vanilla/`; results: `outputs/vanilla/`. The run was executed before the D-08 commit was pushed (disclosed in D-09).
+
 **Prompt version (D-06):** the run used the `M1_PLAN` version of `docs/prompt_adapted.txt` (verified by `template_sha256` in each `input_record.json`). A 2026-10-19 revision was merged only after the run and was never used; it is kept as `docs/prompt_adapted_rev2026-10-19_UNUSED.txt`.
 
 - [Lab4 report and evidence chain](outputs/lab4/LAB4_REPORT.md)
