@@ -1,0 +1,3 @@
+$ C:\Program Files\Git\cmd\git.EXE --git-dir=F:\CS4928-G05-P08\repos\elasticsearch fetch --depth=1 --filter=blob:none origin e6f8548aa9f31bf4392e92f4deb37b363c12eca7
+From https://github.com/elastic/elasticsearch
+ * branch                e6f8548aa9f31bf4392e92f4deb37b363c12eca7 -> FETCH_HEAD

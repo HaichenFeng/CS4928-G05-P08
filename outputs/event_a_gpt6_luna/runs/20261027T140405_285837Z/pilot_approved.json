@@ -1,0 +1,12 @@
+{
+  "reviewed_utc": "2026-10-27T14:04:55.690690+00:00",
+  "case_id": 66,
+  "status": "INPUT_AND_RESPONSE_INTEGRITY_PASS",
+  "http_status": 200,
+  "returned_model": "gpt-6-luna",
+  "finish_reason": "stop",
+  "six_prepared_request_hashes_unchanged": true,
+  "gold_or_correctness_used_for_gate": false,
+  "request_or_rule_changes": false,
+  "pilot_retained_in_sample": true
+}

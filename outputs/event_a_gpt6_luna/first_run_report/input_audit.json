@@ -1,0 +1,111 @@
+[
+  {
+    "case_id": 66,
+    "frozen_signature": "public moveToUnsuccessful(newStage Stage, failure String, endTime long) : SnapshotsInProgress.ShardState",
+    "actual_method_declaration": "private void moveToUnsuccessful(Stage newStage, String failure, long endTime, IndexShardSnapshotStatus snapshotStatus)",
+    "frozen_parameter_types": [
+      "Stage",
+      "String",
+      "long"
+    ],
+    "actual_parameter_types": [
+      "Stage",
+      "String",
+      "long",
+      "IndexShardSnapshotStatus"
+    ],
+    "frozen_return_type": "SnapshotsInProgress.ShardState",
+    "actual_return_type": "void",
+    "rule4_selection": "unique name",
+    "signature_sent_unchanged": true
+  },
+  {
+    "case_id": 93,
+    "frozen_signature": "public countSource(context LocalExecutionPlannerContext, queryBuilder QueryBuilder, limit Expression) : LuceneCountOperator.Factory",
+    "actual_method_declaration": "private LuceneOperator.Factory countSource(LocalExecutionPlannerContext context, Expression limitExp, EsPhysicalOperationProviders esProvider, Function<SearchContext, Query> querySupplier)",
+    "frozen_parameter_types": [
+      "LocalExecutionPlannerContext",
+      "QueryBuilder",
+      "Expression"
+    ],
+    "actual_parameter_types": [
+      "LocalExecutionPlannerContext",
+      "Expression",
+      "EsPhysicalOperationProviders",
+      "Function<SearchContext,Query>"
+    ],
+    "frozen_return_type": "LuceneCountOperator.Factory",
+    "actual_return_type": "LuceneOperator.Factory",
+    "rule4_selection": "unique name",
+    "signature_sent_unchanged": true
+  },
+  {
+    "case_id": 94,
+    "frozen_signature": "public resolvePolicy(policyNames Collection<String>, listener ActionListener<EnrichResolution>) : void",
+    "actual_method_declaration": "private void resolvePolicy(ActionListener<Void> groupedListener, Set<String> policyNames, EnrichResolution resolution)",
+    "frozen_parameter_types": [
+      "Collection<String>",
+      "ActionListener<EnrichResolution>"
+    ],
+    "actual_parameter_types": [
+      "ActionListener<Void>",
+      "Set<String>",
+      "EnrichResolution"
+    ],
+    "frozen_return_type": "void",
+    "actual_return_type": "void",
+    "rule4_selection": "unique name",
+    "signature_sent_unchanged": true
+  },
+  {
+    "case_id": 278,
+    "frozen_signature": "public lookup(positions IntBlock, targetBlockSize ByteSizeValue) : ReleasableIterator<BooleanBlock>",
+    "actual_method_declaration": "@Override\r\npublic ReleasableIterator<BooleanBlock> lookup(IntBlock positions, ByteSizeValue targetBlockSize)",
+    "frozen_parameter_types": [
+      "IntBlock",
+      "ByteSizeValue"
+    ],
+    "actual_parameter_types": [
+      "IntBlock",
+      "ByteSizeValue"
+    ],
+    "frozen_return_type": "ReleasableIterator<BooleanBlock>",
+    "actual_return_type": "ReleasableIterator<BooleanBlock>",
+    "rule4_selection": "unique name",
+    "signature_sent_unchanged": true
+  },
+  {
+    "case_id": 279,
+    "frozen_signature": "public lookup(positions IntBlock, targetBlockSize ByteSizeValue) : ReleasableIterator<BooleanBlock>",
+    "actual_method_declaration": "@Override\r\npublic ReleasableIterator<BytesRefBlock> lookup(IntBlock positions, ByteSizeValue targetBlockSize)",
+    "frozen_parameter_types": [
+      "IntBlock",
+      "ByteSizeValue"
+    ],
+    "actual_parameter_types": [
+      "IntBlock",
+      "ByteSizeValue"
+    ],
+    "frozen_return_type": "ReleasableIterator<BooleanBlock>",
+    "actual_return_type": "ReleasableIterator<BytesRefBlock>",
+    "rule4_selection": "unique name",
+    "signature_sent_unchanged": true
+  },
+  {
+    "case_id": 363,
+    "frozen_signature": "public checkDimensions(dvDims int, qvDims int) : void",
+    "actual_method_declaration": "private void checkDimensions(int length, Integer dims)",
+    "frozen_parameter_types": [
+      "int",
+      "int"
+    ],
+    "actual_parameter_types": [
+      "int",
+      "Integer"
+    ],
+    "frozen_return_type": "void",
+    "actual_return_type": "void",
+    "rule4_selection": "unique name",
+    "signature_sent_unchanged": true
+  }
+]

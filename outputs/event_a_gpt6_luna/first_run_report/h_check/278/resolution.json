@@ -1,0 +1,19 @@
+{
+  "target": "org.elasticsearch.compute.data.BooleanLookup",
+  "commit": "e296af65645e6eaef82d41df52289cc487a8f414",
+  "resolved": "org.elasticsearch.compute.data.BooleanLookup",
+  "exists": true,
+  "sources": [
+    {
+      "path": "x-pack/plugin/esql/compute/src/main/generated-src/org/elasticsearch/compute/data/BooleanLookup.java",
+      "saved_name": "source_000.java",
+      "sha256": "5a1f2e5b15ce5520c1aa6aa7accdf5944723c549b1d7a1ec09df4d687f91ae53",
+      "declared_types": [
+        "org.elasticsearch.compute.data.BooleanLookup"
+      ]
+    }
+  ],
+  "checked_paths": [
+    "x-pack/plugin/esql/compute/src/main/generated-src/org/elasticsearch/compute/data/BooleanLookup.java"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "top1": "org.elasticsearch.compute.data.BooleanLookup",
+  "rationale": "The method constructs and returns a BooleanLookup using the positions and target block size. Moving lookup to BooleanLookup would place this lookup-specific behavior with the class that implements it; BooleanLookup would need an appropriate factory or constructor API to create the iterator.",
+  "returned_model": "gpt-6-luna",
+  "usage": {
+    "prompt_tokens": 946,
+    "completion_tokens": 77,
+    "total_tokens": 1023,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": null
+}

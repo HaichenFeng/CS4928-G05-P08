@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Edc7fvrJgtGFZifqfgAZ8Lo7buTLj",
+  "object": "chat.completion",
+  "created": 1793110043,
+  "model": "gpt-6-luna",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n  {\n    \"target_class\": \"org.elasticsearch.compute.data.BytesRefLookup\",\n    \"rationale\": \"The lookup method delegates directly to BytesRefLookup construction, and that class owns the lookup behavior for a BytesRefBlock. Move the method there so lookup creation is colocated with its implementation.\"\n  }\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1035,
+    "completion_tokens": 67,
+    "total_tokens": 1102,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 1032,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

@@ -1,0 +1,28 @@
+{
+  "target": "org.elasticsearch.xpack.esql.expression.function.aggregate.AggregateFunction",
+  "commit": "e6f8548aa9f31bf4392e92f4deb37b363c12eca7",
+  "resolved": "org.elasticsearch.xpack.esql.expression.function.aggregate.AggregateFunction",
+  "exists": true,
+  "sources": [
+    {
+      "path": "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/expression/function/aggregate/AggregateFunction.java",
+      "saved_name": "source_000.java",
+      "sha256": "ceb41a78c5cf5f21ec57d6b165fb9245df3f10e9f9f3bed1f61fd5ed24a1d66b",
+      "declared_types": [
+        "org.elasticsearch.xpack.esql.expression.function.aggregate.AggregateFunction"
+      ]
+    },
+    {
+      "path": "x-pack/plugin/ql/src/main/java/org/elasticsearch/xpack/ql/expression/function/aggregate/AggregateFunction.java",
+      "saved_name": "source_001.java",
+      "sha256": "7b53f697a13fc5a0976abd6411d9b8c6470159c96e08e234c2c3bd2d039a1eed",
+      "declared_types": [
+        "org.elasticsearch.xpack.ql.expression.function.aggregate.AggregateFunction"
+      ]
+    }
+  ],
+  "checked_paths": [
+    "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/expression/function/aggregate/AggregateFunction.java",
+    "x-pack/plugin/ql/src/main/java/org/elasticsearch/xpack/ql/expression/function/aggregate/AggregateFunction.java"
+  ]
+}

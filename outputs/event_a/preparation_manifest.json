@@ -1,0 +1,21 @@
+{
+  "started_utc": "2026-10-27T13:35:16.727752+00:00",
+  "tracker_recorded_confirmed_by_group": true,
+  "dataset_sha256": "8b2808944db28ba6620f07a71fce38224f32cc100a444bb89573f662e268c3eb",
+  "prompt_sha256": "fbe97552a95b92e0c747bce5b4448d134e54b27dfae89f5e9818d253ccc288c0",
+  "m2_request_rendering_equivalence": 12,
+  "project_order": [
+    "elasticsearch",
+    "graal",
+    "kafka",
+    "redisson",
+    "spring-framework",
+    "spring-boot",
+    "selenium",
+    "ghidra",
+    "dbeaver"
+  ],
+  "preregistration_sha256": "f47dc37bf353599266154275188aa499892d9e6f24fccad30a78053612ad6c13",
+  "api_calls": 0,
+  "gold_labels_used_for_selection": false
+}

@@ -1,0 +1,17 @@
+{
+  "created_utc": "2026-10-27T14:04:05.293655+00:00",
+  "model": "gpt-6-luna",
+  "temperature": 0,
+  "reasoning_effort": "none",
+  "endpoint": "https://api.openai.com/v1/chat/completions",
+  "sample_ids": [
+    66,
+    93,
+    94,
+    278,
+    279,
+    363
+  ],
+  "phase": "PILOT",
+  "runner_sha256": "417ee344894973e65e827697a0136de0ff348d53da8b24b470102eaed3debe1e"
+}

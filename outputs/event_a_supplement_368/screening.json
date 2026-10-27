@@ -1,0 +1,7 @@
+{
+  "case_id": 368,
+  "project": "elasticsearch",
+  "commit": "e6f8548aa9f31bf4392e92f4deb37b363c12eca7",
+  "included": true,
+  "reason": "rules1-4 passed"
+}

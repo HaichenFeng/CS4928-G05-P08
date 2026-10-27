@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Edc7Sc5soaiIYcif8Xl3kfxNdeEBJ",
+  "object": "chat.completion",
+  "created": 1793110030,
+  "model": "gpt-6-luna",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n  {\n    \"target_class\": \"org.elasticsearch.xpack.esql.planner.EsPhysicalOperationProviders\",\n    \"rationale\": \"The method constructs a Lucene count source using the Elasticsearch provider’s search contexts and query-related settings. Move it to EsPhysicalOperationProviders, which owns those Lucene-specific source dependencies and can encapsulate this source-creation logic.\"\n  }\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 7222,
+    "completion_tokens": 80,
+    "total_tokens": 7302,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 7219,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

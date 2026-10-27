@@ -1,0 +1,13 @@
+{
+  "scripts/run_event_a.py": "417ee344894973e65e827697a0136de0ff348d53da8b24b470102eaed3debe1e",
+  "scripts/run_event_a_terminal.py": "49bcfcfe362c3ff4a926db464fb41f91abf0178f70a42f340b420c30d0b7a289",
+  "scripts/evaluate_event_a.py": "3cde7d1458ddf00e095aff370859cce1f50afdcae843e68f73793d1c67f283ef",
+  "scripts/event_a_rules.py": "4bc2c83d584cf1cb29d716a3b251fe5c26af026d6c104e7712376bf30a2c6d44",
+  "scripts/InspectEventACase.java": "6e31697c6ff8b5196a7ea10ebd860f3d2bacae6368c2e9bd9925ed7afdf0a610",
+  "scripts/IndexEventAClass.java": "19314d0b2c04765d385ddec15d440d271137b3220d89bef2f1585731b2b4cb47",
+  "docs/event_a_preregistration.md": "287336b6aae7a490320891546aaac14d1cfe2541682ea3059d11687980e9f60f",
+  "docs/event_a_model_change.md": "b0007958b28f0dd9d6b7cc2060935e4f540710e07a6f4585227a806f6f66f751",
+  "docs/prompt_adapted.txt": "fbe97552a95b92e0c747bce5b4448d134e54b27dfae89f5e9818d253ccc288c0",
+  "docs/coding_manual.md": "7ee6908f8982490ed20c8e27c72b76dd85c95d1e76295be5689f7d77d70b82ce",
+  "data/event_a_sample_ids.csv": "97363f41eed8bf6ede2cd0cb341dbb2c56a11a44bfc86b0a082acbe74acd3f17"
+}

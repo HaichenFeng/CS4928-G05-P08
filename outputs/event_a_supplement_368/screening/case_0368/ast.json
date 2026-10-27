@@ -1,0 +1,109 @@
+{
+  "host": "org.elasticsearch.xpack.esql.planner.AbstractPhysicalOperationProviders",
+  "package": "org.elasticsearch.xpack.esql.planner",
+  "imports": [
+    "import org.elasticsearch.compute.aggregation.Aggregator;\r\n",
+    "import org.elasticsearch.compute.aggregation.AggregatorFunctionSupplier;\r\n",
+    "import org.elasticsearch.compute.aggregation.AggregatorMode;\r\n",
+    "import org.elasticsearch.compute.aggregation.GroupingAggregator;\r\n",
+    "import org.elasticsearch.compute.aggregation.blockhash.BlockHash;\r\n",
+    "import org.elasticsearch.compute.data.ElementType;\r\n",
+    "import org.elasticsearch.compute.operator.AggregationOperator;\r\n",
+    "import org.elasticsearch.compute.operator.HashAggregationOperator.HashAggregationOperatorFactory;\r\n",
+    "import org.elasticsearch.compute.operator.Operator;\r\n",
+    "import org.elasticsearch.xpack.esql.EsqlIllegalArgumentException;\r\n",
+    "import org.elasticsearch.xpack.esql.core.InvalidArgumentException;\r\n",
+    "import org.elasticsearch.xpack.esql.core.expression.Alias;\r\n",
+    "import org.elasticsearch.xpack.esql.core.expression.Attribute;\r\n",
+    "import org.elasticsearch.xpack.esql.core.expression.Expression;\r\n",
+    "import org.elasticsearch.xpack.esql.core.expression.Expressions;\r\n",
+    "import org.elasticsearch.xpack.esql.core.expression.NameId;\r\n",
+    "import org.elasticsearch.xpack.esql.core.expression.NamedExpression;\r\n",
+    "import org.elasticsearch.xpack.esql.expression.function.aggregate.AggregateFunction;\r\n",
+    "import org.elasticsearch.xpack.esql.expression.function.aggregate.Count;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.AggregateExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.ExchangeSourceExec;\r\n",
+    "import org.elasticsearch.xpack.esql.planner.LocalExecutionPlanner.LocalExecutionPlannerContext;\r\n",
+    "import org.elasticsearch.xpack.esql.planner.LocalExecutionPlanner.PhysicalOperation;\r\n",
+    "import java.util.ArrayList;\r\n",
+    "import java.util.HashSet;\r\n",
+    "import java.util.List;\r\n",
+    "import java.util.Set;\r\n",
+    "import java.util.function.Consumer;\r\n",
+    "import static java.util.Collections.emptyList;\r\n"
+  ],
+  "fields": [
+    {
+      "type": "AggregateMapper",
+      "line": 44,
+      "name": "aggregateMapper"
+    }
+  ],
+  "parameters": [
+    {
+      "type": "Expression",
+      "line": 295,
+      "name": "field"
+    },
+    {
+      "type": "AggregateFunction",
+      "line": 295,
+      "name": "aggregateFunction"
+    }
+  ],
+  "locals": [
+    {
+      "type": "List<Expression>",
+      "line": 296,
+      "name": "inputExpressions"
+    },
+    {
+      "type": "Expression",
+      "line": 298,
+      "name": "param"
+    },
+    {
+      "type": "Object",
+      "line": 302,
+      "name": "ignored"
+    }
+  ],
+  "method_source": "private List<Expression> inputExpressions(Expression field, AggregateFunction aggregateFunction) {\r\n    List<Expression> inputExpressions = new ArrayList<>();\r\n    inputExpressions.add(field);\r\n    for (Expression param : aggregateFunction.parameters()) {\r\n        if (param.foldable() == false) {\r\n            inputExpressions.add(param);\r\n        } else {\r\n            Object ignored = param.fold();\r\n        }\r\n    }\r\n    return inputExpressions;\r\n}",
+  "method_line": 295,
+  "actual_return_type": "List<Expression>",
+  "method_name": "inputExpressions",
+  "rule4_selection": "unique name",
+  "frozen_parameter_types": [],
+  "member_accesses": [
+    {
+      "member": "add",
+      "line": 297,
+      "scope": "inputExpressions",
+      "kind": "call"
+    },
+    {
+      "member": "parameters",
+      "line": 298,
+      "scope": "aggregateFunction",
+      "kind": "call"
+    },
+    {
+      "member": "foldable",
+      "line": 299,
+      "scope": "param",
+      "kind": "call"
+    },
+    {
+      "member": "add",
+      "line": 300,
+      "scope": "inputExpressions",
+      "kind": "call"
+    },
+    {
+      "member": "fold",
+      "line": 302,
+      "scope": "param",
+      "kind": "call"
+    }
+  ]
+}

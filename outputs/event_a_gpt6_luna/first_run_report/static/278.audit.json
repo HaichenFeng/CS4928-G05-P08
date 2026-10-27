@@ -1,0 +1,55 @@
+{
+  "case_id": 278,
+  "host": "org.elasticsearch.compute.data.BooleanVectorBlock",
+  "actual_method_source": "@Override\r\npublic ReleasableIterator<BooleanBlock> lookup(IntBlock positions, ByteSizeValue targetBlockSize) {\r\n    // TODO optimizations\r\n    return getBooleanLookup(positions, targetBlockSize);\r\n}",
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "org.elasticsearch.common.unit.ByteSizeValue",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "type": "ByteSizeValue",
+          "name": "targetBlockSize",
+          "line": 55
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.compute.data.BooleanVector",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "type": "BooleanVector",
+          "name": "vector",
+          "line": 20
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.compute.data.IntBlock",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "type": "IntBlock",
+          "name": "positions",
+          "line": 55
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "variables": {
+    "vector": "org.elasticsearch.compute.data.BooleanVector",
+    "positions": "org.elasticsearch.compute.data.IntBlock",
+    "targetBlockSize": "org.elasticsearch.common.unit.ByteSizeValue"
+  },
+  "rule": "Unchanged M2 static ranking"
+}

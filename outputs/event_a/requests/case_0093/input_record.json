@@ -1,0 +1,15 @@
+{
+  "prepared_at_utc": "2026-10-27T13:36:43.133517+00:00",
+  "case_id": 93,
+  "repository": "https://github.com/elastic/elasticsearch.git",
+  "commit": "928fa5f2bc4968785389740ffb5ab4988fafe33e",
+  "host_file": "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/planner/LocalExecutionPlanner.java",
+  "host_class": "org.elasticsearch.xpack.esql.planner.LocalExecutionPlanner",
+  "method_signature_from_frozen_sample": "public countSource(context LocalExecutionPlannerContext, queryBuilder QueryBuilder, limit Expression) : LuceneCountOperator.Factory",
+  "host_sha256": "2611ba17dab0adefe12e0cfa31b1339b4fb7186a86989fbc79602e66074d70f8",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "fbe97552a95b92e0c747bce5b4448d134e54b27dfae89f5e9818d253ccc288c0",
+  "request_sha256": "f81042e4aad7310b1b40d369c503325cac5a93814781caade44d45ce0b4b4632",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0
+}

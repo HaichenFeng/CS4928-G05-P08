@@ -1,0 +1,218 @@
+{
+  "host": "org.elasticsearch.snapshots.SnapshotShardsService",
+  "package": "org.elasticsearch.snapshots",
+  "imports": [
+    "import org.apache.logging.log4j.LogManager;\r\n",
+    "import org.apache.logging.log4j.Logger;\r\n",
+    "import org.apache.lucene.index.IndexCommit;\r\n",
+    "import org.elasticsearch.action.ActionListener;\r\n",
+    "import org.elasticsearch.action.ActionListenerResponseHandler;\r\n",
+    "import org.elasticsearch.action.ActionResponse;\r\n",
+    "import org.elasticsearch.action.ResultDeduplicator;\r\n",
+    "import org.elasticsearch.cluster.ClusterChangedEvent;\r\n",
+    "import org.elasticsearch.cluster.ClusterStateListener;\r\n",
+    "import org.elasticsearch.cluster.SnapshotsInProgress;\r\n",
+    "import org.elasticsearch.cluster.SnapshotsInProgress.ShardSnapshotStatus;\r\n",
+    "import org.elasticsearch.cluster.SnapshotsInProgress.ShardState;\r\n",
+    "import org.elasticsearch.cluster.SnapshotsInProgress.State;\r\n",
+    "import org.elasticsearch.cluster.node.DiscoveryNode;\r\n",
+    "import org.elasticsearch.cluster.service.ClusterService;\r\n",
+    "import org.elasticsearch.common.Strings;\r\n",
+    "import org.elasticsearch.common.component.AbstractLifecycleComponent;\r\n",
+    "import org.elasticsearch.common.settings.Settings;\r\n",
+    "import org.elasticsearch.common.util.Maps;\r\n",
+    "import org.elasticsearch.common.util.concurrent.ThrottledTaskRunner;\r\n",
+    "import org.elasticsearch.core.Nullable;\r\n",
+    "import org.elasticsearch.index.IndexVersion;\r\n",
+    "import org.elasticsearch.index.engine.Engine;\r\n",
+    "import org.elasticsearch.index.seqno.SequenceNumbers;\r\n",
+    "import org.elasticsearch.index.shard.IndexEventListener;\r\n",
+    "import org.elasticsearch.index.shard.IndexShard;\r\n",
+    "import org.elasticsearch.index.shard.IndexShardState;\r\n",
+    "import org.elasticsearch.index.shard.ShardId;\r\n",
+    "import org.elasticsearch.index.snapshots.IndexShardSnapshotFailedException;\r\n",
+    "import org.elasticsearch.index.snapshots.IndexShardSnapshotStatus;\r\n",
+    "import org.elasticsearch.index.snapshots.IndexShardSnapshotStatus.Stage;\r\n",
+    "import org.elasticsearch.indices.IndicesService;\r\n",
+    "import org.elasticsearch.repositories.IndexId;\r\n",
+    "import org.elasticsearch.repositories.RepositoriesService;\r\n",
+    "import org.elasticsearch.repositories.Repository;\r\n",
+    "import org.elasticsearch.repositories.RepositoryShardId;\r\n",
+    "import org.elasticsearch.repositories.ShardGeneration;\r\n",
+    "import org.elasticsearch.repositories.ShardGenerations;\r\n",
+    "import org.elasticsearch.repositories.ShardSnapshotResult;\r\n",
+    "import org.elasticsearch.repositories.SnapshotIndexCommit;\r\n",
+    "import org.elasticsearch.repositories.SnapshotShardContext;\r\n",
+    "import org.elasticsearch.threadpool.ThreadPool;\r\n",
+    "import org.elasticsearch.transport.TransportResponseHandler;\r\n",
+    "import org.elasticsearch.transport.TransportService;\r\n",
+    "import java.io.IOException;\r\n",
+    "import java.util.ArrayList;\r\n",
+    "import java.util.HashMap;\r\n",
+    "import java.util.Iterator;\r\n",
+    "import java.util.List;\r\n",
+    "import java.util.Map;\r\n",
+    "import static java.util.Collections.emptyMap;\r\n",
+    "import static org.elasticsearch.core.Strings.format;\r\n"
+  ],
+  "fields": [
+    {
+      "name": "logger",
+      "line": 72,
+      "type": "Logger"
+    },
+    {
+      "name": "clusterService",
+      "line": 74,
+      "type": "ClusterService"
+    },
+    {
+      "name": "indicesService",
+      "line": 76,
+      "type": "IndicesService"
+    },
+    {
+      "name": "repositoriesService",
+      "line": 78,
+      "type": "RepositoriesService"
+    },
+    {
+      "name": "transportService",
+      "line": 80,
+      "type": "TransportService"
+    },
+    {
+      "name": "threadPool",
+      "line": 86,
+      "type": "ThreadPool"
+    },
+    {
+      "name": "shardSnapshots",
+      "line": 88,
+      "type": "Map<Snapshot,Map<ShardId,IndexShardSnapshotStatus>>"
+    },
+    {
+      "name": "remoteFailedRequestDeduplicator",
+      "line": 91,
+      "type": "ResultDeduplicator<UpdateIndexShardSnapshotStatusRequest,Void>"
+    },
+    {
+      "name": "notifyOnAbortTaskRunner",
+      "line": 94,
+      "type": "ThrottledTaskRunner"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "newStage",
+      "line": 360,
+      "type": "Stage"
+    },
+    {
+      "name": "failure",
+      "line": 360,
+      "type": "String"
+    },
+    {
+      "name": "endTime",
+      "line": 360,
+      "type": "long"
+    },
+    {
+      "name": "snapshotStatus",
+      "line": 360,
+      "type": "IndexShardSnapshotStatus"
+    }
+  ],
+  "locals": [],
+  "method_source": "private void moveToUnsuccessful(Stage newStage, String failure, long endTime, IndexShardSnapshotStatus snapshotStatus) {\r\n    assert newStage == Stage.PAUSED || newStage == Stage.FAILURE : newStage;\r\n    if (newStage == Stage.PAUSED && snapshotStatus.getStage().compareAndSet(Stage.PAUSING, Stage.PAUSED)) {\r\n        snapshotStatus.setTotalTime(Math.max(0L, endTime - snapshotStatus.getStartTime()));\r\n        snapshotStatus.setFailure(failure);\r\n    }\r\n    snapshotStatus.moveToFailed(getThreadPool().absoluteTimeInMillis(), failure);\r\n}",
+  "method_line": 360,
+  "actual_return_type": "void",
+  "method_name": "moveToUnsuccessful",
+  "rule4_selection": "unique name",
+  "frozen_parameter_types": [
+    "Stage",
+    "String",
+    "long"
+  ],
+  "member_accesses": [
+    {
+      "member": "compareAndSet",
+      "kind": "call",
+      "scope": "snapshotStatus.getStage()",
+      "line": 362
+    },
+    {
+      "member": "getStage",
+      "kind": "call",
+      "scope": "snapshotStatus",
+      "line": 362
+    },
+    {
+      "member": "setTotalTime",
+      "kind": "call",
+      "scope": "snapshotStatus",
+      "line": 363
+    },
+    {
+      "member": "max",
+      "kind": "call",
+      "scope": "Math",
+      "line": 363
+    },
+    {
+      "member": "getStartTime",
+      "kind": "call",
+      "scope": "snapshotStatus",
+      "line": 363
+    },
+    {
+      "member": "setFailure",
+      "kind": "call",
+      "scope": "snapshotStatus",
+      "line": 364
+    },
+    {
+      "member": "moveToFailed",
+      "kind": "call",
+      "scope": "snapshotStatus",
+      "line": 366
+    },
+    {
+      "member": "absoluteTimeInMillis",
+      "kind": "call",
+      "scope": "getThreadPool()",
+      "line": 366
+    },
+    {
+      "member": "PAUSED",
+      "kind": "field",
+      "scope": "Stage",
+      "line": 361
+    },
+    {
+      "member": "FAILURE",
+      "kind": "field",
+      "scope": "Stage",
+      "line": 361
+    },
+    {
+      "member": "PAUSED",
+      "kind": "field",
+      "scope": "Stage",
+      "line": 362
+    },
+    {
+      "member": "PAUSING",
+      "kind": "field",
+      "scope": "Stage",
+      "line": 362
+    },
+    {
+      "member": "PAUSED",
+      "kind": "field",
+      "scope": "Stage",
+      "line": 362
+    }
+  ]
+}

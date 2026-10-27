@@ -1,0 +1,19 @@
+{
+  "prepared_at_utc": "2026-10-27T13:56:12.075841+00:00",
+  "case_id": 93,
+  "repository": "https://github.com/elastic/elasticsearch.git",
+  "commit": "928fa5f2bc4968785389740ffb5ab4988fafe33e",
+  "host_file": "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/planner/LocalExecutionPlanner.java",
+  "host_class": "org.elasticsearch.xpack.esql.planner.LocalExecutionPlanner",
+  "method_signature_from_frozen_sample": "public countSource(context LocalExecutionPlannerContext, queryBuilder QueryBuilder, limit Expression) : LuceneCountOperator.Factory",
+  "host_sha256": "2611ba17dab0adefe12e0cfa31b1339b4fb7186a86989fbc79602e66074d70f8",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "fbe97552a95b92e0c747bce5b4448d134e54b27dfae89f5e9818d253ccc288c0",
+  "request_sha256": "c9d2105306b2acad0f2552855d2f63e63274eaa8d608ac39b110e36d024bd8f1",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "model": "gpt-6-luna",
+  "reasoning_effort": "none",
+  "migration_source": "outputs\\event_a\\requests\\case_0093\\request.json",
+  "original_model": "gpt-4o-2024-05-13"
+}

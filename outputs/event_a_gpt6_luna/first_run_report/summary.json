@@ -1,0 +1,122 @@
+{
+  "primary": {
+    "units": 6,
+    "groups": [
+      [
+        66
+      ],
+      [
+        93
+      ],
+      [
+        94
+      ],
+      [
+        278
+      ],
+      [
+        279
+      ],
+      [
+        363
+      ]
+    ],
+    "llm_hits_descriptive_empty_is_miss": 3.0,
+    "llm_rate_descriptive": 0.5,
+    "static_hits": 1.0,
+    "static_rate": 0.16666666666666666,
+    "agreement_descriptive": 1.0,
+    "agreement_rate_descriptive": 0.16666666666666666,
+    "H1_H2_weighted_count": 2.0,
+    "H1_H2_rate": 0.3333333333333333,
+    "challenges_a_using_registered_rate_threshold": true,
+    "frozen_hybrid_metric_defined": false,
+    "frozen_hybrid_known_hits": 3.0,
+    "frozen_hybrid_unresolved_weight": 1.0,
+    "hybrid_rate_bounds": [
+      0.5,
+      0.6666666666666666
+    ],
+    "posthoc_empty_as_no_output_hybrid_hits": 3.0,
+    "posthoc_empty_use_static_hybrid_hits": 3.0,
+    "no_recommendation_ids": [
+      363
+    ]
+  },
+  "primary_commit_clusters": {
+    "units": 5,
+    "groups": [
+      [
+        66
+      ],
+      [
+        93
+      ],
+      [
+        94
+      ],
+      [
+        278,
+        279
+      ],
+      [
+        363
+      ]
+    ],
+    "llm_hits_descriptive_empty_is_miss": 3.0,
+    "llm_rate_descriptive": 0.6,
+    "static_hits": 1.0,
+    "static_rate": 0.2,
+    "agreement_descriptive": 1.0,
+    "agreement_rate_descriptive": 0.2,
+    "H1_H2_weighted_count": 1.0,
+    "H1_H2_rate": 0.2,
+    "challenges_a_using_registered_rate_threshold": false,
+    "frozen_hybrid_metric_defined": false,
+    "frozen_hybrid_known_hits": 3.0,
+    "frozen_hybrid_unresolved_weight": 1.0,
+    "hybrid_rate_bounds": [
+      0.6,
+      0.8
+    ],
+    "posthoc_empty_as_no_output_hybrid_hits": 3.0,
+    "posthoc_empty_use_static_hybrid_hits": 3.0,
+    "no_recommendation_ids": [
+      363
+    ]
+  },
+  "supplement_368_separate": {
+    "units": 1,
+    "groups": [
+      [
+        368
+      ]
+    ],
+    "llm_hits_descriptive_empty_is_miss": 1.0,
+    "llm_rate_descriptive": 1.0,
+    "static_hits": 0.0,
+    "static_rate": 0.0,
+    "agreement_descriptive": 0.0,
+    "agreement_rate_descriptive": 0.0,
+    "H1_H2_weighted_count": 0.0,
+    "H1_H2_rate": 0.0,
+    "challenges_a_using_registered_rate_threshold": false,
+    "frozen_hybrid_metric_defined": true,
+    "frozen_hybrid_known_hits": 1.0,
+    "frozen_hybrid_unresolved_weight": 0.0,
+    "hybrid_rate_bounds": [
+      1.0,
+      1.0
+    ],
+    "posthoc_empty_as_no_output_hybrid_hits": 1.0,
+    "posthoc_empty_use_static_hybrid_hits": 1.0,
+    "no_recommendation_ids": []
+  },
+  "primary_H1": 0,
+  "primary_H2": 2,
+  "first_run_status": "Six HTTP-200 responses; frozen parser stops on 363 empty list. Hybrid empty-output policy unspecified.",
+  "challenges_a_robust_to_pair": false,
+  "model_confounded_with_project_change": true,
+  "no_new_llm_calls": true,
+  "no_case_replacement": true
+}

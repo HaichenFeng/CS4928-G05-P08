@@ -1,0 +1,19 @@
+{
+  "target": "org.elasticsearch.xpack.esql.planner.EsPhysicalOperationProviders",
+  "commit": "928fa5f2bc4968785389740ffb5ab4988fafe33e",
+  "resolved": "org.elasticsearch.xpack.esql.planner.EsPhysicalOperationProviders",
+  "exists": true,
+  "sources": [
+    {
+      "path": "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/planner/EsPhysicalOperationProviders.java",
+      "saved_name": "source_000.java",
+      "sha256": "ffc78f9ddf2a263efb5b305df0c17d091d33fdfcf29aa2320130f80d9a736197",
+      "declared_types": [
+        "org.elasticsearch.xpack.esql.planner.EsPhysicalOperationProviders"
+      ]
+    }
+  ],
+  "checked_paths": [
+    "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/planner/EsPhysicalOperationProviders.java"
+  ]
+}

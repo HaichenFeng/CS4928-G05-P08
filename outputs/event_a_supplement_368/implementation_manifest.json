@@ -1,0 +1,12 @@
+{
+  "docs/event_a_supplement_368.md": "ad3eb0ca62c2a8dce4c3647a92248a59973cdd0b30d0996ef4577ded832418a9",
+  "docs/event_a_preregistration.md": "6d89c94842c18588e1777af9ce1aff6d6052f25d12f9a9175016eb216f6969d4",
+  "docs/event_a_model_change.md": "b0007958b28f0dd9d6b7cc2060935e4f540710e07a6f4585227a806f6f66f751",
+  "docs/prompt_adapted.txt": "fbe97552a95b92e0c747bce5b4448d134e54b27dfae89f5e9818d253ccc288c0",
+  "docs/coding_manual.md": "7ee6908f8982490ed20c8e27c72b76dd85c95d1e76295be5689f7d77d70b82ce",
+  "data/event_a_supplement_368.csv": "9fac4d508e4127b3c00306b9b88914ae3880eb3b826bbc31d32a41148799aec0",
+  "scripts/prepare_event_a_368.py": "143ca43a2cc926669dd3cd02b7fdb6d4c4bd65f688ed95938b28d6508d3cd9a5",
+  "scripts/run_event_a_368.py": "f0137a5250af35590206a984ea1a2dbd68b2a3a41a2f23e2e603d21aa4aa9bd0",
+  "scripts/event_a_rules.py": "4bc2c83d584cf1cb29d716a3b251fe5c26af026d6c104e7712376bf30a2c6d44",
+  "scripts/InspectEventACase.java": "6e31697c6ff8b5196a7ea10ebd860f3d2bacae6368c2e9bd9925ed7afdf0a610"
+}

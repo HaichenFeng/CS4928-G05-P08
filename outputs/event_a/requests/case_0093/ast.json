@@ -1,0 +1,241 @@
+{
+  "host": "org.elasticsearch.xpack.esql.planner.LocalExecutionPlanner",
+  "package": "org.elasticsearch.xpack.esql.planner",
+  "imports": [
+    "import org.apache.lucene.search.Query;\r\n",
+    "import org.elasticsearch.common.settings.Settings;\r\n",
+    "import org.elasticsearch.common.util.BigArrays;\r\n",
+    "import org.elasticsearch.common.util.iterable.Iterables;\r\n",
+    "import org.elasticsearch.compute.Describable;\r\n",
+    "import org.elasticsearch.compute.data.Block;\r\n",
+    "import org.elasticsearch.compute.data.BlockFactory;\r\n",
+    "import org.elasticsearch.compute.data.ElementType;\r\n",
+    "import org.elasticsearch.compute.data.LocalCircuitBreaker;\r\n",
+    "import org.elasticsearch.compute.data.Page;\r\n",
+    "import org.elasticsearch.compute.lucene.LuceneCountOperator;\r\n",
+    "import org.elasticsearch.compute.lucene.LuceneOperator;\r\n",
+    "import org.elasticsearch.compute.operator.ColumnExtractOperator;\r\n",
+    "import org.elasticsearch.compute.operator.Driver;\r\n",
+    "import org.elasticsearch.compute.operator.DriverContext;\r\n",
+    "import org.elasticsearch.compute.operator.EvalOperator.EvalOperatorFactory;\r\n",
+    "import org.elasticsearch.compute.operator.EvalOperator.ExpressionEvaluator;\r\n",
+    "import org.elasticsearch.compute.operator.FilterOperator.FilterOperatorFactory;\r\n",
+    "import org.elasticsearch.compute.operator.LocalSourceOperator;\r\n",
+    "import org.elasticsearch.compute.operator.LocalSourceOperator.LocalSourceFactory;\r\n",
+    "import org.elasticsearch.compute.operator.MvExpandOperator;\r\n",
+    "import org.elasticsearch.compute.operator.Operator;\r\n",
+    "import org.elasticsearch.compute.operator.Operator.OperatorFactory;\r\n",
+    "import org.elasticsearch.compute.operator.OutputOperator.OutputOperatorFactory;\r\n",
+    "import org.elasticsearch.compute.operator.RowOperator.RowOperatorFactory;\r\n",
+    "import org.elasticsearch.compute.operator.ShowOperator;\r\n",
+    "import org.elasticsearch.compute.operator.SinkOperator;\r\n",
+    "import org.elasticsearch.compute.operator.SinkOperator.SinkOperatorFactory;\r\n",
+    "import org.elasticsearch.compute.operator.SourceOperator;\r\n",
+    "import org.elasticsearch.compute.operator.SourceOperator.SourceOperatorFactory;\r\n",
+    "import org.elasticsearch.compute.operator.StringExtractOperator;\r\n",
+    "import org.elasticsearch.compute.operator.exchange.ExchangeSinkHandler;\r\n",
+    "import org.elasticsearch.compute.operator.exchange.ExchangeSinkOperator.ExchangeSinkOperatorFactory;\r\n",
+    "import org.elasticsearch.compute.operator.exchange.ExchangeSourceHandler;\r\n",
+    "import org.elasticsearch.compute.operator.exchange.ExchangeSourceOperator.ExchangeSourceOperatorFactory;\r\n",
+    "import org.elasticsearch.compute.operator.topn.TopNEncoder;\r\n",
+    "import org.elasticsearch.compute.operator.topn.TopNOperator;\r\n",
+    "import org.elasticsearch.compute.operator.topn.TopNOperator.TopNOperatorFactory;\r\n",
+    "import org.elasticsearch.core.Releasables;\r\n",
+    "import org.elasticsearch.core.TimeValue;\r\n",
+    "import org.elasticsearch.logging.LogManager;\r\n",
+    "import org.elasticsearch.logging.Logger;\r\n",
+    "import org.elasticsearch.search.internal.SearchContext;\r\n",
+    "import org.elasticsearch.tasks.CancellableTask;\r\n",
+    "import org.elasticsearch.xpack.esql.EsqlIllegalArgumentException;\r\n",
+    "import org.elasticsearch.xpack.esql.enrich.EnrichLookupOperator;\r\n",
+    "import org.elasticsearch.xpack.esql.enrich.EnrichLookupService;\r\n",
+    "import org.elasticsearch.xpack.esql.evaluator.EvalMapper;\r\n",
+    "import org.elasticsearch.xpack.esql.evaluator.command.GrokEvaluatorExtracter;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.AggregateExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.DissectExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.EnrichExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.EsQueryExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.EsStatsQueryExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.EvalExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.ExchangeExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.ExchangeSinkExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.ExchangeSourceExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.FieldExtractExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.FilterExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.GrokExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.LimitExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.LocalSourceExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.MvExpandExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.OutputExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.PhysicalPlan;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.ProjectExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.RowExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.ShowExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.TopNExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plugin.QueryPragmas;\r\n",
+    "import org.elasticsearch.xpack.esql.session.EsqlConfiguration;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.Alias;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.Attribute;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.Expression;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.Expressions;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.Literal;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.NameId;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.NamedExpression;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.Order;\r\n",
+    "import org.elasticsearch.xpack.ql.util.Holder;\r\n",
+    "import java.util.ArrayList;\r\n",
+    "import java.util.HashMap;\r\n",
+    "import java.util.HashSet;\r\n",
+    "import java.util.List;\r\n",
+    "import java.util.Map;\r\n",
+    "import java.util.Objects;\r\n",
+    "import java.util.Optional;\r\n",
+    "import java.util.Set;\r\n",
+    "import java.util.function.Function;\r\n",
+    "import java.util.stream.Stream;\r\n",
+    "import static java.util.Arrays.asList;\r\n",
+    "import static java.util.stream.Collectors.joining;\r\n",
+    "import static org.elasticsearch.compute.lucene.LuceneOperator.NO_LIMIT;\r\n",
+    "import static org.elasticsearch.compute.operator.LimitOperator.Factory;\r\n",
+    "import static org.elasticsearch.compute.operator.ProjectOperator.ProjectOperatorFactory;\r\n"
+  ],
+  "fields": [
+    {
+      "line": 114,
+      "name": "logger",
+      "type": "Logger"
+    },
+    {
+      "line": 116,
+      "name": "sessionId",
+      "type": "String"
+    },
+    {
+      "line": 117,
+      "name": "parentTask",
+      "type": "CancellableTask"
+    },
+    {
+      "line": 118,
+      "name": "bigArrays",
+      "type": "BigArrays"
+    },
+    {
+      "line": 119,
+      "name": "blockFactory",
+      "type": "BlockFactory"
+    },
+    {
+      "line": 120,
+      "name": "settings",
+      "type": "Settings"
+    },
+    {
+      "line": 121,
+      "name": "configuration",
+      "type": "EsqlConfiguration"
+    },
+    {
+      "line": 122,
+      "name": "exchangeSourceHandler",
+      "type": "ExchangeSourceHandler"
+    },
+    {
+      "line": 123,
+      "name": "exchangeSinkHandler",
+      "type": "ExchangeSinkHandler"
+    },
+    {
+      "line": 124,
+      "name": "enrichLookupService",
+      "type": "EnrichLookupService"
+    },
+    {
+      "line": 125,
+      "name": "physicalOperationProviders",
+      "type": "PhysicalOperationProviders"
+    }
+  ],
+  "parameters": [
+    {
+      "line": 268,
+      "name": "context",
+      "type": "LocalExecutionPlannerContext"
+    },
+    {
+      "line": 268,
+      "name": "limitExp",
+      "type": "Expression"
+    },
+    {
+      "line": 268,
+      "name": "esProvider",
+      "type": "EsPhysicalOperationProviders"
+    },
+    {
+      "line": 268,
+      "name": "querySupplier",
+      "type": "Function<SearchContext,Query>"
+    }
+  ],
+  "locals": [
+    {
+      "line": 269,
+      "name": "limit",
+      "type": "int"
+    },
+    {
+      "line": 270,
+      "name": "luceneFactory",
+      "type": "LuceneOperator.Factory"
+    }
+  ],
+  "method_source": "private LuceneOperator.Factory countSource(LocalExecutionPlannerContext context, Expression limitExp, EsPhysicalOperationProviders esProvider, Function<SearchContext, Query> querySupplier) {\r\n    int limit = limitExp != null ? (Integer) limitExp.fold() : NO_LIMIT;\r\n    final LuceneOperator.Factory luceneFactory = new LuceneCountOperator.Factory(esProvider.searchContexts(), querySupplier, context.queryPragmas().dataPartitioning(), context.queryPragmas().taskConcurrency(), limit);\r\n    return luceneFactory;\r\n}",
+  "method_line": 268,
+  "actual_return_type": "LuceneOperator.Factory",
+  "method_name": "countSource",
+  "rule4_selection": "unique name",
+  "frozen_parameter_types": [
+    "LocalExecutionPlannerContext",
+    "QueryBuilder",
+    "Expression"
+  ],
+  "member_accesses": [
+    {
+      "line": 269,
+      "scope": "limitExp",
+      "kind": "call",
+      "member": "fold"
+    },
+    {
+      "line": 271,
+      "scope": "esProvider",
+      "kind": "call",
+      "member": "searchContexts"
+    },
+    {
+      "line": 273,
+      "scope": "context.queryPragmas()",
+      "kind": "call",
+      "member": "dataPartitioning"
+    },
+    {
+      "line": 273,
+      "scope": "context",
+      "kind": "call",
+      "member": "queryPragmas"
+    },
+    {
+      "line": 274,
+      "scope": "context.queryPragmas()",
+      "kind": "call",
+      "member": "taskConcurrency"
+    },
+    {
+      "line": 274,
+      "scope": "context",
+      "kind": "call",
+      "member": "queryPragmas"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "host": "org.elasticsearch.compute.data.BooleanVectorBlock",
+  "package": "org.elasticsearch.compute.data",
+  "imports": [
+    "import org.elasticsearch.common.unit.ByteSizeValue;\r\n",
+    "import org.elasticsearch.core.ReleasableIterator;\r\n",
+    "import org.elasticsearch.core.Releasables;\r\n"
+  ],
+  "fields": [
+    {
+      "type": "BooleanVector",
+      "name": "vector",
+      "line": 20
+    }
+  ],
+  "parameters": [
+    {
+      "type": "IntBlock",
+      "name": "positions",
+      "line": 55
+    },
+    {
+      "type": "ByteSizeValue",
+      "name": "targetBlockSize",
+      "line": 55
+    }
+  ],
+  "locals": [],
+  "method_source": "@Override\r\npublic ReleasableIterator<BooleanBlock> lookup(IntBlock positions, ByteSizeValue targetBlockSize) {\r\n    // TODO optimizations\r\n    return getBooleanLookup(positions, targetBlockSize);\r\n}",
+  "method_line": 54,
+  "actual_return_type": "ReleasableIterator<BooleanBlock>",
+  "method_name": "lookup",
+  "rule4_selection": "unique name",
+  "frozen_parameter_types": [
+    "IntBlock",
+    "ByteSizeValue"
+  ],
+  "member_accesses": []
+}

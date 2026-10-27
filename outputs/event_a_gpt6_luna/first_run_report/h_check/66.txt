@@ -1,0 +1,5 @@
+Frozen commit: 1aec232406423149488c458c766593aac8284642
+LLM target: org.elasticsearch.index.snapshots.IndexShardSnapshotStatus
+Resolved: org.elasticsearch.index.snapshots.IndexShardSnapshotStatus
+Exists: True
+$ C:\Program Files\Git\cmd\git.EXE --git-dir=F:\CS4928-G05-P08\repos\elasticsearch show 1aec232406423149488c458c766593aac8284642:server/src/main/java/org/elasticsearch/index/snapshots/IndexShardSnapshotStatus.java

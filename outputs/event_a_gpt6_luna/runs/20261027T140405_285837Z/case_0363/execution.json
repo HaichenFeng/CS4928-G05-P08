@@ -1,0 +1,11 @@
+{
+  "case_id": 363,
+  "started_utc": "2026-10-27T14:07:25.486456+00:00",
+  "request_sha256": "e968b6d693c47008f33b1c762e68e4d3016d12c5e36f70f2206a3be71b5bb60d",
+  "http_status": 200,
+  "request_id": "req_d43a1b067c7c44ca9aaeb72870119a5c",
+  "status": "BLOCKED",
+  "error": "ValueError: Expected nonempty JSON list with target_class",
+  "finished_utc": "2026-10-27T14:07:26.614652+00:00",
+  "elapsed_seconds": 1.128
+}

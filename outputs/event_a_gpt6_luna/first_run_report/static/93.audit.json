@@ -1,0 +1,234 @@
+{
+  "case_id": 93,
+  "host": "org.elasticsearch.xpack.esql.planner.LocalExecutionPlanner",
+  "actual_method_source": "private LuceneOperator.Factory countSource(LocalExecutionPlannerContext context, Expression limitExp, EsPhysicalOperationProviders esProvider, Function<SearchContext, Query> querySupplier) {\r\n    int limit = limitExp != null ? (Integer) limitExp.fold() : NO_LIMIT;\r\n    final LuceneOperator.Factory luceneFactory = new LuceneCountOperator.Factory(esProvider.searchContexts(), querySupplier, context.queryPragmas().dataPartitioning(), context.queryPragmas().taskConcurrency(), limit);\r\n    return luceneFactory;\r\n}",
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.planner.LocalExecutionPlannerContext",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "line": 268,
+          "name": "context",
+          "type": "LocalExecutionPlannerContext"
+        }
+      ],
+      "occurrences": [
+        {
+          "line": 273,
+          "scope": "context",
+          "kind": "call",
+          "member": "queryPragmas"
+        },
+        {
+          "line": 274,
+          "scope": "context",
+          "kind": "call",
+          "member": "queryPragmas"
+        }
+      ],
+      "score": 2
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.planner.EsPhysicalOperationProviders",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "line": 268,
+          "name": "esProvider",
+          "type": "EsPhysicalOperationProviders"
+        }
+      ],
+      "occurrences": [
+        {
+          "line": 271,
+          "scope": "esProvider",
+          "kind": "call",
+          "member": "searchContexts"
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.ql.expression.Expression",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "line": 268,
+          "name": "limitExp",
+          "type": "Expression"
+        }
+      ],
+      "occurrences": [
+        {
+          "line": 269,
+          "scope": "limitExp",
+          "kind": "call",
+          "member": "fold"
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.common.settings.Settings",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "line": 120,
+          "name": "settings",
+          "type": "Settings"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.common.util.BigArrays",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "line": 118,
+          "name": "bigArrays",
+          "type": "BigArrays"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.compute.data.BlockFactory",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "line": 119,
+          "name": "blockFactory",
+          "type": "BlockFactory"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.compute.operator.exchange.ExchangeSinkHandler",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "line": 123,
+          "name": "exchangeSinkHandler",
+          "type": "ExchangeSinkHandler"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.compute.operator.exchange.ExchangeSourceHandler",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "line": 122,
+          "name": "exchangeSourceHandler",
+          "type": "ExchangeSourceHandler"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.logging.Logger",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "line": 114,
+          "name": "logger",
+          "type": "Logger"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.tasks.CancellableTask",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "line": 117,
+          "name": "parentTask",
+          "type": "CancellableTask"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.enrich.EnrichLookupService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "line": 124,
+          "name": "enrichLookupService",
+          "type": "EnrichLookupService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.planner.PhysicalOperationProviders",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "line": 125,
+          "name": "physicalOperationProviders",
+          "type": "PhysicalOperationProviders"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.session.EsqlConfiguration",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "line": 121,
+          "name": "configuration",
+          "type": "EsqlConfiguration"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "variables": {
+    "logger": "org.elasticsearch.logging.Logger",
+    "parentTask": "org.elasticsearch.tasks.CancellableTask",
+    "bigArrays": "org.elasticsearch.common.util.BigArrays",
+    "blockFactory": "org.elasticsearch.compute.data.BlockFactory",
+    "settings": "org.elasticsearch.common.settings.Settings",
+    "configuration": "org.elasticsearch.xpack.esql.session.EsqlConfiguration",
+    "exchangeSourceHandler": "org.elasticsearch.compute.operator.exchange.ExchangeSourceHandler",
+    "exchangeSinkHandler": "org.elasticsearch.compute.operator.exchange.ExchangeSinkHandler",
+    "enrichLookupService": "org.elasticsearch.xpack.esql.enrich.EnrichLookupService",
+    "physicalOperationProviders": "org.elasticsearch.xpack.esql.planner.PhysicalOperationProviders",
+    "context": "org.elasticsearch.xpack.esql.planner.LocalExecutionPlannerContext",
+    "limitExp": "org.elasticsearch.xpack.ql.expression.Expression",
+    "esProvider": "org.elasticsearch.xpack.esql.planner.EsPhysicalOperationProviders",
+    "querySupplier": "java.util.function.Function",
+    "luceneFactory": "org.elasticsearch.xpack.esql.planner.LuceneOperator.Factory"
+  },
+  "rule": "Unchanged M2 static ranking"
+}

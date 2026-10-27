@@ -1,0 +1,22 @@
+{
+  "top1": "org.elasticsearch.index.snapshots.IndexShardSnapshotStatus",
+  "rationale": "The method updates the stage, total time, and failure on an IndexShardSnapshotStatus instance. Move it there so the status-transition logic operates directly on the object whose state it changes; pass endTime through to moveToFailed rather than fetching the thread-pool time internally.",
+  "returned_model": "gpt-6-luna",
+  "usage": {
+    "prompt_tokens": 5887,
+    "completion_tokens": 86,
+    "total_tokens": 5973,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 5884,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EdcLoy98z98HlncN80TEdWFxlQXlS",
+  "object": "chat.completion",
+  "created": 1793110920,
+  "model": "gpt-6-luna",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[\n  {\n    \"target_class\": \"org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver\",\n    \"rationale\": \"Policy resolution is the responsibility of EnrichPolicyResolver, which already performs the per-policy resolvePolicy operation. Moving the orchestration method there would keep enrich-policy lookup and resolution together instead of in EsqlSession.\"\n  }\n]",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3656,
+    "completion_tokens": 76,
+    "total_tokens": 3732,
+    "prompt_tokens_details": {
+      "cached_tokens": 3653,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

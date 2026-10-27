@@ -1,0 +1,16 @@
+[
+  {
+    "case_id": 368,
+    "frozen_signature": "public inputExpressions() : List<Expression>",
+    "actual_method_declaration": "private List<Expression> inputExpressions(Expression field, AggregateFunction aggregateFunction)",
+    "frozen_parameter_types": [],
+    "actual_parameter_types": [
+      "Expression",
+      "AggregateFunction"
+    ],
+    "frozen_return_type": "List<Expression>",
+    "actual_return_type": "List<Expression>",
+    "rule4_selection": "unique name",
+    "signature_sent_unchanged": true
+  }
+]

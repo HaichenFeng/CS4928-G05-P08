@@ -1,0 +1,5 @@
+Frozen commit: e296af65645e6eaef82d41df52289cc487a8f414
+LLM target: org.elasticsearch.compute.data.BooleanLookup
+Resolved: org.elasticsearch.compute.data.BooleanLookup
+Exists: True
+$ C:\Program Files\Git\cmd\git.EXE --git-dir=F:\CS4928-G05-P08\repos\elasticsearch show e296af65645e6eaef82d41df52289cc487a8f414:x-pack/plugin/esql/compute/src/main/generated-src/org/elasticsearch/compute/data/BooleanLookup.java

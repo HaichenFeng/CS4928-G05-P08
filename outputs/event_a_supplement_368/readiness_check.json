@@ -1,0 +1,11 @@
+{
+  "case_id": 368,
+  "role": "POST_PRIMARY_SUPPLEMENT_NOT_REPLACEMENT",
+  "source_and_prompt_verified": true,
+  "response_parser_unchanged": true,
+  "primary_evidence_unchanged": true,
+  "model": "gpt-6-luna",
+  "temperature": 0,
+  "reasoning_effort": "none",
+  "api_calls": 0
+}

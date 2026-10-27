@@ -1,0 +1,17 @@
+{
+  "case_id": 368,
+  "repository": "https://github.com/elastic/elasticsearch.git",
+  "commit": "e6f8548aa9f31bf4392e92f4deb37b363c12eca7",
+  "host_file": "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/planner/AbstractPhysicalOperationProviders.java",
+  "host_class": "org.elasticsearch.xpack.esql.planner.AbstractPhysicalOperationProviders",
+  "method_signature_from_frozen_sample": "public inputExpressions() : List<Expression>",
+  "host_sha256": "f0aa69bd7d6d8b4d8b9198a22f4b6bd0021a9f0948a6a1b92e9097a10795d63f",
+  "request_sha256": "419c50d144f1f3492679cec726c0f81dc05028f531ccba7d0c789b153a2e389a",
+  "template_sha256": "fbe97552a95b92e0c747bce5b4448d134e54b27dfae89f5e9818d253ccc288c0",
+  "model": "gpt-6-luna",
+  "temperature": 0,
+  "reasoning_effort": "none",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "role": "POST_PRIMARY_SUPPLEMENT_NOT_REPLACEMENT"
+}

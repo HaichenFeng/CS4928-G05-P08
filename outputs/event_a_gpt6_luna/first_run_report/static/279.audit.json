@@ -1,0 +1,55 @@
+{
+  "case_id": 279,
+  "host": "org.elasticsearch.compute.data.BytesRefVectorBlock",
+  "actual_method_source": "@Override\r\npublic ReleasableIterator<BytesRefBlock> lookup(IntBlock positions, ByteSizeValue targetBlockSize) {\r\n    // TODO optimizations\r\n    return getBytesRefLookup(positions, targetBlockSize);\r\n}",
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "org.elasticsearch.common.unit.ByteSizeValue",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "name": "targetBlockSize",
+          "type": "ByteSizeValue",
+          "line": 66
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.compute.data.BytesRefVector",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "vector",
+          "type": "BytesRefVector",
+          "line": 21
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.compute.data.IntBlock",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "name": "positions",
+          "type": "IntBlock",
+          "line": 66
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "variables": {
+    "vector": "org.elasticsearch.compute.data.BytesRefVector",
+    "positions": "org.elasticsearch.compute.data.IntBlock",
+    "targetBlockSize": "org.elasticsearch.common.unit.ByteSizeValue"
+  },
+  "rule": "Unchanged M2 static ranking"
+}

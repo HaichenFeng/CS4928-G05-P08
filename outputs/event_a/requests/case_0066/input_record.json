@@ -1,0 +1,15 @@
+{
+  "prepared_at_utc": "2026-10-27T13:36:43.129781+00:00",
+  "case_id": 66,
+  "repository": "https://github.com/elastic/elasticsearch.git",
+  "commit": "1aec232406423149488c458c766593aac8284642",
+  "host_file": "server/src/main/java/org/elasticsearch/snapshots/SnapshotShardsService.java",
+  "host_class": "org.elasticsearch.snapshots.SnapshotShardsService",
+  "method_signature_from_frozen_sample": "public moveToUnsuccessful(newStage Stage, failure String, endTime long) : SnapshotsInProgress.ShardState",
+  "host_sha256": "dd4761ed6143d5c3bab4bb35827d960dad8ffd11dd2adc71486f5b64ffc1fc6a",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "fbe97552a95b92e0c747bce5b4448d134e54b27dfae89f5e9818d253ccc288c0",
+  "request_sha256": "20035f7570ec8e3f759e4087f17fb88aa78895d0733c3b258a9021000c614563",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0
+}

@@ -1,0 +1,62 @@
+{
+  "cases": [
+    {
+      "case_id": 66,
+      "host_lines": 627,
+      "host_bytes": 30058,
+      "request_bytes": 32653,
+      "model": "gpt-4o-2024-05-13",
+      "temperature": 0,
+      "status": "READY_NOT_SENT"
+    },
+    {
+      "case_id": 93,
+      "host_lines": 800,
+      "host_bytes": 36932,
+      "request_bytes": 39791,
+      "model": "gpt-4o-2024-05-13",
+      "temperature": 0,
+      "status": "READY_NOT_SENT"
+    },
+    {
+      "case_id": 94,
+      "host_lines": 358,
+      "host_bytes": 17222,
+      "request_bytes": 19538,
+      "model": "gpt-4o-2024-05-13",
+      "temperature": 0,
+      "status": "READY_NOT_SENT"
+    },
+    {
+      "case_id": 278,
+      "host_lines": 108,
+      "host_bytes": 2856,
+      "request_bytes": 4864,
+      "model": "gpt-4o-2024-05-13",
+      "temperature": 0,
+      "status": "READY_NOT_SENT"
+    },
+    {
+      "case_id": 279,
+      "host_lines": 119,
+      "host_bytes": 3172,
+      "request_bytes": 5191,
+      "model": "gpt-4o-2024-05-13",
+      "temperature": 0,
+      "status": "READY_NOT_SENT"
+    },
+    {
+      "case_id": 363,
+      "host_lines": 1952,
+      "host_bytes": 82023,
+      "request_bytes": 86125,
+      "model": "gpt-4o-2024-05-13",
+      "temperature": 0,
+      "status": "READY_NOT_SENT"
+    }
+  ],
+  "m2_response_parser_unchanged": true,
+  "api_calls": 0,
+  "m2_static_equivalence_cases": 12,
+  "m2_ast_equivalence_cases": 12
+}

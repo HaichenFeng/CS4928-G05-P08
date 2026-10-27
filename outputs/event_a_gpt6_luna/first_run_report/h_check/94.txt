@@ -1,0 +1,5 @@
+Frozen commit: 0c0d11395e67bba589d3dee04684812b9f4835df
+LLM target: org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver
+Resolved: org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver
+Exists: True
+$ C:\Program Files\Git\cmd\git.EXE --git-dir=F:\CS4928-G05-P08\repos\elasticsearch show 0c0d11395e67bba589d3dee04684812b9f4835df:x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/enrich/EnrichPolicyResolver.java

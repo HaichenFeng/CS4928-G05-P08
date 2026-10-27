@@ -1,0 +1,70 @@
+{
+  "case_id": 363,
+  "host": "org.elasticsearch.index.mapper.vectors.DenseVectorFieldMapper.DenseVectorFieldType",
+  "actual_method_source": "private void checkDimensions(int length, Integer dims) {\r\n    if (length != dims) {\r\n        throw new IllegalArgumentException(\"the query vector has a different dimension [\" + length + \"] than the index vectors [\" + dims + \"]\");\r\n    }\r\n}",
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "org.elasticsearch.index.IndexVersion",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "type": "IndexVersion",
+          "name": "indexVersionCreated",
+          "line": 1348
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.index.mapper.vectors.ElementType",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "type": "ElementType",
+          "name": "elementType",
+          "line": 1344
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.index.mapper.vectors.IndexOptions",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "type": "IndexOptions",
+          "name": "indexOptions",
+          "line": 1349
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.index.mapper.vectors.VectorSimilarity",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "type": "VectorSimilarity",
+          "name": "similarity",
+          "line": 1347
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "variables": {
+    "elementType": "org.elasticsearch.index.mapper.vectors.ElementType",
+    "similarity": "org.elasticsearch.index.mapper.vectors.VectorSimilarity",
+    "indexVersionCreated": "org.elasticsearch.index.IndexVersion",
+    "indexOptions": "org.elasticsearch.index.mapper.vectors.IndexOptions"
+  },
+  "rule": "Unchanged M2 static ranking"
+}

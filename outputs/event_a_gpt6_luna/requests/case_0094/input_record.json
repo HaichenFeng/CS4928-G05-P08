@@ -1,0 +1,19 @@
+{
+  "prepared_at_utc": "2026-10-27T13:56:12.080418+00:00",
+  "case_id": 94,
+  "repository": "https://github.com/elastic/elasticsearch.git",
+  "commit": "0c0d11395e67bba589d3dee04684812b9f4835df",
+  "host_file": "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/session/EsqlSession.java",
+  "host_class": "org.elasticsearch.xpack.esql.session.EsqlSession",
+  "method_signature_from_frozen_sample": "public resolvePolicy(policyNames Collection<String>, listener ActionListener<EnrichResolution>) : void",
+  "host_sha256": "4169dc70b5e13dbf3e89ac1320466b18fa2b749ecf7c76c052cfe8ad5a2bfb89",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "fbe97552a95b92e0c747bce5b4448d134e54b27dfae89f5e9818d253ccc288c0",
+  "request_sha256": "a22b5bb35cfafe3a13bd919d4c0fd74d6353e508155a55592d4ce5b9a2f3ae90",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "model": "gpt-6-luna",
+  "reasoning_effort": "none",
+  "migration_source": "outputs\\event_a\\requests\\case_0094\\request.json",
+  "original_model": "gpt-4o-2024-05-13"
+}

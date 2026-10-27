@@ -1,0 +1,205 @@
+{
+  "case_id": 94,
+  "host": "org.elasticsearch.xpack.esql.session.EsqlSession",
+  "actual_method_source": "private void resolvePolicy(ActionListener<Void> groupedListener, Set<String> policyNames, EnrichResolution resolution) {\r\n    try (RefCountingListener refs = new RefCountingListener(groupedListener)) {\r\n        for (String policyName : policyNames) {\r\n            enrichPolicyResolver.resolvePolicy(policyName, refs.acquire(resolution.resolvedPolicies()::add));\r\n        }\r\n    }\r\n}",
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.analysis.EnrichResolution",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "name": "resolution",
+          "type": "EnrichResolution",
+          "line": 177
+        }
+      ],
+      "occurrences": [
+        {
+          "scope": "resolution",
+          "kind": "call",
+          "member": "resolvedPolicies",
+          "line": 180
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "enrichPolicyResolver",
+          "type": "EnrichPolicyResolver",
+          "line": 74
+        }
+      ],
+      "occurrences": [
+        {
+          "scope": "enrichPolicyResolver",
+          "kind": "call",
+          "member": "resolvePolicy",
+          "line": 180
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.action.ActionListener",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "name": "groupedListener",
+          "type": "ActionListener<Void>",
+          "line": 177
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.logging.Logger",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "LOGGER",
+          "type": "Logger",
+          "line": 69
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.analysis.PreAnalyzer",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "preAnalyzer",
+          "type": "PreAnalyzer",
+          "line": 76
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.analysis.Verifier",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "verifier",
+          "type": "Verifier",
+          "line": 77
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizer",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "logicalPlanOptimizer",
+          "type": "LogicalPlanOptimizer",
+          "line": 79
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizer",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "physicalPlanOptimizer",
+          "type": "PhysicalPlanOptimizer",
+          "line": 82
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.planner.Mapper",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "mapper",
+          "type": "Mapper",
+          "line": 81
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.session.EsqlConfiguration",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "configuration",
+          "type": "EsqlConfiguration",
+          "line": 72
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.ql.expression.function.FunctionRegistry",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "functionRegistry",
+          "type": "FunctionRegistry",
+          "line": 78
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.ql.index.IndexResolver",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "indexResolver",
+          "type": "IndexResolver",
+          "line": 73
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "variables": {
+    "LOGGER": "org.elasticsearch.logging.Logger",
+    "configuration": "org.elasticsearch.xpack.esql.session.EsqlConfiguration",
+    "indexResolver": "org.elasticsearch.xpack.ql.index.IndexResolver",
+    "enrichPolicyResolver": "org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver",
+    "preAnalyzer": "org.elasticsearch.xpack.esql.analysis.PreAnalyzer",
+    "verifier": "org.elasticsearch.xpack.esql.analysis.Verifier",
+    "functionRegistry": "org.elasticsearch.xpack.ql.expression.function.FunctionRegistry",
+    "logicalPlanOptimizer": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizer",
+    "mapper": "org.elasticsearch.xpack.esql.planner.Mapper",
+    "physicalPlanOptimizer": "org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizer",
+    "groupedListener": "org.elasticsearch.action.ActionListener",
+    "resolution": "org.elasticsearch.xpack.esql.analysis.EnrichResolution",
+    "refs": "org.elasticsearch.action.support.RefCountingListener"
+  },
+  "rule": "Unchanged M2 static ranking"
+}

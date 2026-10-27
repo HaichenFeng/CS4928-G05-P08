@@ -1,0 +1,175 @@
+{
+  "host": "org.elasticsearch.xpack.esql.session.EsqlSession",
+  "package": "org.elasticsearch.xpack.esql.session",
+  "imports": [
+    "import org.elasticsearch.action.ActionListener;\r\n",
+    "import org.elasticsearch.action.fieldcaps.FieldCapabilities;\r\n",
+    "import org.elasticsearch.action.support.RefCountingListener;\r\n",
+    "import org.elasticsearch.common.regex.Regex;\r\n",
+    "import org.elasticsearch.common.util.concurrent.ConcurrentCollections;\r\n",
+    "import org.elasticsearch.index.query.QueryBuilder;\r\n",
+    "import org.elasticsearch.logging.LogManager;\r\n",
+    "import org.elasticsearch.logging.Logger;\r\n",
+    "import org.elasticsearch.xpack.esql.action.EsqlQueryRequest;\r\n",
+    "import org.elasticsearch.xpack.esql.analysis.Analyzer;\r\n",
+    "import org.elasticsearch.xpack.esql.analysis.AnalyzerContext;\r\n",
+    "import org.elasticsearch.xpack.esql.analysis.EnrichResolution;\r\n",
+    "import org.elasticsearch.xpack.esql.analysis.PreAnalyzer;\r\n",
+    "import org.elasticsearch.xpack.esql.analysis.Verifier;\r\n",
+    "import org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver;\r\n",
+    "import org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizer;\r\n",
+    "import org.elasticsearch.xpack.esql.optimizer.PhysicalOptimizerContext;\r\n",
+    "import org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizer;\r\n",
+    "import org.elasticsearch.xpack.esql.parser.EsqlParser;\r\n",
+    "import org.elasticsearch.xpack.esql.parser.TypedParamValue;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.logical.Enrich;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.logical.Keep;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.logical.RegexExtract;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.EstimatesRowSize;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.FragmentExec;\r\n",
+    "import org.elasticsearch.xpack.esql.plan.physical.PhysicalPlan;\r\n",
+    "import org.elasticsearch.xpack.esql.planner.Mapper;\r\n",
+    "import org.elasticsearch.xpack.ql.analyzer.TableInfo;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.Alias;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.Attribute;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.AttributeSet;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.EmptyAttribute;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.MetadataAttribute;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.UnresolvedStar;\r\n",
+    "import org.elasticsearch.xpack.ql.expression.function.FunctionRegistry;\r\n",
+    "import org.elasticsearch.xpack.ql.index.IndexResolution;\r\n",
+    "import org.elasticsearch.xpack.ql.index.IndexResolver;\r\n",
+    "import org.elasticsearch.xpack.ql.index.MappingException;\r\n",
+    "import org.elasticsearch.xpack.ql.plan.TableIdentifier;\r\n",
+    "import org.elasticsearch.xpack.ql.plan.logical.Aggregate;\r\n",
+    "import org.elasticsearch.xpack.ql.plan.logical.LogicalPlan;\r\n",
+    "import org.elasticsearch.xpack.ql.plan.logical.Project;\r\n",
+    "import org.elasticsearch.xpack.ql.type.InvalidMappedField;\r\n",
+    "import org.elasticsearch.xpack.ql.util.Holder;\r\n",
+    "import java.util.HashSet;\r\n",
+    "import java.util.List;\r\n",
+    "import java.util.Map;\r\n",
+    "import java.util.Set;\r\n",
+    "import java.util.function.BiFunction;\r\n",
+    "import java.util.stream.Collectors;\r\n",
+    "import static org.elasticsearch.index.query.QueryBuilders.boolQuery;\r\n",
+    "import static org.elasticsearch.xpack.ql.index.IndexResolver.UNMAPPED;\r\n",
+    "import static org.elasticsearch.xpack.ql.util.ActionListeners.map;\r\n",
+    "import static org.elasticsearch.xpack.ql.util.StringUtils.WILDCARD;\r\n"
+  ],
+  "fields": [
+    {
+      "name": "LOGGER",
+      "type": "Logger",
+      "line": 69
+    },
+    {
+      "name": "sessionId",
+      "type": "String",
+      "line": 71
+    },
+    {
+      "name": "configuration",
+      "type": "EsqlConfiguration",
+      "line": 72
+    },
+    {
+      "name": "indexResolver",
+      "type": "IndexResolver",
+      "line": 73
+    },
+    {
+      "name": "enrichPolicyResolver",
+      "type": "EnrichPolicyResolver",
+      "line": 74
+    },
+    {
+      "name": "preAnalyzer",
+      "type": "PreAnalyzer",
+      "line": 76
+    },
+    {
+      "name": "verifier",
+      "type": "Verifier",
+      "line": 77
+    },
+    {
+      "name": "functionRegistry",
+      "type": "FunctionRegistry",
+      "line": 78
+    },
+    {
+      "name": "logicalPlanOptimizer",
+      "type": "LogicalPlanOptimizer",
+      "line": 79
+    },
+    {
+      "name": "mapper",
+      "type": "Mapper",
+      "line": 81
+    },
+    {
+      "name": "physicalPlanOptimizer",
+      "type": "PhysicalPlanOptimizer",
+      "line": 82
+    }
+  ],
+  "parameters": [
+    {
+      "name": "groupedListener",
+      "type": "ActionListener<Void>",
+      "line": 177
+    },
+    {
+      "name": "policyNames",
+      "type": "Set<String>",
+      "line": 177
+    },
+    {
+      "name": "resolution",
+      "type": "EnrichResolution",
+      "line": 177
+    }
+  ],
+  "locals": [
+    {
+      "name": "refs",
+      "type": "RefCountingListener",
+      "line": 178
+    },
+    {
+      "name": "policyName",
+      "type": "String",
+      "line": 179
+    }
+  ],
+  "method_source": "private void resolvePolicy(ActionListener<Void> groupedListener, Set<String> policyNames, EnrichResolution resolution) {\r\n    try (RefCountingListener refs = new RefCountingListener(groupedListener)) {\r\n        for (String policyName : policyNames) {\r\n            enrichPolicyResolver.resolvePolicy(policyName, refs.acquire(resolution.resolvedPolicies()::add));\r\n        }\r\n    }\r\n}",
+  "method_line": 177,
+  "actual_return_type": "void",
+  "method_name": "resolvePolicy",
+  "rule4_selection": "unique name",
+  "frozen_parameter_types": [
+    "Collection<String>",
+    "ActionListener<EnrichResolution>"
+  ],
+  "member_accesses": [
+    {
+      "scope": "enrichPolicyResolver",
+      "kind": "call",
+      "member": "resolvePolicy",
+      "line": 180
+    },
+    {
+      "scope": "refs",
+      "kind": "call",
+      "member": "acquire",
+      "line": 180
+    },
+    {
+      "scope": "resolution",
+      "kind": "call",
+      "member": "resolvedPolicies",
+      "line": 180
+    }
+  ]
+}

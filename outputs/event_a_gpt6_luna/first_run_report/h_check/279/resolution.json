@@ -1,0 +1,19 @@
+{
+  "target": "org.elasticsearch.compute.data.BytesRefLookup",
+  "commit": "dde3bba3af25da551460a5f8f96080e5e84717e3",
+  "resolved": "org.elasticsearch.compute.data.BytesRefLookup",
+  "exists": true,
+  "sources": [
+    {
+      "path": "x-pack/plugin/esql/compute/src/main/generated-src/org/elasticsearch/compute/data/BytesRefLookup.java",
+      "saved_name": "source_000.java",
+      "sha256": "14e7680451b9685a8b43cf97a1483fe40836a22ac8f7c158d73dd6d702591346",
+      "declared_types": [
+        "org.elasticsearch.compute.data.BytesRefLookup"
+      ]
+    }
+  ],
+  "checked_paths": [
+    "x-pack/plugin/esql/compute/src/main/generated-src/org/elasticsearch/compute/data/BytesRefLookup.java"
+  ]
+}

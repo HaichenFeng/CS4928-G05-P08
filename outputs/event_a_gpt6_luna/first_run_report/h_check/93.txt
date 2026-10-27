@@ -1,0 +1,5 @@
+Frozen commit: 928fa5f2bc4968785389740ffb5ab4988fafe33e
+LLM target: org.elasticsearch.xpack.esql.planner.EsPhysicalOperationProviders
+Resolved: org.elasticsearch.xpack.esql.planner.EsPhysicalOperationProviders
+Exists: True
+$ C:\Program Files\Git\cmd\git.EXE --git-dir=F:\CS4928-G05-P08\repos\elasticsearch show 928fa5f2bc4968785389740ffb5ab4988fafe33e:x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/planner/EsPhysicalOperationProviders.java

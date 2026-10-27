@@ -1,0 +1,19 @@
+{
+  "prepared_at_utc": "2026-10-27T13:56:12.095405+00:00",
+  "case_id": 363,
+  "repository": "https://github.com/elastic/elasticsearch.git",
+  "commit": "64736f155724aa07422d18aca0b1d06faa829904",
+  "host_file": "server/src/main/java/org/elasticsearch/index/mapper/vectors/DenseVectorFieldMapper.java",
+  "host_class": "org.elasticsearch.index.mapper.vectors.DenseVectorFieldMapper.DenseVectorFieldType",
+  "method_signature_from_frozen_sample": "public checkDimensions(dvDims int, qvDims int) : void",
+  "host_sha256": "518d5ced7e468ee96e5c7011505f66ed72159ea4e38861ea81176c2d9ed4e28a",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "fbe97552a95b92e0c747bce5b4448d134e54b27dfae89f5e9818d253ccc288c0",
+  "request_sha256": "ef2ef9da2801b0e441f2d3b251ba4c0aa2d41394670bff576a62ebf5d10e12b5",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "model": "gpt-6-luna",
+  "reasoning_effort": "none",
+  "migration_source": "outputs\\event_a\\requests\\case_0363\\request.json",
+  "original_model": "gpt-4o-2024-05-13"
+}

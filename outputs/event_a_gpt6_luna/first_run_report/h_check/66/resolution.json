@@ -1,0 +1,22 @@
+{
+  "target": "org.elasticsearch.index.snapshots.IndexShardSnapshotStatus",
+  "commit": "1aec232406423149488c458c766593aac8284642",
+  "resolved": "org.elasticsearch.index.snapshots.IndexShardSnapshotStatus",
+  "exists": true,
+  "sources": [
+    {
+      "path": "server/src/main/java/org/elasticsearch/index/snapshots/IndexShardSnapshotStatus.java",
+      "saved_name": "source_000.java",
+      "sha256": "a3def8175f8eb3b9a9e01b90278bf82cae68531a2ca20b505ed4b0879cacafc3",
+      "declared_types": [
+        "org.elasticsearch.index.snapshots.IndexShardSnapshotStatus",
+        "org.elasticsearch.index.snapshots.IndexShardSnapshotStatus.Stage",
+        "org.elasticsearch.index.snapshots.IndexShardSnapshotStatus.AbortStatus",
+        "org.elasticsearch.index.snapshots.IndexShardSnapshotStatus.Copy"
+      ]
+    }
+  ],
+  "checked_paths": [
+    "server/src/main/java/org/elasticsearch/index/snapshots/IndexShardSnapshotStatus.java"
+  ]
+}

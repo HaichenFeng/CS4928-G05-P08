@@ -1,0 +1,40 @@
+{
+  "host": "org.elasticsearch.compute.data.BytesRefVectorBlock",
+  "package": "org.elasticsearch.compute.data",
+  "imports": [
+    "import org.apache.lucene.util.BytesRef;\r\n",
+    "import org.elasticsearch.common.unit.ByteSizeValue;\r\n",
+    "import org.elasticsearch.core.ReleasableIterator;\r\n",
+    "import org.elasticsearch.core.Releasables;\r\n"
+  ],
+  "fields": [
+    {
+      "name": "vector",
+      "type": "BytesRefVector",
+      "line": 21
+    }
+  ],
+  "parameters": [
+    {
+      "name": "positions",
+      "type": "IntBlock",
+      "line": 66
+    },
+    {
+      "name": "targetBlockSize",
+      "type": "ByteSizeValue",
+      "line": 66
+    }
+  ],
+  "locals": [],
+  "method_source": "@Override\r\npublic ReleasableIterator<BytesRefBlock> lookup(IntBlock positions, ByteSizeValue targetBlockSize) {\r\n    // TODO optimizations\r\n    return getBytesRefLookup(positions, targetBlockSize);\r\n}",
+  "method_line": 65,
+  "actual_return_type": "ReleasableIterator<BytesRefBlock>",
+  "method_name": "lookup",
+  "rule4_selection": "unique name",
+  "frozen_parameter_types": [
+    "IntBlock",
+    "ByteSizeValue"
+  ],
+  "member_accesses": []
+}

@@ -1,0 +1,225 @@
+{
+  "case_id": 66,
+  "host": "org.elasticsearch.snapshots.SnapshotShardsService",
+  "actual_method_source": "private void moveToUnsuccessful(Stage newStage, String failure, long endTime, IndexShardSnapshotStatus snapshotStatus) {\r\n    assert newStage == Stage.PAUSED || newStage == Stage.FAILURE : newStage;\r\n    if (newStage == Stage.PAUSED && snapshotStatus.getStage().compareAndSet(Stage.PAUSING, Stage.PAUSED)) {\r\n        snapshotStatus.setTotalTime(Math.max(0L, endTime - snapshotStatus.getStartTime()));\r\n        snapshotStatus.setFailure(failure);\r\n    }\r\n    snapshotStatus.moveToFailed(getThreadPool().absoluteTimeInMillis(), failure);\r\n}",
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "org.elasticsearch.index.snapshots.IndexShardSnapshotStatus",
+      "source": "field;param",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "shardSnapshots",
+          "line": 88,
+          "type": "Map<Snapshot,Map<ShardId,IndexShardSnapshotStatus>>"
+        },
+        {
+          "origin": "param",
+          "name": "snapshotStatus",
+          "line": 360,
+          "type": "IndexShardSnapshotStatus"
+        }
+      ],
+      "occurrences": [
+        {
+          "member": "getStage",
+          "kind": "call",
+          "scope": "snapshotStatus",
+          "line": 362
+        },
+        {
+          "member": "setTotalTime",
+          "kind": "call",
+          "scope": "snapshotStatus",
+          "line": 363
+        },
+        {
+          "member": "getStartTime",
+          "kind": "call",
+          "scope": "snapshotStatus",
+          "line": 363
+        },
+        {
+          "member": "setFailure",
+          "kind": "call",
+          "scope": "snapshotStatus",
+          "line": 364
+        },
+        {
+          "member": "moveToFailed",
+          "kind": "call",
+          "scope": "snapshotStatus",
+          "line": 366
+        }
+      ],
+      "score": 5
+    },
+    {
+      "candidate_fqn": "org.apache.logging.log4j.Logger",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "logger",
+          "line": 72,
+          "type": "Logger"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.action.ResultDeduplicator",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "remoteFailedRequestDeduplicator",
+          "line": 91,
+          "type": "ResultDeduplicator<UpdateIndexShardSnapshotStatusRequest,Void>"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.cluster.service.ClusterService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "clusterService",
+          "line": 74,
+          "type": "ClusterService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.common.util.concurrent.ThrottledTaskRunner",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "notifyOnAbortTaskRunner",
+          "line": 94,
+          "type": "ThrottledTaskRunner"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.index.shard.ShardId",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "shardSnapshots",
+          "line": 88,
+          "type": "Map<Snapshot,Map<ShardId,IndexShardSnapshotStatus>>"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.index.snapshots.IndexShardSnapshotStatus.Stage",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "name": "newStage",
+          "line": 360,
+          "type": "Stage"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.indices.IndicesService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "indicesService",
+          "line": 76,
+          "type": "IndicesService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.repositories.RepositoriesService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "repositoriesService",
+          "line": 78,
+          "type": "RepositoriesService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.snapshots.Snapshot",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "shardSnapshots",
+          "line": 88,
+          "type": "Map<Snapshot,Map<ShardId,IndexShardSnapshotStatus>>"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.threadpool.ThreadPool",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "threadPool",
+          "line": 86,
+          "type": "ThreadPool"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.transport.TransportService",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "name": "transportService",
+          "line": 80,
+          "type": "TransportService"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "variables": {
+    "logger": "org.apache.logging.log4j.Logger",
+    "clusterService": "org.elasticsearch.cluster.service.ClusterService",
+    "indicesService": "org.elasticsearch.indices.IndicesService",
+    "repositoriesService": "org.elasticsearch.repositories.RepositoriesService",
+    "transportService": "org.elasticsearch.transport.TransportService",
+    "threadPool": "org.elasticsearch.threadpool.ThreadPool",
+    "remoteFailedRequestDeduplicator": "org.elasticsearch.action.ResultDeduplicator",
+    "notifyOnAbortTaskRunner": "org.elasticsearch.common.util.concurrent.ThrottledTaskRunner",
+    "newStage": "org.elasticsearch.index.snapshots.IndexShardSnapshotStatus.Stage",
+    "snapshotStatus": "org.elasticsearch.index.snapshots.IndexShardSnapshotStatus"
+  },
+  "rule": "Unchanged M2 static ranking"
+}

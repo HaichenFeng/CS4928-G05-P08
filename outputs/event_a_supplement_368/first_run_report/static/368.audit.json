@@ -1,0 +1,76 @@
+{
+  "case_id": 368,
+  "host": "org.elasticsearch.xpack.esql.planner.AbstractPhysicalOperationProviders",
+  "actual_method_source": "private List<Expression> inputExpressions(Expression field, AggregateFunction aggregateFunction) {\r\n    List<Expression> inputExpressions = new ArrayList<>();\r\n    inputExpressions.add(field);\r\n    for (Expression param : aggregateFunction.parameters()) {\r\n        if (param.foldable() == false) {\r\n            inputExpressions.add(param);\r\n        } else {\r\n            Object ignored = param.fold();\r\n        }\r\n    }\r\n    return inputExpressions;\r\n}",
+  "ranked_candidates": [
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.core.expression.Expression",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "type": "Expression",
+          "line": 295,
+          "name": "field"
+        }
+      ],
+      "occurrences": [
+        {
+          "member": "foldable",
+          "line": 299,
+          "scope": "param",
+          "kind": "call"
+        },
+        {
+          "member": "fold",
+          "line": 302,
+          "scope": "param",
+          "kind": "call"
+        }
+      ],
+      "score": 2
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.expression.function.aggregate.AggregateFunction",
+      "source": "param",
+      "declarations": [
+        {
+          "origin": "param",
+          "type": "AggregateFunction",
+          "line": 295,
+          "name": "aggregateFunction"
+        }
+      ],
+      "occurrences": [
+        {
+          "member": "parameters",
+          "line": 298,
+          "scope": "aggregateFunction",
+          "kind": "call"
+        }
+      ],
+      "score": 1
+    },
+    {
+      "candidate_fqn": "org.elasticsearch.xpack.esql.planner.AggregateMapper",
+      "source": "field",
+      "declarations": [
+        {
+          "origin": "field",
+          "type": "AggregateMapper",
+          "line": 44,
+          "name": "aggregateMapper"
+        }
+      ],
+      "occurrences": [],
+      "score": 0
+    }
+  ],
+  "variables": {
+    "aggregateMapper": "org.elasticsearch.xpack.esql.planner.AggregateMapper",
+    "field": "org.elasticsearch.xpack.esql.core.expression.Expression",
+    "aggregateFunction": "org.elasticsearch.xpack.esql.expression.function.aggregate.AggregateFunction",
+    "param": "org.elasticsearch.xpack.esql.core.expression.Expression"
+  },
+  "rule": "Unchanged M2 static ranking"
+}

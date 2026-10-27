@@ -1,0 +1,7 @@
+case_id,project,commit,included,reason
+66,elasticsearch,1aec232406423149488c458c766593aac8284642,True,rules1-4 passed
+93,elasticsearch,928fa5f2bc4968785389740ffb5ab4988fafe33e,True,rules1-4 passed
+94,elasticsearch,0c0d11395e67bba589d3dee04684812b9f4835df,True,rules1-4 passed
+278,elasticsearch,e296af65645e6eaef82d41df52289cc487a8f414,True,rules1-4 passed
+279,elasticsearch,dde3bba3af25da551460a5f8f96080e5e84717e3,True,rules1-4 passed
+363,elasticsearch,64736f155724aa07422d18aca0b1d06faa829904,True,rules1-4 passed

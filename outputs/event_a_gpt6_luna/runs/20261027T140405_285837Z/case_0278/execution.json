@@ -1,0 +1,10 @@
+{
+  "case_id": 278,
+  "started_utc": "2026-10-27T14:07:18.609715+00:00",
+  "request_sha256": "df0127e812fedc5acae647753a6cf8b4780e5e94a6c600dab8082d7f5f231ac5",
+  "http_status": 200,
+  "request_id": "req_8601ae89b34c4124b06fb3646be63285",
+  "status": "VALID_RESPONSE",
+  "finished_utc": "2026-10-27T14:07:21.465097+00:00",
+  "elapsed_seconds": 2.855
+}

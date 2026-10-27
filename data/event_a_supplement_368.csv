@@ -1,0 +1,2 @@
+case_id,project,commit,upstream_sha1,host_class,host_file,method,gold_target
+368,elasticsearch,e6f8548aa9f31bf4392e92f4deb37b363c12eca7,5409aa7dcf1de1db3938dc30c942935c4b959149,org.elasticsearch.xpack.esql.planner.AbstractPhysicalOperationProviders,x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/planner/AbstractPhysicalOperationProviders.java,public inputExpressions() : List<Expression>,org.elasticsearch.xpack.esql.expression.function.aggregate.AggregateFunction

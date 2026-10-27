@@ -1,0 +1,15 @@
+{
+  "prepared_at_utc": "2026-10-27T13:36:43.139701+00:00",
+  "case_id": 278,
+  "repository": "https://github.com/elastic/elasticsearch.git",
+  "commit": "e296af65645e6eaef82d41df52289cc487a8f414",
+  "host_file": "x-pack/plugin/esql/compute/src/main/generated-src/org/elasticsearch/compute/data/BooleanVectorBlock.java",
+  "host_class": "org.elasticsearch.compute.data.BooleanVectorBlock",
+  "method_signature_from_frozen_sample": "public lookup(positions IntBlock, targetBlockSize ByteSizeValue) : ReleasableIterator<BooleanBlock>",
+  "host_sha256": "702eabd63913d704838caca754b4d8345c203bf2bbf0347785eb87f34b9ab953",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "fbe97552a95b92e0c747bce5b4448d134e54b27dfae89f5e9818d253ccc288c0",
+  "request_sha256": "9993697186d56f008e873187bebca60e9600dd3dd1efc2e2dedb521e3e5d1240",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0
+}

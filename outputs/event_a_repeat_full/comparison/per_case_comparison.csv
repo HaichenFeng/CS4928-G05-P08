@@ -1,0 +1,7 @@
+case_id,first_top1,repeat_top1,same_target_or_empty_outcome,rationale_text_identical,label,llm_hit_descriptive_empty_is_miss,static_hit,hybrid_hit_frozen,first_parser_status,repeat_parser_status,returned_model
+66,org.elasticsearch.index.snapshots.IndexShardSnapshotStatus,org.elasticsearch.index.snapshots.IndexShardSnapshotStatus,True,False,NONE,1,1,1,VALID_RESPONSE,VALID_RESPONSE,gpt-6-luna
+93,org.elasticsearch.xpack.esql.planner.EsPhysicalOperationProviders,org.elasticsearch.xpack.esql.planner.EsPhysicalOperationProviders,True,False,NONE,1,0,1,VALID_RESPONSE,VALID_RESPONSE,gpt-6-luna
+94,org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver,org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver,True,False,NONE,1,0,1,VALID_RESPONSE,VALID_RESPONSE,gpt-6-luna
+278,org.elasticsearch.compute.data.BooleanLookup,org.elasticsearch.compute.data.BooleanLookup,True,False,H2,0,0,0,VALID_RESPONSE,VALID_RESPONSE,gpt-6-luna
+279,org.elasticsearch.compute.data.BytesRefLookup,org.elasticsearch.compute.data.BytesRefLookup,True,False,H2,0,0,0,VALID_RESPONSE,VALID_RESPONSE,gpt-6-luna
+363,NO_RECOMMENDATION,NO_RECOMMENDATION,True,True,NO_RECOMMENDATION,0,0,,BLOCKED,EMPTY_RECOMMENDATION,gpt-6-luna

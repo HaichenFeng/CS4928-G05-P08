@@ -1,0 +1,19 @@
+{
+  "prepared_at_utc": "2026-10-27T13:56:12.070782+00:00",
+  "case_id": 66,
+  "repository": "https://github.com/elastic/elasticsearch.git",
+  "commit": "1aec232406423149488c458c766593aac8284642",
+  "host_file": "server/src/main/java/org/elasticsearch/snapshots/SnapshotShardsService.java",
+  "host_class": "org.elasticsearch.snapshots.SnapshotShardsService",
+  "method_signature_from_frozen_sample": "public moveToUnsuccessful(newStage Stage, failure String, endTime long) : SnapshotsInProgress.ShardState",
+  "host_sha256": "dd4761ed6143d5c3bab4bb35827d960dad8ffd11dd2adc71486f5b64ffc1fc6a",
+  "template_path": "docs/prompt_adapted.txt",
+  "template_sha256": "fbe97552a95b92e0c747bce5b4448d134e54b27dfae89f5e9818d253ccc288c0",
+  "request_sha256": "23ff93dbc20c1f8ea991e8a964b70cb011357ee027ceb084b488b3f76f1c26b6",
+  "status": "PREPARED_NOT_SENT",
+  "api_calls": 0,
+  "model": "gpt-6-luna",
+  "reasoning_effort": "none",
+  "migration_source": "outputs\\event_a\\requests\\case_0066\\request.json",
+  "original_model": "gpt-4o-2024-05-13"
+}

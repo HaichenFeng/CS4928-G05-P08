@@ -1,0 +1,8 @@
+{
+  "scripts/run_event_a_repeat_full.py": "5b017fd081b00e0c033583a3880f50610da830cd45e94da8ef32073af0e7126b",
+  "docs/event_a_repeat_full.md": "33712f7bbb8a7878028b65559e698c9a1b322c80d3251c61c93bc3cb48cf2227",
+  "docs/event_a_preregistration.md": "6d89c94842c18588e1777af9ce1aff6d6052f25d12f9a9175016eb216f6969d4",
+  "docs/event_a_model_change.md": "b0007958b28f0dd9d6b7cc2060935e4f540710e07a6f4585227a806f6f66f751",
+  "data/event_a_sample_ids.csv": "97363f41eed8bf6ede2cd0cb341dbb2c56a11a44bfc86b0a082acbe74acd3f17",
+  "docs/prompt_adapted.txt": "fbe97552a95b92e0c747bce5b4448d134e54b27dfae89f5e9818d253ccc288c0"
+}

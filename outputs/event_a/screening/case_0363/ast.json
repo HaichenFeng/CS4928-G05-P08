@@ -1,0 +1,138 @@
+{
+  "host": "org.elasticsearch.index.mapper.vectors.DenseVectorFieldMapper.DenseVectorFieldType",
+  "package": "org.elasticsearch.index.mapper.vectors",
+  "imports": [
+    "import org.apache.lucene.codecs.KnnVectorsFormat;\r\n",
+    "import org.apache.lucene.codecs.KnnVectorsReader;\r\n",
+    "import org.apache.lucene.codecs.KnnVectorsWriter;\r\n",
+    "import org.apache.lucene.codecs.lucene99.Lucene99HnswVectorsFormat;\r\n",
+    "import org.apache.lucene.document.BinaryDocValuesField;\r\n",
+    "import org.apache.lucene.document.Field;\r\n",
+    "import org.apache.lucene.document.FieldType;\r\n",
+    "import org.apache.lucene.document.FloatDocValuesField;\r\n",
+    "import org.apache.lucene.document.KnnByteVectorField;\r\n",
+    "import org.apache.lucene.document.KnnFloatVectorField;\r\n",
+    "import org.apache.lucene.index.BinaryDocValues;\r\n",
+    "import org.apache.lucene.index.ByteVectorValues;\r\n",
+    "import org.apache.lucene.index.FilterLeafReader;\r\n",
+    "import org.apache.lucene.index.FloatVectorValues;\r\n",
+    "import org.apache.lucene.index.LeafReader;\r\n",
+    "import org.apache.lucene.index.NumericDocValues;\r\n",
+    "import org.apache.lucene.index.SegmentReadState;\r\n",
+    "import org.apache.lucene.index.SegmentWriteState;\r\n",
+    "import org.apache.lucene.index.VectorEncoding;\r\n",
+    "import org.apache.lucene.index.VectorSimilarityFunction;\r\n",
+    "import org.apache.lucene.search.FieldExistsQuery;\r\n",
+    "import org.apache.lucene.search.Query;\r\n",
+    "import org.apache.lucene.search.join.BitSetProducer;\r\n",
+    "import org.apache.lucene.util.BytesRef;\r\n",
+    "import org.apache.lucene.util.VectorUtil;\r\n",
+    "import org.elasticsearch.common.ParsingException;\r\n",
+    "import org.elasticsearch.common.xcontent.support.XContentMapValues;\r\n",
+    "import org.elasticsearch.features.NodeFeature;\r\n",
+    "import org.elasticsearch.index.IndexVersion;\r\n",
+    "import org.elasticsearch.index.IndexVersions;\r\n",
+    "import org.elasticsearch.index.codec.vectors.ES813FlatVectorFormat;\r\n",
+    "import org.elasticsearch.index.codec.vectors.ES813Int8FlatVectorFormat;\r\n",
+    "import org.elasticsearch.index.codec.vectors.ES814HnswScalarQuantizedVectorsFormat;\r\n",
+    "import org.elasticsearch.index.fielddata.FieldDataContext;\r\n",
+    "import org.elasticsearch.index.fielddata.IndexFieldData;\r\n",
+    "import org.elasticsearch.index.mapper.ArraySourceValueFetcher;\r\n",
+    "import org.elasticsearch.index.mapper.DocumentParserContext;\r\n",
+    "import org.elasticsearch.index.mapper.FieldMapper;\r\n",
+    "import org.elasticsearch.index.mapper.MappedFieldType;\r\n",
+    "import org.elasticsearch.index.mapper.Mapper;\r\n",
+    "import org.elasticsearch.index.mapper.MapperBuilderContext;\r\n",
+    "import org.elasticsearch.index.mapper.MapperParsingException;\r\n",
+    "import org.elasticsearch.index.mapper.MappingParser;\r\n",
+    "import org.elasticsearch.index.mapper.SimpleMappedFieldType;\r\n",
+    "import org.elasticsearch.index.mapper.SourceLoader;\r\n",
+    "import org.elasticsearch.index.mapper.TextSearchInfo;\r\n",
+    "import org.elasticsearch.index.mapper.ValueFetcher;\r\n",
+    "import org.elasticsearch.index.query.SearchExecutionContext;\r\n",
+    "import org.elasticsearch.search.DocValueFormat;\r\n",
+    "import org.elasticsearch.search.aggregations.support.CoreValuesSourceType;\r\n",
+    "import org.elasticsearch.search.vectors.DenseVectorQuery;\r\n",
+    "import org.elasticsearch.search.vectors.ESDiversifyingChildrenByteKnnVectorQuery;\r\n",
+    "import org.elasticsearch.search.vectors.ESDiversifyingChildrenFloatKnnVectorQuery;\r\n",
+    "import org.elasticsearch.search.vectors.ESKnnByteVectorQuery;\r\n",
+    "import org.elasticsearch.search.vectors.ESKnnFloatVectorQuery;\r\n",
+    "import org.elasticsearch.search.vectors.VectorData;\r\n",
+    "import org.elasticsearch.search.vectors.VectorSimilarityQuery;\r\n",
+    "import org.elasticsearch.xcontent.ToXContent;\r\n",
+    "import org.elasticsearch.xcontent.XContentBuilder;\r\n",
+    "import org.elasticsearch.xcontent.XContentParser;\r\n",
+    "import org.elasticsearch.xcontent.XContentParser.Token;\r\n",
+    "import java.io.IOException;\r\n",
+    "import java.nio.ByteBuffer;\r\n",
+    "import java.nio.ByteOrder;\r\n",
+    "import java.time.ZoneId;\r\n",
+    "import java.util.Arrays;\r\n",
+    "import java.util.HexFormat;\r\n",
+    "import java.util.Locale;\r\n",
+    "import java.util.Map;\r\n",
+    "import java.util.Objects;\r\n",
+    "import java.util.Optional;\r\n",
+    "import java.util.function.Function;\r\n",
+    "import java.util.function.Supplier;\r\n",
+    "import java.util.stream.Stream;\r\n",
+    "import static org.elasticsearch.common.Strings.format;\r\n",
+    "import static org.elasticsearch.common.xcontent.XContentParserUtils.ensureExpectedToken;\r\n",
+    "import static org.elasticsearch.index.IndexVersions.DEFAULT_DENSE_VECTOR_TO_INT8_HNSW;\r\n"
+  ],
+  "fields": [
+    {
+      "type": "ElementType",
+      "name": "elementType",
+      "line": 1344
+    },
+    {
+      "type": "Integer",
+      "name": "dims",
+      "line": 1345
+    },
+    {
+      "type": "boolean",
+      "name": "indexed",
+      "line": 1346
+    },
+    {
+      "type": "VectorSimilarity",
+      "name": "similarity",
+      "line": 1347
+    },
+    {
+      "type": "IndexVersion",
+      "name": "indexVersionCreated",
+      "line": 1348
+    },
+    {
+      "type": "IndexOptions",
+      "name": "indexOptions",
+      "line": 1349
+    }
+  ],
+  "parameters": [
+    {
+      "type": "int",
+      "name": "length",
+      "line": 1474
+    },
+    {
+      "type": "Integer",
+      "name": "dims",
+      "line": 1474
+    }
+  ],
+  "locals": [],
+  "method_source": "private void checkDimensions(int length, Integer dims) {\r\n    if (length != dims) {\r\n        throw new IllegalArgumentException(\"the query vector has a different dimension [\" + length + \"] than the index vectors [\" + dims + \"]\");\r\n    }\r\n}",
+  "method_line": 1474,
+  "actual_return_type": "void",
+  "method_name": "checkDimensions",
+  "rule4_selection": "unique name",
+  "frozen_parameter_types": [
+    "int",
+    "int"
+  ],
+  "member_accesses": []
+}

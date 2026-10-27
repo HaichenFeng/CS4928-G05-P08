@@ -1,0 +1,5 @@
+Frozen commit: dde3bba3af25da551460a5f8f96080e5e84717e3
+LLM target: org.elasticsearch.compute.data.BytesRefLookup
+Resolved: org.elasticsearch.compute.data.BytesRefLookup
+Exists: True
+$ C:\Program Files\Git\cmd\git.EXE --git-dir=F:\CS4928-G05-P08\repos\elasticsearch show dde3bba3af25da551460a5f8f96080e5e84717e3:x-pack/plugin/esql/compute/src/main/generated-src/org/elasticsearch/compute/data/BytesRefLookup.java

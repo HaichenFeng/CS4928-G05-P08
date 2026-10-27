@@ -1,0 +1,22 @@
+{
+  "target": "org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver",
+  "commit": "0c0d11395e67bba589d3dee04684812b9f4835df",
+  "resolved": "org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver",
+  "exists": true,
+  "sources": [
+    {
+      "path": "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/enrich/EnrichPolicyResolver.java",
+      "saved_name": "source_000.java",
+      "sha256": "73dbb8433bbc2d215df285340d69cb2284e1210862f75fb032a56ae7ecdec40b",
+      "declared_types": [
+        "org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver",
+        "org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver.ResolveRequest",
+        "org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver.ResolveResponse",
+        "org.elasticsearch.xpack.esql.enrich.EnrichPolicyResolver.RequestHandler"
+      ]
+    }
+  ],
+  "checked_paths": [
+    "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/enrich/EnrichPolicyResolver.java"
+  ]
+}

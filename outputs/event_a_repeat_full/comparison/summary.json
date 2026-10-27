@@ -1,0 +1,37 @@
+{
+  "verified_utc": "2026-10-27T14:25:59.677220+00:00",
+  "first_run": "outputs\\event_a_gpt6_luna\\runs\\20261027T140405_285837Z",
+  "repeat_run": "outputs\\event_a_repeat_full\\runs\\20261027T142152_834187Z",
+  "n": 6,
+  "http_200_count": 6,
+  "complete_responses": 6,
+  "same_target_or_empty_outcome": 6,
+  "identical_entire_response_text": 1,
+  "no_recommendation_ids": [
+    363
+  ],
+  "repeat_llm_hits_descriptive_empty_is_miss": 3,
+  "repeat_static_hits": 1,
+  "H1": 0,
+  "H2": 2,
+  "full_frozen_hybrid_metric_defined": false,
+  "known_hybrid_hits": 3,
+  "hybrid_undefined_ids": [
+    363
+  ],
+  "posthoc_empty_as_no_output_hybrid_hits": 3,
+  "posthoc_empty_use_static_hybrid_hits": 3,
+  "usage": {
+    "prompt_tokens": 34214,
+    "completion_tokens": 396,
+    "total_tokens": 34610
+  },
+  "m2_commit_cluster_units": 11,
+  "m2_commit_cluster_numerators": {
+    "llm_recall1": 9.0,
+    "static_recall1": 7.0,
+    "hybrid_recall1": 9.0,
+    "llm_static_agree": 8.0
+  },
+  "no_api_calls_during_evaluation": true
+}
