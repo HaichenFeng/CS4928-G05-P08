@@ -304,3 +304,104 @@ Implementation interface: scripts/prepare_event_a.py --tracker-recorded --java <
 The first pilot is retained in the six observations. The remaining requests require a pilot review confirming input integrity and transport/parsing only; no rule or input is tuned to pilot correctness. No valid response is rerun. HTTP/transport failures stop the run and are preserved; incomplete/unparseable responses stop for reporting and are not silently replaced. The group must record any subsequent action prospectively.
 
 Terminal entry point added before any Event A API request: scripts/run_event_a_terminal.py. The group requested terminal input because the GUI field was unusable. It inherits Runner.execute and parse_result from scripts/run_event_a.py; only secret entry and progress display differ. It preserves the pilot integrity gate, all six frozen requests, model and decision rules. No key is saved or passed on the command line.
+
+## D-12 — Event A result, prediction check and comparison with M2 (2026-10-28)
+
+Result record for the run pre-registered in D-11. Nothing is re-run and no request, response, label, rule or threshold is changed.
+
+### 1. Timeline and registration evidence
+
+| UTC, 2026-10-27 | Event | Evidence |
+|---|---|---|
+| 13:35 | Event A preparation and screening started (6/6 pass rules 1-4) | `outputs/event_a/preparation_manifest.json`, `data/event_a_screening_log.csv` |
+| 13:41 | gpt-4o-2024-05-13, case 66: HTTP 401 (API key) | `outputs/event_a/runs/20261027T134143_156443Z_terminal/` |
+| 13:41, 13:44 | gpt-4o-2024-05-13, case 66: HTTP 404 `model_not_found` (two attempts) | `outputs/event_a/runs/20261027T134156_153205Z/`, `…134412_021954Z/` |
+| 14:04 | gpt-6-luna primary run, pilot 66 then 93, 94, 278, 279, 363 | `outputs/event_a_gpt6_luna/runs/20261027T140405_285837Z/` |
+| 14:14 | Supplementary case 368 (registered after the primary responses) | `outputs/event_a_supplement_368/` |
+| 14:21 | Exploratory full repeat (registered after the primary responses) | `outputs/event_a_repeat_full/` |
+| 16:25 | Everything above committed and pushed in one commit `68f634d` | git |
+
+**Disclosure.** D-11 asked for the entry to be committed before screening. This did not happen: the registration, screening, all runs and the first report were committed together after execution. Git therefore does not show that D-11 preceded execution. The available evidence is:
+
+- every run folder contains `preregistration.md`, which is identical (whitespace-normalised) to D-11 as committed;
+- `pilot_approved.json` records that the pilot gate checked integrity only (`gold_or_correctness_used_for_gate: false`);
+- D-11 §9 records the group's confirmation that the Tracker prediction and sample plan were entered before source screening. The Tracker entry time itself is not recorded in this repository.
+
+No numerical prediction was changed after any response was seen.
+
+### 2. Deviations from D-11 (all disclosed before or at execution unless stated)
+
+1. **Model.** `gpt-4o-2024-05-13` was shut down by OpenAI on 2026-10-23 (deprecation announced 2026-04-22), between M2 (2026-10-20) and Event A. The failed attempts are preserved and not scored. Replacement: `gpt-6-luna`, temperature 0, `reasoning_effort: none`; prompt messages and source bytes unchanged (`outputs/event_a_gpt6_luna/migration_check.json`).
+   - The replacement was selected by the group (`docs/event_a_model_change.md`).
+2. **Empty recommendation (363).** The model returned a complete HTTP-200 response with an empty list `[]`. D-11 did not register this outcome; the unchanged parser stopped (`BLOCKED`). 363 is retained and not classified as H1/H2. For Recall@1 and agreement it is counted as a miss / disagreement; this convention was chosen after seeing the response.
+3. **Hybrid for 363.** D-11 step 2 reads "Otherwise … output the static top-1". Read literally, an empty LLM answer falls under "Otherwise" and the hybrid outputs the static top-1 (`IndexVersion`, a miss). The parenthesis "(LLM class is H1 or H2)" shows this case was not anticipated. Both readings (static fallback, or no output) give the same hybrid result, 3/6, so no conclusion depends on the choice.
+4. **Prompt hash.** D-11 cites the M1_PLAN template hash with CRLF line endings (`ef3ed569…`). The Event A requests record `fbe97552…`, which is the same M1_PLAN file with LF line endings (`git show M1_PLAN:docs/prompt_adapted.txt | sha256sum`). Content is unchanged.
+5. **Implementation.** Screening used `scripts/prepare_event_a.py` (JavaParser) instead of the `select_sample.py` options named in D-11 §2 (recorded in D-11 §9). Selection order, rule 4 and the final sample are as registered.
+6. **Signatures.** As in M2 (D-05), dataset signatures differ from the reconstructed source in 5/6 cases (66, 93, 94, 279, 363; `first_run_report/input_audit.json`). They were sent unchanged.
+
+### 3. Primary result (6 cases, first gpt-6-luna response)
+
+| Case | Gold target | LLM top-1 | LLM | Label | Static top-1 (score) | Static | Hybrid | Fallback |
+|---|---|---|---:|---|---|---:|---:|---|
+| 66 | IndexShardSnapshotStatus | same | 1 | valid | IndexShardSnapshotStatus (5) | 1 | 1 | no |
+| 93 | EsPhysicalOperationProviders | same | 1 | valid | LocalExecutionPlannerContext (2) | 0 | 1 | no |
+| 94 | EnrichPolicyResolver | same | 1 | valid | EnrichResolution (1) | 0 | 1 | no |
+| 278 | BooleanVector | BooleanLookup | 0 | H2 | ByteSizeValue (0) | 0 | 0 | miss→miss |
+| 279 | BytesRefVector | BytesRefLookup | 0 | H2 | ByteSizeValue (0) | 0 | 0 | miss→miss |
+| 363 | DenseVectorFieldMapper.ElementType | `[]` | 0 | no recommendation | IndexVersion (0) | 0 | 0 | see §2.3 |
+
+| Metric | M2 (12 cases) | Event A (6 cases) | Event A, commit clusters (5 units) | M2, commit clusters (11 units) |
+|---|---:|---:|---:|---:|
+| LLM Recall@1 | 10/12 (83%) | 3/6 (50%) | 3/5 (60%) | 9/11 |
+| Static Recall@1 | 8/12 (67%) | 1/6 (17%) | 1/5 (20%) | 7/11 |
+| Hybrid Recall@1 | 10/12 (83%) | 3/6 (50%) | 3/5 (60%) | 9/11 |
+| LLM-static agreement | 9/12 (75%) | 1/6 (17%) | 1/5 (20%) | 8/11 |
+| H1+H2 (LLM-only) | 0/12 | 2/6 (33%) — H1 0, H2 2 | 1/5 (20%) | 0/11 |
+| Fallback used | 0/12 | 2/6 (both miss→miss) | — | — |
+| No recommendation | 0/12 | 1/6 | — | — |
+
+Evidence: `outputs/event_a_gpt6_luna/first_run_report/` (`observations.csv`, `summary.json`, `static/`, `h_check/`, `input_audit.json`).
+
+### 4. Prediction check (D-11 §4)
+
+| | Prediction | Observed | Verdict |
+|---|---|---|---|
+| P1 | LLM Recall@1 3-5/6 | 3/6 | met (lower bound) |
+| P2 | H1+H2 0-1/6 | 2/6 | **not met** |
+| P3 | static <= LLM; agreement 3-5/6 | 1/6 <= 3/6; agreement 1/6 | first part met; agreement **not met** |
+| P4 | hybrid >= LLM | 3/6 = 3/6 | met, by equality (either §2.3 reading) |
+
+### 5. Does the M2 conclusion transfer? (D-11 §5)
+
+- **(a) Hallucinations are rare under the target-only prompt — weakened, not cleanly overturned.** By case, H1+H2 = 2/6 reaches the challenge threshold (>= 2/6). By developer-commit cluster it is 1/5 = 20%, below the registered 25% threshold. Under the pre-registered reading rule the challenge therefore **depends on the 278/279 pair and is weak**. Both H2 answers name the generated `…Lookup` class that implements the `lookup` operation, which exists in the project but is not a field or parameter type of the host (narrow H2 rule, D-04 deviation 2).
+- **(b) The hybrid rule does not lower Recall@1 — transfers, with no benefit.** Hybrid = LLM = 3/6. Unlike M2, the fallback was used (278, 279): the candidate-set check rejected both H2 answers, but the static replacement was also wrong. Neither the challenge (hybrid < LLM) nor the strengthening condition (hybrid > LLM) is met.
+- **Recall@1 — lower, cause not separable.** LLM-only drops from 83% to 50%. Because the project and the model changed together (§2.1), this cannot be attributed to project transfer.
+- **LLM-static agreement and static accuracy — do not transfer.** Agreement falls from 75% to 17% and static Recall@1 from 67% to 17%. In 3/6 cases (278, 279, 363) every static candidate scores 0, so the static top-1 is decided only by the alphabetical tie-break. This does not depend on the LLM, so the model change does not explain it.
+
+**Strongest evidence:** the per-case table in §3, in particular the zero-score static rankings in `first_run_report/static/{278,279,363}.audit.json` and the cluster-weighted H1+H2 of 1/5.
+
+### 6. Supplementary and exploratory runs (reported separately; not part of the primary result)
+
+- **Case 368** (next reserve, registered after the primary responses because of 363): LLM hit (`AggregateFunction`, in C), static miss (`Expression`, score 2), hybrid hit, no fallback. Does not replace 363 or change the denominator. `docs/event_a_supplement_368.md`, `outputs/event_a_supplement_368/`.
+- **Full repeat** (byte-identical requests, registered after the primary responses): the same target or empty outcome in 6/6 cases, including `[]` for 363; rationale text differs in 5/6. Limited repeatability evidence only; not pooled. `docs/event_a_repeat_full.md`, `outputs/event_a_repeat_full/comparison/`.
+
+### 7. Post-hoc observation (not pre-registered; descriptive only)
+
+In the authors' reconstructed source the extracted method sometimes takes the gold target as a parameter. This holds for 66 (`IndexShardSnapshotStatus`), 93 (`EsPhysicalOperationProviders`) and 368 (`AggregateFunction`), i.e. 3 of the 4 Event A LLM hits, and for 0/12 M2 cases (where the gold was typically a field type of a Service class). The frozen signature sent to the LLM does not contain these parameters, but the full host file does. This may make some held-out cases easier for the LLM and is a further difference between the two samples. It is not tested here.
+
+### 8. Design / refactoring implication
+
+The two parts of the hybrid behave differently on this project:
+
+- As a **precondition check** (is the LLM's class a field or parameter type of H?), the static candidate set C did its job: it flagged both H2 answers, in line with Def. III.3 of the paper.
+- As a **ranking**, the coupling score failed: in 278, 279 and 363 the method body accesses no member of any candidate (278/279 only delegate: `return getBooleanLookup(positions, targetBlockSize);`). With no Feature Envy signal, the "best" static target is chosen alphabetically, i.e. arbitrarily, and the fallback cannot recover the correct target.
+
+Implication: a Move Method decision for a delegating method cannot be justified by coupling evidence from the method body alone. The static evidence should be used to reject candidates, not to choose one, when all scores are zero. This is evidence for keeping the check inline as a filter rather than introducing a common ranking interface now; that design question remains with M4 (PRE_EVENT_B). Separately, the runner needs an explicit "no recommendation" outcome distinct from transport errors and malformed output; this is recorded for future runs and does not change the first observations.
+
+### 9. Threats specific to this result
+
+n = 6, one project; 278/279 not independent and generated code (the real change was probably in the template); model change and possible contamination; no-recommendation convention chosen after execution; signature mismatches in 5/6 cases; narrow H2 rule; one primary run (plus one exploratory repeat).
+
+### 10. Tracker entry (Event A result / decision)
+
+> Event A (elasticsearch, 6 cases; gpt-4o-2024-05-13 shut down 23 Oct, replaced by gpt-6-luna, disclosed before the valid run): LLM Recall@1 3/6, static 1/6, hybrid 3/6, agreement 1/6, H1+H2 2/6 (1/5 by developer-commit cluster), one empty recommendation (363). M2's "hallucinations are rare" is weakened but the challenge depends on the non-independent pair 278/279; the hybrid non-decrease result transfers (equality, fallback used twice without benefit); the Recall@1 drop cannot be separated from the model change. Evidence: D-12, tag EVENT_A, outputs/event_a_gpt6_luna/first_run_report/.
