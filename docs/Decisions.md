@@ -405,3 +405,23 @@ n = 6, one project; 278/279 not independent and generated code (the real change 
 ### 10. Tracker entry (Event A result / decision)
 
 > Event A (elasticsearch, 6 cases; gpt-4o-2024-05-13 shut down 23 Oct, replaced by gpt-6-luna, disclosed before the valid run): LLM Recall@1 3/6, static 1/6, hybrid 3/6, agreement 1/6, H1+H2 2/6 (1/5 by developer-commit cluster), one empty recommendation (363). M2's "hallucinations are rare" is weakened but the challenge depends on the non-independent pair 278/279; the hybrid non-decrease result transfers (equality, fallback used twice without benefit); the Recall@1 drop cannot be separated from the model change. Evidence: D-12, tag EVENT_A, outputs/event_a_gpt6_luna/first_run_report/.
+
+
+
+## Empty LLM recommendation handling — no-change decision
+
+Date: 2026-11-04
+
+### Concrete design problem
+The frozen hybrid rule does not specify how to handle an empty LLM recommendation (`[]`), leaving the overall frozen hybrid score incomplete.
+
+### Alternatives considered
+1. Count empty output as a miss.
+2. Use the static recommendation as a fallback.
+
+### Decision
+Preserve the original run and report the scoring limitation. No implementation change is made at this stage. Define and test an explicit empty-output policy before future runs.
+
+### Verification evidence
+Case 363 returned `[]` in both the first run and the repeat. Both disclosed post-hoc scoring policies give hybrid Recall@1 of 3/6. These scores do not replace the incomplete frozen result.
+
