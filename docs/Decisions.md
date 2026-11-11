@@ -425,3 +425,58 @@ Preserve the original run and report the scoring limitation. No implementation c
 ### Verification evidence
 Case 363 returned `[]` in both the first run and the repeat. Both disclosed post-hoc scoring policies give hybrid Recall@1 of 3/6. These scores do not replace the incomplete frozen result.
 
+
+## D-13 — Change Event B: new caller for the hybrid rule (2026-11-11)
+
+### 1. Pre-event state and timeline
+- Pre-Event-B state = commit `e0b4521` (2026-11-04, "Empty LLM recommendation handling — no-change decision" above). That section is not edited.
+- Tag `PRE_EVENT_B` points to `e0b4521`. The tag itself was created on 2026-11-11, after the Event B brief had been opened; it points to a commit that predates the brief.
+- While scoping the event (before the prediction below was recorded), we observed that the inline copies of the hybrid rule treat an empty LLM output differently (see §3). This observation is disclosed here because it may have informed the prediction.
+
+### 2. Interpretation of the event
+Event B asks about "the method you moved or considered moving". Our M4 decision did not move a Java method; it concerned the hybrid decision rule (D-03: keep the LLM top-1 if it is a statically valid candidate, otherwise use the static top-1) and its unspecified empty-output case. We therefore treat that rule as the behaviour a new caller needs. The new caller is the next run the M4 decision itself anticipates ("define and test an explicit empty-output policy before future runs").
+
+### 3. Prediction (drafted 2026-11-11 before implementation; entered in the tracker after implementation)
+> We expect the new-caller pressure to affect the hybrid decision rule, which is not defined in one place: it is written inline in the evaluation scripts rather than as a function in the shared `scripts/event_a_rules.py`. A new caller would need either another copy or a reusable function. We expect the M4 no-change decision to be only partly supported: not changing the frozen runs and scores remains correct, but leaving the rule and its empty-output handling inline is not the right responsibility boundary once a second consumer needs it.
+
+### 4. Design pressure (evidence)
+The rule is defined four times in the pre-Event-B state:
+
+| Location | Behaviour on empty LLM output |
+|---|---|
+| `scripts/evaluate_lab4.py` (inline, M2) | `'' not in candidates` → silently falls back to static |
+| `scripts/event_a_rules.py` `rank()` (returned value is discarded by both callers) | same as above |
+| `scripts/evaluate_event_a.py` | same as above |
+| `scripts/report_event_a_first_run.py` (Event A primary report) | explicit branch for 363 → `None` (not scored) |
+
+So the same input already produces different hybrid results depending on which script is the caller. A fourth caller would repeat this (Duplicated Code; a change to the rule needs Shotgun Surgery).
+
+### 5. Alternatives
+1. **No additional structural change.** The new caller copies the one-line rule. Trade-off: zero risk to the frozen scripts; but a fifth copy, and the empty-output divergence remains implicit.
+2. **Extract one function into the existing shared module** `scripts/event_a_rules.py`, with the empty-output policy as a required explicit parameter; frozen scripts are not edited. Trade-off: one definition and one boundary for new callers; but the frozen scripts keep their old copies, so equivalence must be shown by a test.
+3. **Strategy class hierarchy for fallback policies.** Rejected: two policies do not justify a class hierarchy (over-engineering).
+
+### 6. Decision and implementation
+Option 2. Added `hybrid_top1(llm_top1, candidates, static_top1, empty_policy)` to `scripts/event_a_rules.py` (`empty_policy` ∈ {`miss`, `static_fallback`}; any other value raises `ValueError`). No frozen script, output or tag was changed. `scripts/event_a_rules.py` is already imported by the Event A scripts, so no new module or dependency was introduced.
+
+### 7. Verification
+`scripts/test_hybrid_rule.py` recomputes the hybrid top-1 for all 19 saved cases (M2 12, Event A 6, supplement 368) from the preserved static audits (`outputs/static/`, `outputs/event_a_*/first_run_report/static/`) and saved LLM top-1, and compares with the saved `hybrid_top1`. Result: 19/19 OK (`outputs/event_b/test_hybrid_rule.txt`).
+- 18 non-empty cases: both policies reproduce the frozen value exactly, including the two fallback cases 278 and 279.
+- Case 363 (empty): `miss` → `None` (matches the Event A report); `static_fallback` → static top-1. The choice is now visible at the call site instead of depending on which script is used.
+- An unknown policy name is rejected.
+
+### 8. Pre/post comparison
+| Aspect | Pre-Event-B (`e0b4521`) | Post-response |
+|---|---|---|
+| Definitions a new caller could reuse | 0 (rule only inline, or bundled in `rank()` and discarded) | 1 (`hybrid_top1`) |
+| Empty-output behaviour | implicit, differs by caller | explicit required parameter |
+| Frozen scripts/outputs changed | — | none |
+| Change spread for a new caller | copy the rule | 1 import + 1 call |
+| Files changed | — | `scripts/event_a_rules.py` (+18 lines), new `scripts/test_hybrid_rule.py`, new `outputs/event_b/test_hybrid_rule.txt` |
+
+### 9. Conclusion
+The Week 9 decision is **partly supported**. Keeping the frozen runs and scores unchanged still holds. Leaving the rule without a single definition did not hold once a second consumer needed it, so the response adds one shared function and makes the empty-output policy explicit.
+Remaining risk: the four inline copies in the frozen scripts still exist (kept as evidence snapshots). If someone edits one of them, the copies can diverge again; new code should call `hybrid_top1` only.
+
+### 10. Tracker entry (Event B)
+> Prediction: new-caller pressure hits the hybrid rule, which has no single definition; M4 no-change expected to be only partly supported. Response: extracted `hybrid_top1` with an explicit empty-output policy into the existing shared `event_a_rules.py`; frozen scripts untouched; Strategy hierarchy rejected as over-engineering. Accepted trade-off: frozen inline copies remain as evidence. Verification: `scripts/test_hybrid_rule.py` 19/19 equivalent to saved hybrid values (363 resolved only by explicit policy). Conclusion: M4 partly supported. Evidence: D-13, tags PRE_EVENT_B (e0b4521) and EVENT_B.

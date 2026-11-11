@@ -64,3 +64,21 @@ def rank(ast,top1):
     static=ranked[0]['candidate_fqn'] if ranked else 'NONE'
     hybrid=top1 if top1 in candidates else static
     return ranked,static,hybrid,variables
+
+# --- Event B (D-13): single shared definition of the hybrid rule -------------
+# The frozen scripts and rank() above keep their own inline copies unchanged,
+# because they produced the tagged M2/Event A evidence. New callers use this.
+EMPTY_POLICIES=('miss','static_fallback')
+
+def hybrid_top1(llm_top1,candidates,static_top1,empty_policy):
+    """D-03 hybrid rule: keep the LLM top-1 if it is a statically valid
+    candidate, otherwise fall back to the static top-1.
+    empty_policy decides the case the frozen rule left unspecified
+    (the LLM returned an empty list, e.g. case 363):
+      'miss'            -> None (no hybrid recommendation, scored as a miss)
+      'static_fallback' -> static_top1"""
+    if empty_policy not in EMPTY_POLICIES:
+        raise ValueError('unknown empty_policy: %r'%(empty_policy,))
+    if not llm_top1:
+        return None if empty_policy=='miss' else static_top1
+    return llm_top1 if llm_top1 in candidates else static_top1
